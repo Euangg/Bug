@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpnpeukhc7lyf"]
+
+[ext_resource type="Script" uid="uid://br02oejrgle6g" path="res://test_2.gd" id="1_2pks0"]
+[ext_resource type="Texture2D" uid="uid://db6ihssg5ille" path="res://asset/scene1.png" id="1_sth5e"]
+[ext_resource type="Texture2D" uid="uid://bbnqmfvqnlgsi" path="res://asset/scene2.png" id="2_2pks0"]
+[ext_resource type="PackedScene" uid="uid://c053kc2oh3xat" path="res://player/player.tscn" id="3_yerdr"]
+[ext_resource type="PackedScene" uid="uid://b3dpxup87lm2e" path="res://enemy/enemy.tscn" id="5_yerdr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgdv"]
+size = Vector2(3373, 332)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow83g"]
+size = Vector2(304.25, 1936)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kshcw"]
+size = Vector2(243.25, 332)
+
+[node name="Test2" type="Node2D"]
+script = ExtResource("1_2pks0")
+
+[node name="Scene1" type="Sprite2D" parent="."]
+texture = ExtResource("1_sth5e")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Scene2" type="Sprite2D" parent="."]
+position = Vector2(2880, 380)
+texture = ExtResource("2_2pks0")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1671.5, 889)
+shape = SubResource("RectangleShape2D_ijgdv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-152, 385)
+shape = SubResource("RectangleShape2D_ow83g")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3992, 433)
+shape = SubResource("RectangleShape2D_ow83g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3721.375, 883)
+shape = SubResource("RectangleShape2D_kshcw")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3479, 1057)
+shape = SubResource("RectangleShape2D_kshcw")
+
+[node name="Enemy" parent="." instance=ExtResource("5_yerdr")]
+position = Vector2(1342, 698)
+
+[node name="Enemy2" parent="." instance=ExtResource("5_yerdr")]
+position = Vector2(3702, 695)
+
+[node name="Player" parent="." instance=ExtResource("3_yerdr")]
+position = Vector2(275, 331)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = -320
+limit_right = 3840
+limit_bottom = 1080

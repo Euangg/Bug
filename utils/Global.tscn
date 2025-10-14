@@ -4,3 +4,8 @@
 
 [node name="Global" type="Node"]
 script = ExtResource("1_2eh5f")
+
+[node name="Bgm" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="finished" from="Bgm" to="." method="_on_bgm_finished"]

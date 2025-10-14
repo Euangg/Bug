@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bug"
-run/main_scene="uid://dj4781x814ch"
+run/main_scene="uid://cpnpeukhc7lyf"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [audio]
