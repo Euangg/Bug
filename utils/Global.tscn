@@ -1,11 +1,17 @@
 [gd_scene load_steps=2 format=3 uid="uid://cyrx8abqo6sjw"]
 
-[ext_resource type="Script" uid="uid://b16wmv50fpiyw" path="res://utils/global.gd" id="1_2eh5f"]
+[ext_resource type="Script" uid="uid://c5gvqp716wcet" path="res://utils/global.gd" id="1_2eh5f"]
 
 [node name="Global" type="Node"]
 script = ExtResource("1_2eh5f")
 
 [node name="Bgm" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+bus = &"Bgm"
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Ambient"
 
 [connection signal="finished" from="Bgm" to="." method="_on_bgm_finished"]
+[connection signal="finished" from="Ambient" to="." method="_on_ambient_finished"]

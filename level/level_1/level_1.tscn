@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://ypx6fceqgao6"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_e32pu"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/teleportation/teleportation.tscn" id="2_bax5m"]
+[ext_resource type="Texture2D" uid="uid://ca66j7msk7ynm" path="res://level/level_1/back_1.png" id="2_p5edo"]
+[ext_resource type="Script" uid="uid://dc0ajxd4na6ve" path="res://level/level_1/level_1.gd" id="2_uyioa"]
+[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://enemy/plasma_cannon/enemy_plasma_cannon.tscn" id="3_rk12w"]
+[ext_resource type="Texture2D" uid="uid://b3abay31bb0x7" path="res://level/level_1/back_2.png" id="3_uyioa"]
+[ext_resource type="Texture2D" uid="uid://bf2ami5gnvvhi" path="res://level/level_1/back_3.png" id="4_crgpi"]
+[ext_resource type="Texture2D" uid="uid://1f8utn2qatp5" path="res://level/level_1/back_4.png" id="5_nmnnl"]
+[ext_resource type="Texture2D" uid="uid://0680qsxukqop" path="res://level/level_1/core.png" id="6_fdm8s"]
+[ext_resource type="Texture2D" uid="uid://rfw8rd6bn6bg" path="res://level/level_1/front_1.png" id="7_jfmfv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lx8gb"]
+size = Vector2(2318, 191)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moo38"]
+size = Vector2(887.71875, 1357)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nokfs"]
+size = Vector2(320, 1178)
+
+[node name="Level1" instance=ExtResource("1_e32pu")]
+script = ExtResource("2_uyioa")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_p5edo")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+motion_scale = Vector2(0.4, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+texture = ExtResource("3_uyioa")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
+motion_scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+texture = ExtResource("4_crgpi")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" index="3"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4" index="0"]
+texture = ExtResource("5_nmnnl")
+centered = false
+
+[node name="Core" type="ParallaxLayer" parent="ParallaxBackground" index="4"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Core" index="0"]
+texture = ExtResource("6_fdm8s")
+centered = false
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground" index="5"]
+motion_scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6" index="0"]
+position = Vector2(0, 318)
+texture = ExtResource("7_jfmfv")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(1153, 1134)
+shape = SubResource("RectangleShape2D_lx8gb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(-444, 680)
+shape = SubResource("RectangleShape2D_moo38")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment" index="2"]
+polygon = PackedVector2Array(-3, 605, 1740, 1039, -4, 1129)
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(1882, 1039)
+
+[node name="Teleportation" parent="." index="3" instance=ExtResource("2_bax5m")]
+position = Vector2(1504, 323)
+target_level = "level_2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(607, 134)
+shape = SubResource("RectangleShape2D_nokfs")
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(1920, 1400)
+
+[node name="EnemyPlasmaCannon" parent="." index="5" instance=ExtResource("3_rk12w")]
+position = Vector2(1426, 519)

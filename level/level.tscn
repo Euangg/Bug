@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ngyifqf18ygu"]
+
+[ext_resource type="Script" uid="uid://cbxwoqy52e7v" path="res://level/level.gd" id="1_7lnir"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_7lnir")
+
+[node name="Environment" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="EnterPoint" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="CameraRange" type="Node" parent="."]
+
+[node name="LT" type="Marker2D" parent="CameraRange"]
+unique_name_in_owner = true
+
+[node name="RB" type="Marker2D" parent="CameraRange"]
+unique_name_in_owner = true

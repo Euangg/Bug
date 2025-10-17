@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b33na2hc1mtcl"]
+
+[ext_resource type="PackedScene" uid="uid://ypx6fceqgao6" path="res://level/level_1/level_1.tscn" id="1_j5ts6"]
+[ext_resource type="Script" uid="uid://c801ros4yhl66" path="res://ui/play/play.gd" id="1_xyo1v"]
+[ext_resource type="PackedScene" uid="uid://c053kc2oh3xat" path="res://player/player.tscn" id="2_xyo1v"]
+
+[node name="Play" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xyo1v")
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Level1" parent="Level" instance=ExtResource("1_j5ts6")]
+
+[node name="Player" parent="." instance=ExtResource("2_xyo1v")]
+unique_name_in_owner = true
+position = Vector2(350, 565)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+unique_name_in_owner = true
