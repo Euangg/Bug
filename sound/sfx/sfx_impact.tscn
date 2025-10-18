@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2isctsk0iub5"]
+
+[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_ahkr6"]
+[ext_resource type="AudioStream" uid="uid://bn5sl5l4v1neu" path="res://sound/sfx/sfx_impact.wav" id="2_5nb6p"]
+
+[node name="SfxImpact" instance=ExtResource("1_ahkr6")]
+stream = ExtResource("2_5nb6p")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://0kbkdb7cnhup"
+path="res://.godot/imported/bgm_1_fight .mp3-9d194458d96612a18e86bceb416162cc.mp3str"
+
+[deps]
+
+source_file="res://sound/bgm/bgm_1_fight .mp3"
+dest_files=["res://.godot/imported/bgm_1_fight .mp3-9d194458d96612a18e86bceb416162cc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

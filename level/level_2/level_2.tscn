@@ -72,10 +72,6 @@ shape = SubResource("RectangleShape2D_lo0xd")
 position = Vector2(2161.5, 788)
 shape = SubResource("RectangleShape2D_oc35s")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment" index="2"]
-position = Vector2(1299, 859)
-polygon = PackedVector2Array(-1158, 187, 619, -292, 593, 388)
-
 [node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
 position = Vector2(97, 1039)
 
@@ -92,3 +88,4 @@ position = Vector2(1920, 1400)
 
 [node name="EnemyPlasmaCannon" parent="." index="6" instance=ExtResource("10_x3uea")]
 position = Vector2(1621, 513)
+direction = -1
