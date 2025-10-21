@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctoymaqneykpq"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_ko2gb"]
+[ext_resource type="Texture2D" uid="uid://ceshpghrhtdq0" path="res://level/level_city/back.png" id="2_om7um"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/teleportation/teleportation.tscn" id="3_wav24"]
+[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://entity/enemy/sweeper/enemy_sweep_man.tscn" id="4_fcbty"]
+[ext_resource type="PackedScene" uid="uid://c2ivwhbwqwpjn" path="res://entity/enemy/sweeper/enemy_sweep_man_2.tscn" id="5_x7yq7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om7um"]
+size = Vector2(3096, 518)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wav24"]
+size = Vector2(1041, 2053)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxog"]
+size = Vector2(142, 391)
+
+[node name="LevelCity" instance=ExtResource("1_ko2gb")]
+
+[node name="Back" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_om7um")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(1317, 1271)
+shape = SubResource("RectangleShape2D_om7um")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(-520, 746)
+shape = SubResource("RectangleShape2D_wav24")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="2"]
+position = Vector2(3166, 743)
+shape = SubResource("RectangleShape2D_wav24")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(167, 1012)
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(2500, 1400)
+
+[node name="Teleportation" parent="." index="4" instance=ExtResource("3_wav24")]
+position = Vector2(1667, 649)
+target_level = "level_cyberpunk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(904, 168)
+shape = SubResource("RectangleShape2D_utxog")
+
+[node name="EnemySweepMan2" parent="." index="5" instance=ExtResource("4_fcbty")]
+position = Vector2(1507, 890)
+direction = -1
+
+[node name="EnemySweepMan" parent="." index="6" instance=ExtResource("5_x7yq7")]
+position = Vector2(1850, 915)
+speed_x = 300.0
+direction = -1

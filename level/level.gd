@@ -3,6 +3,7 @@ extends Node2D
 
 func _ready() -> void:
 	if Global.is_player_entered:
+		Global.is_player_entered=false
 		var mark:Marker2D=%EnterPoint.get_child(Global.enter_point_order)
 		if mark: Global.player.position=mark.position
 	set_camera_limit()

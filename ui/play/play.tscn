@@ -1,25 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://b33na2hc1mtcl"]
+[gd_scene load_steps=6 format=3 uid="uid://b33na2hc1mtcl"]
 
+[ext_resource type="Shader" uid="uid://bov6ygsuk36kx" path="res://ui/play/grayscale.gdshader" id="1_tnm53"]
 [ext_resource type="Script" uid="uid://c801ros4yhl66" path="res://ui/play/play.gd" id="1_xyo1v"]
-[ext_resource type="PackedScene" uid="uid://c1cnf4qh4sn0o" path="res://level/level_1/level_1_2.tscn" id="2_tnm53"]
-[ext_resource type="PackedScene" uid="uid://c053kc2oh3xat" path="res://player/player.tscn" id="2_xyo1v"]
+[ext_resource type="PackedScene" uid="uid://l6m7am4bx8hx" path="res://level/level_cave/level_cave.tscn" id="2_tnm53"]
+[ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://entity/player/player.tscn" id="4_tnm53"]
 
-[node name="Play" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5cp7b"]
+shader = ExtResource("1_tnm53")
+shader_parameter/intensity = 0.0
+
+[node name="Play" type="Node2D"]
 script = ExtResource("1_xyo1v")
 
 [node name="Level" type="Node2D" parent="."]
-
-[node name="Level_1_2" parent="Level" instance=ExtResource("2_tnm53")]
-
-[node name="Player" parent="." instance=ExtResource("2_xyo1v")]
 unique_name_in_owner = true
-position = Vector2(350, 565)
+use_parent_material = true
+
+[node name="LevelCave" parent="Level" instance=ExtResource("2_tnm53")]
+
+[node name="Player" parent="." instance=ExtResource("4_tnm53")]
+unique_name_in_owner = true
+position = Vector2(122, 1007)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
+position = Vector2(-3, -15)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Player/Camera2D"]
+position = Vector2(0, -150.00003)
+scale = Vector2(51.92, 13.42)
+copy_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D/BackBufferCopy"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_5cp7b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true

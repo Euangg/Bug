@@ -6,6 +6,8 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if target_level:
 		if body is Player:
-			Global.switch_level(target_level)
-			Global.is_player_entered=true
-			Global.enter_point_order=level_enter_point_order
+			var node_play=body.get_parent()
+			if node_play:
+				node_play.switch_level(target_level)
+				Global.is_player_entered=true
+				Global.enter_point_order=level_enter_point_order

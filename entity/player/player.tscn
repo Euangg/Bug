@@ -1,0 +1,298 @@
+[gd_scene load_steps=19 format=3 uid="uid://52m0ohtn51ho"]
+
+[ext_resource type="PackedScene" uid="uid://dgsocw8tkiktn" path="res://entity/entity.tscn" id="1_4pl66"]
+[ext_resource type="Script" uid="uid://6ab03peejp44" path="res://entity/player/player.gd" id="2_bgq54"]
+[ext_resource type="Texture2D" uid="uid://bx0jar3gdq6m1" path="res://entity/player/player.png" id="3_482rp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyoet"]
+size = Vector2(119, 131)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0kkn"]
+size = Vector2(116.5, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dat78"]
+size = Vector2(56, 176)
+
+[sub_resource type="Animation" id="Animation_yw30f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction/HitBox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ebec5"]
+resource_name = "atk_common"
+length = 0.32
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [40, 41, 42]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction/HitBox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.32),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_8t03j"]
+resource_name = "atk_tilt"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35]
+}
+
+[sub_resource type="Animation" id="Animation_2ieo8"]
+resource_name = "die"
+length = 1.2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [36, 37, 38]
+}
+
+[sub_resource type="Animation" id="Animation_g6k8r"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_boad6"]
+resource_name = "hurt"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_g1dw6"]
+resource_name = "idle"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rgyib"]
+resource_name = "pre_jump"
+length = 0.05
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_qjkh3"]
+resource_name = "rise"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_rkbax"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24, 25]
+}
+
+[sub_resource type="Animation" id="Animation_hg6s5"]
+resource_name = "sprint"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [28]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjkh3"]
+_data = {
+&"RESET": SubResource("Animation_yw30f"),
+&"atk_common": SubResource("Animation_ebec5"),
+&"atk_tilt": SubResource("Animation_8t03j"),
+&"die": SubResource("Animation_2ieo8"),
+&"fall": SubResource("Animation_g6k8r"),
+&"hurt": SubResource("Animation_boad6"),
+&"idle": SubResource("Animation_g1dw6"),
+&"pre_jump": SubResource("Animation_rgyib"),
+&"rise": SubResource("Animation_qjkh3"),
+&"run": SubResource("Animation_rkbax"),
+&"sprint": SubResource("Animation_hg6s5")
+}
+
+[node name="Player" instance=ExtResource("1_4pl66")]
+collision_layer = 2
+script = ExtResource("2_bgq54")
+hp = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0"]
+position = Vector2(0, -148)
+texture = ExtResource("3_482rp")
+flip_h = true
+hframes = 4
+vframes = 11
+
+[node name="HitBoxSprint" type="Area2D" parent="Direction" index="1"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitBoxSprint" index="0"]
+position = Vector2(49.5, -67.5)
+shape = SubResource("RectangleShape2D_oyoet")
+
+[node name="HitBox" type="Area2D" parent="Direction" index="2"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitBox" index="0"]
+position = Vector2(60.75, -64)
+shape = SubResource("RectangleShape2D_n0kkn")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -88)
+shape = SubResource("RectangleShape2D_dat78")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_qjkh3")
+}
+
+[node name="TimerSprint" type="Timer" parent="." index="3"]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="TimerEnd" type="Timer" parent="." index="4"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="TimerStep" type="Timer" parent="." index="5"]
+unique_name_in_owner = true
+wait_time = 0.25
+
+[connection signal="timeout" from="TimerEnd" to="." method="_on_timer_end_timeout"]
+[connection signal="timeout" from="TimerStep" to="." method="_on_timer_step_timeout"]

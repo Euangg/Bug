@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cggi105dsnqne" path="res://level/level_2/back_5.png" id="6_fwhj2"]
 [ext_resource type="Texture2D" uid="uid://b47n0ntlt5wtl" path="res://level/level_2/core.png" id="7_2auxq"]
 [ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/teleportation/teleportation.tscn" id="8_mbu0e"]
-[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://enemy/plasma_cannon/enemy_plasma_cannon.tscn" id="10_x3uea"]
+[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://enemy_temp/plasma_cannon/enemy_plasma_cannon.tscn" id="10_x3uea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo0xd"]
 size = Vector2(3501, 445)

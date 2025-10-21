@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cbxwoqy52e7v" path="res://level/level.gd" id="1_7lnir"]
 
 [node name="Level" type="Node2D"]
+use_parent_material = true
 script = ExtResource("1_7lnir")
 
 [node name="Environment" type="StaticBody2D" parent="."]

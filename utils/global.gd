@@ -19,29 +19,29 @@ func _on_ambient_finished() -> void:%Ambient.play()
 
 const SFX_IMPACT = preload("uid://c2isctsk0iub5")
 const SFX_IMPACT_1 = preload("uid://ck58vnydx53b4")
+const SFX_BUTTON_CLICK = preload("uid://cak5j1u74pllk")
+const SFX_ATTACK = preload("uid://cbywfslpikhew")
+const SFX_SPRINT = preload("uid://bfsq4eys8ye7l")
+const SFX_STEP_1 = preload("uid://wy2biutkp7vm")
+const SFX_STEP_2 = preload("uid://chrys5gsvfbrf")
+const SFX_STEP_3 = preload("uid://bbsvrcoc5p51f")
+const SFX_DROP = preload("uid://de3lfa4oninkg")
+const SFX_JUMP = preload("uid://d3cwyht8qrn0l")
+const SFX_HIT = preload("uid://kespeoj5jdqc")
+const SFX_HURT = preload("uid://dmf2hhh8vv7os")
+const SFX_DEATH = preload("uid://ko45cgd21i7u")
 func play_sfx(sfx:PackedScene):%Sfx.add_child(sfx.instantiate())
 
-const SCENE_PLAY = preload("uid://b33na2hc1mtcl")
+const UI_THEME = preload("uid://cw11diprqdn11")
+const UI_PLAY = preload("uid://b33na2hc1mtcl")
+const UI_FAIL = preload("uid://ds2udw36hcry6")
+const UI_CLEAR = preload("uid://cy4qt40ba7mq7")
 func switch_scene(packed_scene:PackedScene):
 	get_tree().call_deferred("change_scene_to_packed",packed_scene)
 
+const EFFECT_BOOM = preload("uid://ckl3f6gmbo15j")
 
-const LEVEL_1 = preload("uid://ypx6fceqgao6")
-const LEVEL_2 = preload("uid://dxyuas23t6y4y")
-var map_level={
-	"level_1":LEVEL_1,
-	"level_2":LEVEL_2,
-}
 var player:Player=null
 var camera:Camera2D=null
-var current_level:Level
 var is_player_entered:bool=false
 var enter_point_order:int
-func switch_level(name_level:String):
-	var packed_level=map_level[name_level]
-	if packed_level:
-		var node_level=current_level.get_parent()
-		var new_level:Level=packed_level.instantiate()
-		node_level.call_deferred("add_child",new_level)
-		current_level.queue_free()
-		current_level=new_level

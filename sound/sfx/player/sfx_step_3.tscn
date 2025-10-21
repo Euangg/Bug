@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbsvrcoc5p51f"]
+
+[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_qdmgv"]
+[ext_resource type="AudioStream" uid="uid://c6bvvmlplb0bk" path="res://sound/sfx/player/sfx_step_3.mp3" id="2_qdmgv"]
+
+[node name="SfxDrop" instance=ExtResource("1_qdmgv")]
+stream = ExtResource("2_qdmgv")

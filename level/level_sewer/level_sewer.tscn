@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4m7w371a50xy"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_sj37q"]
+[ext_resource type="Texture2D" uid="uid://dec6fpsquj428" path="res://level/level_sewer/core1.png" id="2_d1ytu"]
+[ext_resource type="Texture2D" uid="uid://cbrup4y8x48k6" path="res://level/level_sewer/core2.png" id="3_2p2pk"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/teleportation/teleportation.tscn" id="4_2p2pk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ytu"]
+size = Vector2(2481, 499)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p2pk"]
+size = Vector2(1606.5, 2474)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1axou"]
+size = Vector2(217, 709)
+
+[node name="LevelSewer" instance=ExtResource("1_sj37q")]
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+offset_top = -840.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Core1" type="Sprite2D" parent="." index="1"]
+position = Vector2(974, 120)
+texture = ExtResource("2_d1ytu")
+
+[node name="Core2" type="Sprite2D" parent="Core1" index="0"]
+texture = ExtResource("3_2p2pk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(987, 1276)
+shape = SubResource("RectangleShape2D_d1ytu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(-369.25, -123)
+shape = SubResource("RectangleShape2D_2p2pk")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="2"]
+position = Vector2(2317, -123)
+shape = SubResource("RectangleShape2D_2p2pk")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(624, 1026)
+
+[node name="LT" parent="CameraRange" index="0"]
+position = Vector2(0, -840)
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(1920, 1080)
+
+[node name="Teleportation" parent="." index="5" instance=ExtResource("4_2p2pk")]
+position = Vector2(920, -12)
+target_level = "level_city"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(498, 679)
+shape = SubResource("RectangleShape2D_1axou")

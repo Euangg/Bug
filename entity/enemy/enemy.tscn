@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbkh2tq3o0xwf"]
+
+[ext_resource type="PackedScene" uid="uid://dgsocw8tkiktn" path="res://entity/entity.tscn" id="1_fkm8k"]
+[ext_resource type="Script" uid="uid://b6a5pu1uvjyoo" path="res://entity/enemy/enemy.gd" id="2_p1h7c"]
+
+[node name="Enemy" instance=ExtResource("1_fkm8k")]
+collision_layer = 4
+script = ExtResource("2_p1h7c")

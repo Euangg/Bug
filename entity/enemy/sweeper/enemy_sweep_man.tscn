@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxn3qox4lrsrl"]
+
+[ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://entity/enemy/enemy.tscn" id="1_3mwvl"]
+[ext_resource type="Script" uid="uid://cop6hsdcsifwm" path="res://entity/enemy/sweeper/enemy_sweep.gd" id="2_lyd8h"]
+[ext_resource type="Texture2D" uid="uid://dh728xwqxxouj" path="res://entity/enemy/enemy_man.png" id="3_3mwvl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mwvl"]
+size = Vector2(96, 157)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6di6r"]
+size = Vector2(96, 176)
+
+[sub_resource type="Animation" id="Animation_vog5p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_vpdny"]
+resource_name = "move"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxu4e"]
+_data = {
+&"RESET": SubResource("Animation_vog5p"),
+&"move": SubResource("Animation_vpdny")
+}
+
+[node name="EnemySweepMan2" instance=ExtResource("1_3mwvl")]
+script = ExtResource("2_lyd8h")
+speed_x = 200.0
+hp = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0"]
+position = Vector2(-10, -95)
+texture = ExtResource("3_3mwvl")
+flip_h = true
+hframes = 3
+vframes = 4
+frame = 4
+
+[node name="HitBox" type="Area2D" parent="Direction" index="1"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitBox" index="0"]
+position = Vector2(0, -88.5)
+shape = SubResource("RectangleShape2D_3mwvl")
+
+[node name="MarkerBoom" type="Marker2D" parent="Direction" index="2"]
+unique_name_in_owner = true
+position = Vector2(0, -42)
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+position = Vector2(0, -88)
+shape = SubResource("RectangleShape2D_6di6r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_cxu4e")
+}
+autoplay = "move"
+
+[connection signal="body_entered" from="Direction/HitBox" to="." method="_on_hit_box_body_entered"]

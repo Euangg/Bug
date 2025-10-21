@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfsq4eys8ye7l"]
+
+[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_earo3"]
+[ext_resource type="AudioStream" uid="uid://4tly1xmrpkrm" path="res://sound/sfx/player/sfx_sprint.mp3" id="2_2n4ou"]
+
+[node name="SfxSprint" instance=ExtResource("1_earo3")]
+stream = ExtResource("2_2n4ou")
