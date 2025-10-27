@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bn1v73eb47jsk"]
+[gd_scene load_steps=19 format=3 uid="uid://bn1v73eb47jsk"]
 
 [ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://entity/enemy/enemy.tscn" id="1_d8b3q"]
 [ext_resource type="Script" uid="uid://cl1ofd0qi7djm" path="res://enemy_temp/plasma_cannon/enemy_plasma_cannon.gd" id="2_k46t8"]
 [ext_resource type="Texture2D" uid="uid://cdqcj2itsy2xc" path="res://enemy_temp/plasma_cannon/frame_full.png" id="2_tpy64"]
 [ext_resource type="Texture2D" uid="uid://dk1ekut57ukn3" path="res://asset/laser_1.png" id="4_qvo6o"]
 [ext_resource type="Script" uid="uid://p7m6lqmm1gx1" path="res://enemy_temp/plasma_cannon/collision_shape_2d.gd" id="4_ukea0"]
+[ext_resource type="AudioStream" uid="uid://gmk2vwa2cx8s" path="res://sound/loop/sfx_laser_2.mp3" id="6_fqexd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
 size = Vector2(500, 257)
@@ -223,20 +224,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [80, 81, 82, 83, 84, 85, 86, 87]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"game_clear"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_nrxao"]
 resource_name = "hurt"
@@ -442,7 +429,11 @@ shape = SubResource("SegmentShape2D_pc2ri")
 debug_color = Color(0, 1, 0, 0.41960785)
 script = ExtResource("4_ukea0")
 
+[node name="MarkerBoom" parent="Direction" index="6"]
+position = Vector2(0, -135)
+
 [node name="CollisionShape2D" parent="." index="1"]
+visible = false
 position = Vector2(0, -115.5)
 shape = SubResource("RectangleShape2D_2mvqj")
 
@@ -461,8 +452,7 @@ one_shot = true
 unique_name_in_owner = true
 one_shot = true
 
-[node name="TimerEnd" type="Timer" parent="." index="5"]
+[node name="SfxLaser" type="AudioStreamPlayer" parent="." index="5"]
 unique_name_in_owner = true
-one_shot = true
-
-[connection signal="timeout" from="TimerEnd" to="." method="_on_timer_end_timeout"]
+stream = ExtResource("6_fqexd")
+bus = &"Sfx"

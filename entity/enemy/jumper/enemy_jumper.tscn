@@ -1,0 +1,159 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhgk10ijnkpm1"]
+
+[ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://entity/enemy/enemy.tscn" id="1_wa43b"]
+[ext_resource type="Script" uid="uid://bvve0vk5r3kqc" path="res://entity/enemy/jumper/enemy_jumper.gd" id="2_5xp1c"]
+[ext_resource type="Texture2D" uid="uid://d0qkwgoogm2ma" path="res://entity/enemy/jumper/enmey_jumper.png" id="3_3nb2d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xp1c"]
+radius = 800.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xp1c"]
+size = Vector2(52, 158)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uudna"]
+size = Vector2(140, 167)
+
+[sub_resource type="Animation" id="Animation_04spa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p6of3"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_v8vcm"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100000024),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_2dht7"]
+resource_name = "pre_jump"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_orlye"]
+resource_name = "rise"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1f4w0"]
+_data = {
+&"RESET": SubResource("Animation_04spa"),
+&"fall": SubResource("Animation_p6of3"),
+&"idle": SubResource("Animation_v8vcm"),
+&"pre_jump": SubResource("Animation_2dht7"),
+&"rise": SubResource("Animation_orlye")
+}
+
+[node name="EnemyJumper" instance=ExtResource("1_wa43b")]
+script = ExtResource("2_5xp1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0"]
+position = Vector2(0, -83)
+texture = ExtResource("3_3nb2d")
+flip_h = true
+hframes = 5
+vframes = 3
+
+[node name="AreaDetective" type="Area2D" parent="Direction" index="1"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/AreaDetective" index="0"]
+position = Vector2(0, -83)
+shape = SubResource("CircleShape2D_5xp1c")
+
+[node name="MarkerBoom" parent="Direction" index="2"]
+position = Vector2(0, -98)
+
+[node name="HitBox" type="Area2D" parent="Direction" index="3"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitBox" index="0"]
+position = Vector2(-7, -83)
+shape = SubResource("RectangleShape2D_5xp1c")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+position = Vector2(0, -83.5)
+shape = SubResource("RectangleShape2D_uudna")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_1f4w0")
+}
+autoplay = "idle"
+
+[node name="TimerIdle" type="Timer" parent="." index="3"]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="body_entered" from="Direction/AreaDetective" to="." method="_on_area_detective_body_entered"]
+[connection signal="body_entered" from="Direction/HitBox" to="." method="player_body_hit"]

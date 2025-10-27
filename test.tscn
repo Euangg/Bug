@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj4781x814ch"]
+
+[ext_resource type="Script" uid="uid://dpmd4qwx23v82" path="res://test.gd" id="1_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://entity/player/player.tscn" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://entity/enemy/ball/enemy_ball.tscn" id="3_6uqi0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
+size = Vector2(2536, 420)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uqi0"]
+size = Vector2(286, 1341)
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_6uqi0")
+
+[node name="Player" parent="." instance=ExtResource("1_37kl0")]
+position = Vector2(389, 665)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(956, 1152)
+shape = SubResource("RectangleShape2D_8uh7m")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-143, 515)
+shape = SubResource("RectangleShape2D_6uqi0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2063, 516)
+shape = SubResource("RectangleShape2D_6uqi0")
+
+[node name="EnemyBall" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(1611, 838)
+direction = -1

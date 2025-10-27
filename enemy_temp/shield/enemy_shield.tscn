@@ -55,8 +55,10 @@ texture = ExtResource("2_m16ve")
 flip_h = true
 hframes = 14
 vframes = 5
+region_rect = Rect2(0, 308, 5080, 1232)
 
 [node name="CollisionShape2D" parent="." index="1"]
+visible = false
 position = Vector2(0, -116)
 shape = SubResource("RectangleShape2D_m16ve")
 

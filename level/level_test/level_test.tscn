@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn7bycqqe64nc"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_yf08q"]
+[ext_resource type="Texture2D" uid="uid://bbu5vc2sbq20d" path="res://level/level_test/caber_background.png" id="2_23n8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cx61"]
+size = Vector2(2994, 199)
+
+[node name="LevelTest" instance=ExtResource("1_yf08q")]
+
+[node name="CaberBackground" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_23n8v")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(1304, 1058)
+shape = SubResource("RectangleShape2D_3cx61")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(165, 947)
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(2560, 1440)

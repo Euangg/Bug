@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c76088khye830"]
+
+[ext_resource type="Script" uid="uid://wx8grsuirkfk" path="res://sound/dialogue/dialogue.gd" id="1_llfrp"]
+
+[node name="Dialogue" type="AudioStreamPlayer"]
+autoplay = true
+bus = &"Dialogue"
+script = ExtResource("1_llfrp")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

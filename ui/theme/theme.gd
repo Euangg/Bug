@@ -10,3 +10,6 @@ func _on_button_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	get_tree().quit()
 	Global.play_sfx(Global.SFX_BUTTON_CLICK)
+
+func _exit_tree() -> void:
+	Global.stop_bgm()

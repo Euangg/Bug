@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://boyeaqiw122ax"]
+
+[ext_resource type="Script" uid="uid://dyn3fjx6wifiw" path="res://level/area_pass/area_pass.gd" id="1_c6c67"]
+
+[node name="AreaPass" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_c6c67")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

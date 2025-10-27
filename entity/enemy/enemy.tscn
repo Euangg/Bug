@@ -5,4 +5,9 @@
 
 [node name="Enemy" instance=ExtResource("1_fkm8k")]
 collision_layer = 4
+collision_mask = 129
 script = ExtResource("2_p1h7c")
+hp = 1
+
+[node name="MarkerBoom" type="Marker2D" parent="Direction" index="0"]
+unique_name_in_owner = true

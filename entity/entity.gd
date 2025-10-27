@@ -7,7 +7,7 @@ enum Direction{LEFT=-1,RIGHT=1}
 		if not is_node_ready():await ready
 		%Direction.scale.x=direction
 
-const gravity=4800
+static var gravity=4800
 
 @export var hp:int
 var is_hurted:bool=false

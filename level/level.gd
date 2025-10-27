@@ -1,12 +1,11 @@
 class_name Level
 extends Node2D
 
+var play:Play=null
+@onready var enter_point: Node = %EnterPoint
 func _ready() -> void:
-	if Global.is_player_entered:
-		Global.is_player_entered=false
-		var mark:Marker2D=%EnterPoint.get_child(Global.enter_point_order)
-		if mark: Global.player.position=mark.position
-	set_camera_limit()
+	play=get_parent().get_parent()
+	if play:play.level_switched.emit()
 
 func set_camera_limit():
 	if Global.camera:

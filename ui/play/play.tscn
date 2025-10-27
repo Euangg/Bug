@@ -1,26 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://b33na2hc1mtcl"]
+[gd_scene load_steps=7 format=3 uid="uid://b33na2hc1mtcl"]
 
 [ext_resource type="Shader" uid="uid://bov6ygsuk36kx" path="res://ui/play/grayscale.gdshader" id="1_tnm53"]
 [ext_resource type="Script" uid="uid://c801ros4yhl66" path="res://ui/play/play.gd" id="1_xyo1v"]
-[ext_resource type="PackedScene" uid="uid://l6m7am4bx8hx" path="res://level/level_cave/level_cave.tscn" id="2_tnm53"]
+[ext_resource type="PackedScene" uid="uid://c1cnf4qh4sn0o" path="res://level/level_01_ruins/level_ruins.tscn" id="2_tnm53"]
 [ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://entity/player/player.tscn" id="4_tnm53"]
+[ext_resource type="AudioStream" uid="uid://cp2c03kemw805" path="res://sound/loop/sfx_ammotime_2.mp3" id="5_5cp7b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5cp7b"]
 shader = ExtResource("1_tnm53")
 shader_parameter/intensity = 0.0
 
-[node name="Play" type="Node2D"]
+[node name="Play" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_xyo1v")
 
 [node name="Level" type="Node2D" parent="."]
 unique_name_in_owner = true
 use_parent_material = true
 
-[node name="LevelCave" parent="Level" instance=ExtResource("2_tnm53")]
+[node name="LevelRuins" parent="Level" instance=ExtResource("2_tnm53")]
 
 [node name="Player" parent="." instance=ExtResource("4_tnm53")]
 unique_name_in_owner = true
-position = Vector2(122, 1007)
+position = Vector2(246, 1033)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -44,3 +51,37 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="TimerTeleporation" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[node name="TimerEnd" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="SfxAmmotime" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_5cp7b")
+bus = &"Sfx"
+
+[node name="Curtain" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Curtain"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Dialogue" type="AudioStreamPlayer" parent="Curtain"]
+unique_name_in_owner = true
+bus = &"Dialogue"
+
+[connection signal="timeout" from="TimerTeleporation" to="." method="_on_timer_teleporation_timeout"]
+[connection signal="timeout" from="TimerEnd" to="." method="_on_timer_end_timeout"]
+[connection signal="finished" from="SfxAmmotime" to="." method="_on_sfx_ammotime_finished"]

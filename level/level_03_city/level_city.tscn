@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctoymaqneykpq"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_ko2gb"]
+[ext_resource type="Texture2D" uid="uid://ceshpghrhtdq0" path="res://level/level_03_city/back.png" id="2_om7um"]
+[ext_resource type="PackedScene" uid="uid://bdy3vp4adj4i6" path="res://level/area_dead/dead_area.tscn" id="3_b4bee"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="3_wav24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om7um"]
+size = Vector2(204, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4bee"]
+size = Vector2(390, 447)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wav24"]
+size = Vector2(1041, 2053)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14g8d"]
+size = Vector2(2909, 367)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxog"]
+size = Vector2(142, 273.5)
+
+[node name="LevelCity" instance=ExtResource("1_ko2gb")]
+
+[node name="Back" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_om7um")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(98, 754)
+shape = SubResource("RectangleShape2D_om7um")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(196, 1176.5)
+shape = SubResource("RectangleShape2D_b4bee")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="2"]
+position = Vector2(-520, 746)
+shape = SubResource("RectangleShape2D_wav24")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="3"]
+position = Vector2(3166, 743)
+shape = SubResource("RectangleShape2D_wav24")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment" index="4"]
+polygon = PackedVector2Array(112, 692, 122, 680, 299, 670, 346, 649, 447, 644, 447, 687, 518, 688, 518, 712, 574, 713, 590, 732, 623, 690, 626, 700, 613, 830)
+one_way_collision = true
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(192, 952)
+
+[node name="DeadArea" parent="." index="4" instance=ExtResource("3_b4bee")]
+position = Vector2(1072, 1192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea" index="0"]
+position = Vector2(220.5, 392)
+shape = SubResource("RectangleShape2D_14g8d")
+
+[node name="Teleportation" parent="." index="5" instance=ExtResource("3_wav24")]
+position = Vector2(1667, 649)
+target_level = "level_cyberpunk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(-1105, -99)
+shape = SubResource("RectangleShape2D_utxog")
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(2500, 1400)

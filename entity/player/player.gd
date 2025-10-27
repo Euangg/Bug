@@ -10,10 +10,46 @@ enum State{IDLE,RUN,
 }
 var current_state:State=State.IDLE
 
+signal dead
+func clear_dead_connections():
+	var connections=get_signal_connection_list("dead")
+	for c in connections:dead.disconnect(c["callable"])
+
 var is_sprint_hit_enemy:bool
 var time_sprint_held:float
+var shader_vignette:ShaderMaterial
 
-@onready var timer_end: Timer = $TimerEnd
+var node_ghost:Node2D
+func _ready() -> void:
+	Global.player=self
+	shader_vignette=%ColorRect.material
+	shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
+	
+	await ready
+	node_ghost=Node2D.new()
+	get_parent().call_deferred("add_child",node_ghost)
+	await node_ghost.ready
+	get_parent().move_child(node_ghost,self.get_index())
+
+var is_show_ghost:bool=true
+var timer_ghost:float=0
+func _process(delta: float) -> void:
+	if is_show_ghost:
+		if timer_ghost<=0:
+			var ghost=Sprite2D.new()
+			ghost.texture=%Sprite2D.texture
+			ghost.hframes=%Sprite2D.hframes
+			ghost.vframes=%Sprite2D.vframes
+			ghost.frame=%Sprite2D.frame
+			ghost.global_position=%Sprite2D.global_position
+			ghost.flip_h=true if direction==Direction.RIGHT else false
+			ghost.modulate=Color(randf(),randf(),randf(),0.5)
+			node_ghost.add_child(ghost)
+			timer_ghost=0.05
+			create_tween().tween_property(ghost,"modulate:a",0.0,3).set_ease(Tween.EASE_OUT)
+			create_tween().tween_callback(ghost.queue_free).set_delay(3)
+		else:timer_ghost-=delta
+
 func _physics_process(delta: float) -> void:
 	var input_x=Input.get_axis("a","d")
 	var is_jump_pressed=Input.is_action_just_pressed("space")
@@ -67,6 +103,7 @@ func _physics_process(delta: float) -> void:
 				if hp<=0:next_state=State.DIE
 		State.ATK_COMMON:
 			if not %AnimationPlayer.is_playing():next_state=State.IDLE
+			if is_hurted:next_state=State.HURT
 		State.ATK_TILT:
 			if not %AnimationPlayer.is_playing():next_state=State.IDLE
 		State.DIE:pass
@@ -97,8 +134,11 @@ func _physics_process(delta: float) -> void:
 				%AnimationPlayer.play("hurt")
 				Global.play_sfx(Global.SFX_HURT)
 				hp-=1
+				shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
 				is_hurted=false
 				time_sprint_held=0
+				Global.stun(0.3)
+				Global.camera_shake=30
 			State.ATK_COMMON:
 				%AnimationPlayer.play("atk_common")
 				%HitBox.connect("body_entered",atk_effect)
@@ -107,7 +147,7 @@ func _physics_process(delta: float) -> void:
 			State.DIE:
 				%AnimationPlayer.play("die")
 				Global.play_sfx(Global.SFX_DEATH)
-				%TimerEnd.start()
+				dead.emit()
 		current_state=next_state
 	#3/3.状态运行
 	match current_state:
@@ -152,10 +192,8 @@ func atk_effect(enemy:Enemy):
 	enemy.is_hurted=true
 	enemy.direction_hurt=direction
 	Global.play_sfx(Global.SFX_HIT)
-
-
-func _on_timer_end_timeout() -> void:
-	Global.switch_scene(Global.UI_FAIL)
+	Global.stun()
+	Global.camera_shake=3
 
 var sfx_steps=[Global.SFX_STEP_1,Global.SFX_STEP_2,Global.SFX_STEP_3]
 func _on_timer_step_timeout() -> void:

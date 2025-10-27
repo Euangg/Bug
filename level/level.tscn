@@ -9,6 +9,11 @@ script = ExtResource("1_7lnir")
 [node name="Environment" type="StaticBody2D" parent="."]
 collision_mask = 0
 
+[node name="EnvironmentEnemy" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 128
+collision_mask = 0
+
 [node name="EnterPoint" type="Node" parent="."]
 unique_name_in_owner = true
 
@@ -19,3 +24,5 @@ unique_name_in_owner = true
 
 [node name="RB" type="Marker2D" parent="CameraRange"]
 unique_name_in_owner = true
+
+[node name="Enemy" type="Node2D" parent="."]

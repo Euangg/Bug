@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0mq03nfqmt8l"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_e6hh7"]
+[ext_resource type="Texture2D" uid="uid://b3b6jkc7ky86j" path="res://level/level_06_street/level_5.png" id="2_e2kjf"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="3_ide6q"]
+[ext_resource type="PackedScene" uid="uid://bldogipfybrv8" path="res://entity/enemy/thrower/enemy_thrower.tscn" id="4_a8jg8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2kjf"]
+size = Vector2(129.5, 1324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ide6q"]
+size = Vector2(2824, 252)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8jg8"]
+size = Vector2(121, 1466)
+
+[node name="Level06Street" instance=ExtResource("1_e6hh7")]
+
+[node name="Level5" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_e2kjf")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(-64.75, 652)
+shape = SubResource("RectangleShape2D_e2kjf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(2087, 652)
+shape = SubResource("RectangleShape2D_e2kjf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="2"]
+position = Vector2(996, 1136)
+shape = SubResource("RectangleShape2D_ide6q")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="EnvironmentEnemy" index="0"]
+position = Vector2(1985, 652)
+shape = SubResource("RectangleShape2D_e2kjf")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(103, 1010)
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(1920, 1080)
+
+[node name="Teleportation" parent="." index="5" instance=ExtResource("3_ide6q")]
+position = Vector2(1695, 630)
+target_level = "level_cave_1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(282, -139)
+shape = SubResource("RectangleShape2D_a8jg8")
+
+[node name="EnemyThrower" parent="Enemy" index="0" instance=ExtResource("4_a8jg8")]
+position = Vector2(663, 854)
+
+[node name="EnemyThrower3" parent="Enemy" index="1" instance=ExtResource("4_a8jg8")]
+position = Vector2(1637, 847)
+direction = -1

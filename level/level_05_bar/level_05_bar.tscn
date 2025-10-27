@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cey0hy37clu11"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_xb2my"]
+[ext_resource type="Texture2D" uid="uid://byph827gq2g0h" path="res://level/level_05_bar/level05bar.png" id="2_qf2ks"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="3_lobfl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lobfl"]
+size = Vector2(2690, 528)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efjfc"]
+size = Vector2(418, 1404)
+
+[node name="Level05Bar" instance=ExtResource("1_xb2my")]
+
+[node name="Level05Bar" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_qf2ks")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(1879, 1632)
+shape = SubResource("RectangleShape2D_lobfl")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(731, 1368)
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(3911, 2200)
+
+[node name="Teleportation" parent="." index="6" instance=ExtResource("3_lobfl")]
+visible = false
+position = Vector2(3219, 785)
+target_level = "level_street"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(-45, -119)
+shape = SubResource("RectangleShape2D_efjfc")

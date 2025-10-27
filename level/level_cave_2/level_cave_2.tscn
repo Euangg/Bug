@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtab1ex720nxt"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_mv1v0"]
+[ext_resource type="Texture2D" uid="uid://bk1uic3y73p1q" path="res://level/level_cave_2/back1.png" id="2_ehl3r"]
+[ext_resource type="Texture2D" uid="uid://1nclrs1tv2di" path="res://level/level_cave_2/back2.png" id="3_31yyv"]
+[ext_resource type="Texture2D" uid="uid://eotgrvnk2xpf" path="res://level/level_cave_2/core.png" id="4_vl4qi"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="5_vl4qi"]
+[ext_resource type="PackedScene" uid="uid://dhgk10ijnkpm1" path="res://entity/enemy/jumper/enemy_jumper.tscn" id="6_mrq6w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31yyv"]
+size = Vector2(17832, 961)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl4qi"]
+size = Vector2(502, 2792)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ryc0"]
+size = Vector2(124, 1079)
+
+[node name="LevelCave2" instance=ExtResource("1_mv1v0")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_ehl3r")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+motion_scale = Vector2(0.9, 0.9)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+texture = ExtResource("3_31yyv")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+texture = ExtResource("4_vl4qi")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(8331, 1532)
+shape = SubResource("RectangleShape2D_31yyv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(-251, 63)
+shape = SubResource("RectangleShape2D_vl4qi")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="2"]
+position = Vector2(15539, 179)
+shape = SubResource("RectangleShape2D_vl4qi")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(82, 1051)
+
+[node name="Teleportation" parent="." index="4" instance=ExtResource("5_vl4qi")]
+position = Vector2(14936, 701)
+target_level = "level_cave_3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(289, -183.5)
+shape = SubResource("RectangleShape2D_4ryc0")
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(15160, 1280)
+
+[node name="EnemyJumper" parent="Enemy" index="0" instance=ExtResource("6_mrq6w")]
+position = Vector2(1487, 894)
+direction = -1
+
+[node name="EnemyJumper2" parent="Enemy" index="1" instance=ExtResource("6_mrq6w")]
+position = Vector2(2230, 894)
+direction = -1
+
+[node name="EnemyJumper3" parent="Enemy" index="2" instance=ExtResource("6_mrq6w")]
+position = Vector2(2975, 887)
+direction = -1
+
+[node name="EnemyJumper4" parent="Enemy" index="3" instance=ExtResource("6_mrq6w")]
+position = Vector2(3638, 882)
+direction = -1
+
+[node name="EnemyJumper5" parent="Enemy" index="4" instance=ExtResource("6_mrq6w")]
+position = Vector2(4212, 882)
+direction = -1
+
+[node name="EnemyJumper6" parent="Enemy" index="5" instance=ExtResource("6_mrq6w")]
+position = Vector2(5035, 919)
+direction = -1
+
+[node name="EnemyJumper7" parent="Enemy" index="6" instance=ExtResource("6_mrq6w")]
+position = Vector2(5789, 960)
+direction = -1
+
+[node name="EnemyJumper8" parent="Enemy" index="7" instance=ExtResource("6_mrq6w")]
+position = Vector2(6602, 997)
+direction = -1
+
+[node name="EnemyJumper9" parent="Enemy" index="8" instance=ExtResource("6_mrq6w")]
+position = Vector2(7737, 1011)
+direction = -1
+
+[node name="EnemyJumper10" parent="Enemy" index="9" instance=ExtResource("6_mrq6w")]
+position = Vector2(8775, 1020)
+direction = -1

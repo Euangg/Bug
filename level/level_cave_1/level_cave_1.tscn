@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://l6m7am4bx8hx"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_oapwk"]
+[ext_resource type="Texture2D" uid="uid://bhntpqxu6htly" path="res://level/level_cave_1/back.png" id="2_26kcf"]
+[ext_resource type="Script" uid="uid://ch4srrtj2722h" path="res://level/level_cave_1/level_cave_1.gd" id="2_hue4p"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="3_hue4p"]
+[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://entity/enemy/ball/enemy_ball.tscn" id="5_26kcf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lvcl"]
+size = Vector2(2188, 179)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tijpx"]
+size = Vector2(389, 1330.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7o2r"]
+size = Vector2(134, 995)
+
+[node name="LevelCave1" instance=ExtResource("1_oapwk")]
+script = ExtResource("2_hue4p")
+
+[node name="Back" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_26kcf")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(944, 1105)
+shape = SubResource("RectangleShape2D_5lvcl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(-193, 480)
+shape = SubResource("RectangleShape2D_tijpx")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="2"]
+position = Vector2(2228, 480)
+shape = SubResource("RectangleShape2D_tijpx")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(111, 982)
+
+[node name="Teleportation" parent="." index="4" instance=ExtResource("3_hue4p")]
+position = Vector2(1334, 636)
+target_level = "level_cave_2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(633, -117)
+shape = SubResource("RectangleShape2D_v7o2r")
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(1920, 1080)
+
+[node name="EnemyBall" parent="Enemy" index="0" instance=ExtResource("5_26kcf")]
+position = Vector2(1222, 889)
+direction = -1
+
+[node name="EnemyBall2" parent="Enemy" index="1" instance=ExtResource("5_26kcf")]
+position = Vector2(1789, 875)
+direction = -1

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2s321bgwbgop"]
+
+[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_m16ay"]
+[ext_resource type="AudioStream" uid="uid://5ti72dmkyxno" path="res://sound/sfx/enemy/sfx_jumper_land.mp3" id="2_m16ay"]
+
+[node name="SfxJumperLand" instance=ExtResource("1_m16ay")]
+stream = ExtResource("2_m16ay")

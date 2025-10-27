@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1j3poqwtk5c"]
+
+[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_lf6h5"]
+[ext_resource type="AudioStream" uid="uid://dngoxho4n0db7" path="res://sound/sfx/laser/sfx_laser_1.mp3" id="2_84mpy"]
+
+[node name="SfxLaser1" instance=ExtResource("1_lf6h5")]
+stream = ExtResource("2_84mpy")

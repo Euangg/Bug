@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://52m0ohtn51ho"]
+[gd_scene load_steps=22 format=3 uid="uid://52m0ohtn51ho"]
 
 [ext_resource type="PackedScene" uid="uid://dgsocw8tkiktn" path="res://entity/entity.tscn" id="1_4pl66"]
 [ext_resource type="Script" uid="uid://6ab03peejp44" path="res://entity/player/player.gd" id="2_bgq54"]
 [ext_resource type="Texture2D" uid="uid://bx0jar3gdq6m1" path="res://entity/player/player.png" id="3_482rp"]
+[ext_resource type="Shader" uid="uid://c7dane6hm1had" path="res://ui/play/vignette.gdshader" id="4_bgq54"]
+[ext_resource type="PackedScene" uid="uid://flmse7eowt8n" path="res://entity/player/joy_pad.tscn" id="5_482rp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyoet"]
 size = Vector2(119, 131)
@@ -240,17 +242,26 @@ _data = {
 &"sprint": SubResource("Animation_hg6s5")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_482rp"]
+shader = ExtResource("4_bgq54")
+shader_parameter/alpha = 0.1
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.7
+
 [node name="Player" instance=ExtResource("1_4pl66")]
 collision_layer = 2
+collision_mask = 257
 script = ExtResource("2_bgq54")
 hp = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Direction" index="0"]
+unique_name_in_owner = true
 position = Vector2(0, -148)
 texture = ExtResource("3_482rp")
 flip_h = true
 hframes = 4
 vframes = 11
+region_rect = Rect2(900, 2100, 0, 0)
 
 [node name="HitBoxSprint" type="Area2D" parent="Direction" index="1"]
 unique_name_in_owner = true
@@ -286,13 +297,22 @@ unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
-[node name="TimerEnd" type="Timer" parent="." index="4"]
-unique_name_in_owner = true
-one_shot = true
-
-[node name="TimerStep" type="Timer" parent="." index="5"]
+[node name="TimerStep" type="Timer" parent="." index="4"]
 unique_name_in_owner = true
 wait_time = 0.25
 
-[connection signal="timeout" from="TimerEnd" to="." method="_on_timer_end_timeout"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
+layer = 4
+
+[node name="JoyPad" parent="CanvasLayer" index="0" instance=ExtResource("5_482rp")]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" index="1"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_482rp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="timeout" from="TimerStep" to="." method="_on_timer_step_timeout"]

@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=3 uid="uid://xe1j7c2ii011"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_vap3g"]
+[ext_resource type="Texture2D" uid="uid://b3fb57pxtmu47" path="res://level/level_04_cyberpunk/back_1.png" id="2_07twj"]
+[ext_resource type="Script" uid="uid://cptq768tl3ls4" path="res://level/level_04_cyberpunk/level_cyberpunk.gd" id="2_oekwa"]
+[ext_resource type="Texture2D" uid="uid://c4k57432juidp" path="res://level/level_04_cyberpunk/back_2.png" id="3_ldmpf"]
+[ext_resource type="Texture2D" uid="uid://c0b8lynkgbllv" path="res://level/level_04_cyberpunk/back_3.png" id="4_qshg0"]
+[ext_resource type="Texture2D" uid="uid://b38prvvpa0vs7" path="res://level/level_04_cyberpunk/back_4.png" id="5_aqlsf"]
+[ext_resource type="Texture2D" uid="uid://dynj1yv1yogkv" path="res://level/level_04_cyberpunk/back_5.png" id="6_ppnxm"]
+[ext_resource type="Texture2D" uid="uid://bp2i82ygu8dd0" path="res://level/level_04_cyberpunk/core.png" id="7_o03n4"]
+[ext_resource type="Texture2D" uid="uid://d2vg27k4w2hxx" path="res://level/level_04_cyberpunk/front_1.png" id="8_y56f1"]
+[ext_resource type="Script" uid="uid://brmlj4s6w1kco" path="res://level/area_teleportation/teleportation.gd" id="10_oekwa"]
+[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://enemy_temp/plasma_cannon/enemy_plasma_cannon.tscn" id="10_qshg0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07twj"]
+size = Vector2(2413.5, 860)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldmpf"]
+size = Vector2(272.75, 1431)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qshg0"]
+size = Vector2(320, 1178)
+
+[node name="LevelCyberpunk" instance=ExtResource("1_vap3g")]
+script = ExtResource("2_oekwa")
+
+[node name="Environment" parent="." index="0"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+position = Vector2(937.25, 1536)
+shape = SubResource("RectangleShape2D_07twj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(2168, 511)
+shape = SubResource("RectangleShape2D_ldmpf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="2"]
+position = Vector2(-136, 511)
+shape = SubResource("RectangleShape2D_ldmpf")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="EnvironmentEnemy" index="0"]
+position = Vector2(2056, 511)
+shape = SubResource("RectangleShape2D_ldmpf")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
+position = Vector2(83, 1106)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="3"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_07twj")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+texture = ExtResource("3_ldmpf")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
+motion_scale = Vector2(0.4, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+texture = ExtResource("4_qshg0")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" index="3"]
+motion_scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4" index="0"]
+texture = ExtResource("5_aqlsf")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground" index="4"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" index="0"]
+texture = ExtResource("6_ppnxm")
+centered = false
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground" index="5"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6" index="0"]
+texture = ExtResource("7_o03n4")
+centered = false
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="." index="4"]
+layer = 1
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground2" index="0"]
+motion_scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer7" index="0"]
+z_as_relative = false
+position = Vector2(0, -440)
+texture = ExtResource("8_y56f1")
+centered = false
+
+[node name="Teleportation" type="Area2D" parent="." index="5"]
+unique_name_in_owner = true
+position = Vector2(-2941, 402)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("10_oekwa")
+target_level = "level_bar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+position = Vector2(5044, 125)
+shape = SubResource("RectangleShape2D_qshg0")
+
+[node name="RB" parent="CameraRange" index="1"]
+position = Vector2(1920, 1400)
+
+[node name="EnemyPlasmaCannon" parent="Enemy" index="0" instance=ExtResource("10_qshg0")]
+position = Vector2(1550, 966)
+direction = -1
+
+[connection signal="body_entered" from="Teleportation" to="." method="_on_teleportation_body_entered"]
+[connection signal="dead" from="Enemy/EnemyPlasmaCannon" to="." method="_on_enemy_plasma_cannon_dead"]

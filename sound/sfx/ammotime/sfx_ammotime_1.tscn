@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwvl1i38oksym"]
+
+[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_6x080"]
+[ext_resource type="AudioStream" uid="uid://bkm3cyb6f7g33" path="res://sound/sfx/ammotime/sfx_ammotime_1.mp3" id="2_7eoll"]
+
+[node name="SfxAmmotime1" instance=ExtResource("1_6x080")]
+stream = ExtResource("2_7eoll")
+volume_db = 10.0

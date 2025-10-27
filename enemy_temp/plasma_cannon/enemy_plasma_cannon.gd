@@ -8,6 +8,7 @@ enum State{NULL,
 }
 var current_state:State=State.NULL
 
+signal dead
 var input_x:float=0
 
 func _physics_process(delta: float) -> void:
@@ -30,7 +31,9 @@ func _physics_process(delta: float) -> void:
 			if player:next_state=State.PRE_ATTACK
 		State.HURT:
 			if not %AnimationPlayer.is_playing():next_state=State.IDLE
-			if hp<=0:next_state=State.DIE
+			if hp<=0:
+				dead.emit()
+				next_state=State.DIE
 		State.PRE_ATTACK:
 			if not %AnimationPlayer.is_playing():next_state=State.ATTACK
 			if is_hurted:next_state=State.HURT
@@ -44,6 +47,8 @@ func _physics_process(delta: float) -> void:
 			State.ATTACK:
 				#%CollisionShape2D.visible=false
 				%Laser.visible=false
+				Global.play_sfx(Global.SFX_LASER_3)
+				%SfxLaser.stop()
 		match next_state:
 			State.IDLE:
 				%AnimationPlayer.play("idle")
@@ -66,6 +71,8 @@ func _physics_process(delta: float) -> void:
 			State.ATTACK:
 				%AnimationPlayer.play("attack")
 				%CollisionShape2D.visible=true
+				Global.play_sfx(Global.SFX_LASER_1)
+				%SfxLaser.play()
 		current_state=next_state
 	#3/3.状态运行
 	match current_state:
@@ -83,8 +90,3 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.y+=gravity*delta
 	move_and_slide()
-
-
-func game_clear():%TimerEnd.start()
-func _on_timer_end_timeout() -> void:
-	Global.switch_scene(Global.UI_CLEAR)
