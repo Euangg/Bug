@@ -1,0 +1,502 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctuf7ogl3bq25"]
+
+[ext_resource type="Texture2D" uid="uid://bqxbam1e5a7gy" path="res://entity/enemy/noah/back.png" id="1_adxr7"]
+[ext_resource type="Texture2D" uid="uid://b1mou2lgfy0b6" path="res://entity/enemy/noah/middle.png" id="1_asm0g"]
+[ext_resource type="Script" uid="uid://dxwdn5vikptci" path="res://entity/enemy/noah/enemy_noah.gd" id="1_qjutg"]
+[ext_resource type="Texture2D" uid="uid://dpcssglgx7kii" path="res://entity/enemy/noah/front.png" id="2_adxr7"]
+
+[sub_resource type="Animation" id="Animation_qjutg"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Middle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(16, -258), Vector2(16, -171)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Back:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -112), Vector2(0, 55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Front:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4, 4), Vector2(-4, -364)]
+}
+
+[sub_resource type="Animation" id="Animation_g2jwn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Middle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -258)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Back:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -112)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Front:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r28ec"]
+_data = {
+&"RESET": SubResource("Animation_g2jwn"),
+&"idle": SubResource("Animation_qjutg")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r28ec"]
+size = Vector2(74, 96)
+
+[node name="EnemyNoah" type="Node2D"]
+script = ExtResource("1_qjutg")
+
+[node name="Back" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -112)
+texture = ExtResource("1_adxr7")
+
+[node name="Middle" type="Sprite2D" parent="."]
+position = Vector2(16, -258)
+texture = ExtResource("1_asm0g")
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(-4, 4)
+texture = ExtResource("2_adxr7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_r28ec")
+}
+autoplay = "idle"
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_r28ec")
+
+[node name="BoomL" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="BoomL"]
+position = Vector2(252, -123)
+
+[node name="Marker2D2" type="Marker2D" parent="BoomL"]
+position = Vector2(367, -163)
+
+[node name="Marker2D3" type="Marker2D" parent="BoomL"]
+position = Vector2(471, -97)
+
+[node name="Marker2D4" type="Marker2D" parent="BoomL"]
+position = Vector2(507, -163)
+
+[node name="Marker2D5" type="Marker2D" parent="BoomL"]
+position = Vector2(584, -110)
+
+[node name="Marker2D6" type="Marker2D" parent="BoomL"]
+position = Vector2(541, -80)
+
+[node name="Marker2D7" type="Marker2D" parent="BoomL"]
+position = Vector2(571, -172)
+
+[node name="Marker2D8" type="Marker2D" parent="BoomL"]
+position = Vector2(597, -64)
+
+[node name="Marker2D9" type="Marker2D" parent="BoomL"]
+position = Vector2(619, 49)
+
+[node name="Marker2D10" type="Marker2D" parent="BoomL"]
+position = Vector2(539, 139)
+
+[node name="Marker2D11" type="Marker2D" parent="BoomL"]
+position = Vector2(414, 69)
+
+[node name="Marker2D12" type="Marker2D" parent="BoomL"]
+position = Vector2(498, 128)
+
+[node name="Marker2D13" type="Marker2D" parent="BoomL"]
+position = Vector2(611, 107)
+
+[node name="Marker2D14" type="Marker2D" parent="BoomL"]
+position = Vector2(701, -88)
+
+[node name="Marker2D15" type="Marker2D" parent="BoomL"]
+position = Vector2(687, -250)
+
+[node name="Marker2D16" type="Marker2D" parent="BoomL"]
+position = Vector2(799, -99)
+
+[node name="Marker2D17" type="Marker2D" parent="BoomL"]
+position = Vector2(909, -114)
+
+[node name="Marker2D18" type="Marker2D" parent="BoomL"]
+position = Vector2(971, -159)
+
+[node name="Marker2D19" type="Marker2D" parent="BoomL"]
+position = Vector2(1068, -241)
+
+[node name="Marker2D20" type="Marker2D" parent="BoomL"]
+position = Vector2(1116, -297)
+
+[node name="Marker2D21" type="Marker2D" parent="BoomL"]
+position = Vector2(1175, -394)
+
+[node name="Marker2D22" type="Marker2D" parent="BoomL"]
+position = Vector2(1204, -450)
+
+[node name="Marker2D23" type="Marker2D" parent="BoomL"]
+position = Vector2(1258, -524)
+
+[node name="Marker2D24" type="Marker2D" parent="BoomL"]
+position = Vector2(1317, -579)
+
+[node name="Marker2D25" type="Marker2D" parent="BoomL"]
+position = Vector2(1363, -579)
+
+[node name="Marker2D26" type="Marker2D" parent="BoomL"]
+position = Vector2(1431, -551)
+
+[node name="Marker2D27" type="Marker2D" parent="BoomL"]
+position = Vector2(1482, -512)
+
+[node name="Marker2D28" type="Marker2D" parent="BoomL"]
+position = Vector2(1515, -495)
+
+[node name="Marker2D29" type="Marker2D" parent="BoomL"]
+position = Vector2(1571, -459)
+
+[node name="Marker2D30" type="Marker2D" parent="BoomL"]
+position = Vector2(1618, -460)
+
+[node name="Marker2D31" type="Marker2D" parent="BoomL"]
+position = Vector2(1704, -514)
+
+[node name="Marker2D32" type="Marker2D" parent="BoomL"]
+position = Vector2(1704, -514)
+
+[node name="BoomR" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="BoomR"]
+position = Vector2(-326, -27)
+
+[node name="Marker2D2" type="Marker2D" parent="BoomR"]
+position = Vector2(-348, -76)
+
+[node name="Marker2D3" type="Marker2D" parent="BoomR"]
+position = Vector2(-385, -128)
+
+[node name="Marker2D4" type="Marker2D" parent="BoomR"]
+position = Vector2(-594, -6)
+
+[node name="Marker2D5" type="Marker2D" parent="BoomR"]
+position = Vector2(-538, 60)
+
+[node name="Marker2D6" type="Marker2D" parent="BoomR"]
+position = Vector2(-887, 86)
+
+[node name="Marker2D7" type="Marker2D" parent="BoomR"]
+position = Vector2(-851, 149)
+
+[node name="Marker2D8" type="Marker2D" parent="BoomR"]
+position = Vector2(-836, -64)
+
+[node name="Marker2D9" type="Marker2D" parent="BoomR"]
+position = Vector2(-716, -159)
+
+[node name="Marker2D10" type="Marker2D" parent="BoomR"]
+position = Vector2(-622, -192)
+
+[node name="Marker2D11" type="Marker2D" parent="BoomR"]
+position = Vector2(-547, -248)
+
+[node name="Marker2D12" type="Marker2D" parent="BoomR"]
+position = Vector2(-600, -249)
+
+[node name="Marker2D13" type="Marker2D" parent="BoomR"]
+position = Vector2(-786, -203)
+
+[node name="Marker2D14" type="Marker2D" parent="BoomR"]
+position = Vector2(-802, -241)
+
+[node name="Marker2D15" type="Marker2D" parent="BoomR"]
+position = Vector2(-870, -305)
+
+[node name="Marker2D16" type="Marker2D" parent="BoomR"]
+position = Vector2(-960, -349)
+
+[node name="Marker2D17" type="Marker2D" parent="BoomR"]
+position = Vector2(-1002, -351)
+
+[node name="Marker2D18" type="Marker2D" parent="BoomR"]
+position = Vector2(-1087, -336)
+
+[node name="Marker2D19" type="Marker2D" parent="BoomR"]
+position = Vector2(-1119, -305)
+
+[node name="Marker2D20" type="Marker2D" parent="BoomR"]
+position = Vector2(-1192, -287)
+
+[node name="Marker2D21" type="Marker2D" parent="BoomR"]
+position = Vector2(-1355, -226)
+
+[node name="Marker2D29" type="Marker2D" parent="BoomR"]
+position = Vector2(-1263, -227)
+
+[node name="Marker2D22" type="Marker2D" parent="BoomR"]
+position = Vector2(-1443, -236)
+
+[node name="Marker2D23" type="Marker2D" parent="BoomR"]
+position = Vector2(-1612, -287)
+
+[node name="Marker2D24" type="Marker2D" parent="BoomR"]
+position = Vector2(-1612, -402)
+
+[node name="Marker2D30" type="Marker2D" parent="BoomR"]
+position = Vector2(-1634, -363)
+
+[node name="Marker2D31" type="Marker2D" parent="BoomR"]
+position = Vector2(-1553, -264)
+
+[node name="Marker2D32" type="Marker2D" parent="BoomR"]
+position = Vector2(-1487, -232)
+
+[node name="Marker2D25" type="Marker2D" parent="BoomR"]
+position = Vector2(-1625, -458)
+
+[node name="Marker2D26" type="Marker2D" parent="BoomR"]
+position = Vector2(-1616, -522)
+
+[node name="Marker2D27" type="Marker2D" parent="BoomR"]
+position = Vector2(-1608, -556)
+
+[node name="Marker2D28" type="Marker2D" parent="BoomR"]
+position = Vector2(-1608, -556)
+
+[node name="BoomM" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="BoomM"]
+
+[node name="Marker2D2" type="Marker2D" parent="BoomM"]
+position = Vector2(-58, -118)
+
+[node name="Marker2D3" type="Marker2D" parent="BoomM"]
+position = Vector2(85, -277)
+
+[node name="Marker2D4" type="Marker2D" parent="BoomM"]
+position = Vector2(-60, -340)
+
+[node name="Marker2D5" type="Marker2D" parent="BoomM"]
+position = Vector2(-403, -330)
+
+[node name="Marker2D6" type="Marker2D" parent="BoomM"]
+position = Vector2(-219, -259)
+
+[node name="Marker2D7" type="Marker2D" parent="BoomM"]
+position = Vector2(203, -365)
+
+[node name="Marker2D8" type="Marker2D" parent="BoomM"]
+position = Vector2(348, -296)
+
+[node name="Marker2D9" type="Marker2D" parent="BoomM"]
+position = Vector2(172, -196)
+
+[node name="Marker2D10" type="Marker2D" parent="BoomM"]
+position = Vector2(335, -51)
+
+[node name="Marker2D11" type="Marker2D" parent="BoomM"]
+position = Vector2(195, 46)
+
+[node name="Marker2D12" type="Marker2D" parent="BoomM"]
+position = Vector2(-121, 36)
+
+[node name="Marker2D13" type="Marker2D" parent="BoomM"]
+position = Vector2(-342, -191)
+
+[node name="Marker2D14" type="Marker2D" parent="BoomM"]
+position = Vector2(-292, -352)
+
+[node name="Marker2D15" type="Marker2D" parent="BoomM"]
+position = Vector2(-326, -460)
+
+[node name="Marker2D16" type="Marker2D" parent="BoomM"]
+position = Vector2(-419, -512)
+
+[node name="Marker2D17" type="Marker2D" parent="BoomM"]
+position = Vector2(-334, -596)
+
+[node name="Marker2D18" type="Marker2D" parent="BoomM"]
+position = Vector2(-231, -615)
+
+[node name="Marker2D19" type="Marker2D" parent="BoomM"]
+position = Vector2(-241, -497)
+
+[node name="Marker2D20" type="Marker2D" parent="BoomM"]
+position = Vector2(-65, -510)
+
+[node name="Marker2D21" type="Marker2D" parent="BoomM"]
+position = Vector2(148, -545)
+
+[node name="Marker2D22" type="Marker2D" parent="BoomM"]
+position = Vector2(103, -637)
+
+[node name="Marker2D23" type="Marker2D" parent="BoomM"]
+position = Vector2(-100, -631)
+
+[node name="Marker2D24" type="Marker2D" parent="BoomM"]
+position = Vector2(-2, -573)
+
+[node name="Marker2D25" type="Marker2D" parent="BoomM"]
+position = Vector2(104, -470)
+
+[node name="Marker2D26" type="Marker2D" parent="BoomM"]
+position = Vector2(300, -470)
+
+[node name="Marker2D27" type="Marker2D" parent="BoomM"]
+position = Vector2(260, -586)
+
+[node name="Marker2D28" type="Marker2D" parent="BoomM"]
+position = Vector2(208, -480)
+
+[node name="Marker2D29" type="Marker2D" parent="BoomM"]
+position = Vector2(276, -414)
+
+[node name="Marker2D30" type="Marker2D" parent="BoomM"]
+position = Vector2(406, -503)
+
+[node name="Marker2D31" type="Marker2D" parent="BoomM"]
+position = Vector2(351, -670)
+
+[node name="Marker2D32" type="Marker2D" parent="BoomM"]
+position = Vector2(260, -741)
+
+[node name="Marker2D33" type="Marker2D" parent="BoomM"]
+position = Vector2(202, -784)
+
+[node name="Marker2D34" type="Marker2D" parent="BoomM"]
+position = Vector2(86, -818)
+
+[node name="Marker2D35" type="Marker2D" parent="BoomM"]
+position = Vector2(-53, -773)
+
+[node name="Marker2D36" type="Marker2D" parent="BoomM"]
+position = Vector2(-3, -718)
+
+[node name="Marker2D37" type="Marker2D" parent="BoomM"]
+position = Vector2(81, -750)
+
+[node name="Marker2D38" type="Marker2D" parent="BoomM"]
+position = Vector2(-48, -871)
+
+[node name="Marker2D39" type="Marker2D" parent="BoomM"]
+position = Vector2(-178, -811)
+
+[node name="Marker2D40" type="Marker2D" parent="BoomM"]
+position = Vector2(-189, -743)
+
+[node name="Marker2D41" type="Marker2D" parent="BoomM"]
+position = Vector2(-316, -704)
+
+[node name="Marker2D42" type="Marker2D" parent="BoomM"]
+position = Vector2(-416, -630)
+
+[node name="Marker2D43" type="Marker2D" parent="BoomM"]
+position = Vector2(-363, -524)
+
+[node name="Marker2D44" type="Marker2D" parent="BoomM"]
+position = Vector2(-86, -585)
+
+[node name="Marker2D45" type="Marker2D" parent="BoomM"]
+position = Vector2(-113, -467)
+
+[node name="Marker2D46" type="Marker2D" parent="BoomM"]
+position = Vector2(-100, -236)
+
+[node name="Marker2D47" type="Marker2D" parent="BoomM"]
+position = Vector2(-123, -321)
+
+[node name="Marker2D48" type="Marker2D" parent="BoomM"]
+position = Vector2(-38, -231)
+
+[node name="Marker2D49" type="Marker2D" parent="BoomM"]
+position = Vector2(274, -262)
+
+[node name="Marker2D50" type="Marker2D" parent="BoomM"]
+position = Vector2(379, -397)
+
+[node name="Marker2D51" type="Marker2D" parent="BoomM"]
+position = Vector2(228, -352)
+
+[node name="Marker2D52" type="Marker2D" parent="BoomM"]
+position = Vector2(284, -363)
+
+[node name="Marker2D53" type="Marker2D" parent="BoomM"]
+position = Vector2(466, -274)
+
+[node name="Marker2D54" type="Marker2D" parent="BoomM"]
+position = Vector2(466, -274)
+
+[node name="TimerBoom1" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[node name="TimerBoom2" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.05
+one_shot = true
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="TimerBoom1" to="." method="_on_timer_boom_1_timeout"]
+[connection signal="timeout" from="TimerBoom2" to="." method="_on_timer_boom_2_timeout"]

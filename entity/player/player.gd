@@ -115,6 +115,8 @@ func _physics_process(delta: float) -> void:
 			State.ATK_COMMON:
 				if %HitBox.is_connected("body_entered",atk_effect):
 					%HitBox.disconnect("body_entered",atk_effect)
+				%HitBox.set_deferred("monitoring",false)
+				%HitBox.set_deferred("monitorable",false)
 		match next_state:
 			State.IDLE:%AnimationPlayer.play("idle")
 			State.RUN:
@@ -143,6 +145,8 @@ func _physics_process(delta: float) -> void:
 				%AnimationPlayer.play("atk_common")
 				%HitBox.connect("body_entered",atk_effect)
 				Global.play_sfx(Global.SFX_ATTACK)
+				%HitBox.set_deferred("monitoring",true)
+				%HitBox.set_deferred("monitorable",true)
 			State.ATK_TILT:%AnimationPlayer.play("atk_tilt")
 			State.DIE:
 				%AnimationPlayer.play("die")

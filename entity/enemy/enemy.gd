@@ -7,7 +7,6 @@ func die_boom():
 	get_parent().add_child(effect)
 	Global.play_sfx(Global.SFX_BOOM)
 	queue_free()
-	
 
 
 func player_body_hit(body: Node2D) -> void:

@@ -19,6 +19,7 @@ const AMBIENT_CAVE = preload("uid://beewphvxfjtep")
 func play_ambient(ambient:AudioStream):
 	%Ambient.stream=ambient
 	%Ambient.play()
+func stop_ambient():%Ambient.stop()
 func _on_ambient_finished() -> void:%Ambient.play()
 
 const SFX_IMPACT = preload("uid://c2isctsk0iub5")

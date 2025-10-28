@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	Global.stop_ambient()
 	Global.play_bgm(Global.BGM_THEME)
 
 func _on_button_pressed() -> void:

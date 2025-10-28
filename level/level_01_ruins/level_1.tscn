@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://db5vvwoubp18g" path="res://level/level_01_ruins/level_ruins.gd" id="2_aayvk"]
 [ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="2_bax5m"]
 [ext_resource type="Texture2D" uid="uid://ca66j7msk7ynm" path="res://level/level_01_ruins/back_1.png" id="2_p5edo"]
-[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://enemy_temp/plasma_cannon/enemy_plasma_cannon.tscn" id="3_rk12w"]
+[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://entity/enemy/plasma_cannon/enemy_plasma_cannon.tscn" id="3_rk12w"]
 [ext_resource type="Texture2D" uid="uid://b3abay31bb0x7" path="res://level/level_01_ruins/back_2.png" id="3_uyioa"]
 [ext_resource type="Texture2D" uid="uid://cctswit752yst" path="res://level/level_01_ruins/level_2/back_1.png" id="4_aayvk"]
 [ext_resource type="Texture2D" uid="uid://bf2ami5gnvvhi" path="res://level/level_01_ruins/back_3.png" id="4_crgpi"]

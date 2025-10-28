@@ -14,14 +14,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2(83.000015, 899)
+position = Vector2(86, 890.00006)
 scale = Vector2(0.3007812, 80.999985)
 texture_normal = SubResource("GradientTexture1D_ayrbn")
 action = "a"
 visibility_mode = 1
 
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="."]
-position = Vector2(228, 899.00006)
+position = Vector2(270, 891.00006)
 scale = Vector2(0.3007812, 80.999985)
 texture_normal = SubResource("GradientTexture1D_ayrbn")
 action = "d"

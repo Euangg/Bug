@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://j4ss5o1avea6"]
+[gd_scene load_steps=10 format=3 uid="uid://j4ss5o1avea6"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_coblq"]
 [ext_resource type="Texture2D" uid="uid://bmp4b37y40ht1" path="res://level/level_cave_3/layer1.png" id="2_j13jr"]
 [ext_resource type="Texture2D" uid="uid://beutwkwqx5e64" path="res://level/level_cave_3/layer2.png" id="3_wh0rt"]
+[ext_resource type="PackedScene" uid="uid://c352bvyc68fd2" path="res://level/prefab/platform.tscn" id="4_v1yig"]
 [ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="4_wh0rt"]
+[ext_resource type="PackedScene" uid="uid://c4a77vtbtgmso" path="res://entity/enemy/shield/enemy_shield.tscn" id="6_ed1t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j13jr"]
 size = Vector2(1932, 815)
@@ -12,7 +14,7 @@ size = Vector2(1932, 815)
 size = Vector2(725, 2727)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1yig"]
-size = Vector2(145, 486)
+size = Vector2(528, 191)
 
 [node name="LevelCave3" instance=ExtResource("1_coblq")]
 
@@ -42,8 +44,41 @@ shape = SubResource("RectangleShape2D_wh0rt")
 position = Vector2(1862, 211)
 shape = SubResource("RectangleShape2D_wh0rt")
 
+[node name="Platform" parent="Environment" index="3" instance=ExtResource("4_v1yig")]
+position = Vector2(1290, 754)
+
+[node name="Platform2" parent="Environment" index="4" instance=ExtResource("4_v1yig")]
+position = Vector2(1003, 584)
+
+[node name="Platform3" parent="Environment" index="5" instance=ExtResource("4_v1yig")]
+position = Vector2(823, 312)
+
+[node name="Platform4" parent="Environment" index="6" instance=ExtResource("4_v1yig")]
+position = Vector2(1179, 66)
+
+[node name="Platform5" parent="Environment" index="7" instance=ExtResource("4_v1yig")]
+position = Vector2(766, -58)
+
+[node name="Platform6" parent="Environment" index="8" instance=ExtResource("4_v1yig")]
+position = Vector2(766, -58)
+
+[node name="Platform7" parent="Environment" index="9" instance=ExtResource("4_v1yig")]
+position = Vector2(1071, -281)
+
+[node name="Platform8" parent="Environment" index="10" instance=ExtResource("4_v1yig")]
+position = Vector2(732, -504)
+
+[node name="Platform9" parent="Environment" index="11" instance=ExtResource("4_v1yig")]
+position = Vector2(1146, -649)
+
+[node name="Platform10" parent="Environment" index="12" instance=ExtResource("4_v1yig")]
+position = Vector2(884, -649)
+
 [node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
 position = Vector2(469, 1080)
+
+[node name="LT" parent="CameraRange" index="0"]
+position = Vector2(0, -839)
 
 [node name="RB" parent="CameraRange" index="1"]
 position = Vector2(1920, 1080)
@@ -53,5 +88,8 @@ position = Vector2(1286, 704)
 target_level = "level_church"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
-position = Vector2(146.5, 164)
+position = Vector2(-271, -1449.5)
 shape = SubResource("RectangleShape2D_v1yig")
+
+[node name="EnemyShield" parent="." index="8" instance=ExtResource("6_ed1t7")]
+position = Vector2(1382, 1029)

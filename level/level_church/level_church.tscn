@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://sb377ee0lgks"]
+[gd_scene load_steps=13 format=3 uid="uid://sb377ee0lgks"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_661es"]
 [ext_resource type="Script" uid="uid://cjj5uwffsomm5" path="res://level/level_church/level_church.gd" id="2_1jgn0"]
 [ext_resource type="Texture2D" uid="uid://362w16q1i52m" path="res://level/level_church/back_1.png" id="3_oxl4g"]
 [ext_resource type="Texture2D" uid="uid://b7jde6q07bwnt" path="res://level/level_church/back_2.png" id="4_ncy20"]
-[ext_resource type="PackedScene" uid="uid://boyeaqiw122ax" path="res://level/area_pass/area_pass.tscn" id="4_x8s5a"]
 [ext_resource type="Texture2D" uid="uid://6vtyi5208pmg" path="res://level/level_church/back_3.png" id="5_3n20h"]
 [ext_resource type="Texture2D" uid="uid://cw4vnq8vbbhob" path="res://level/level_church/back_4.png" id="6_wshav"]
 [ext_resource type="Texture2D" uid="uid://bc8xab45xvvey" path="res://level/level_church/core.png" id="7_yo5or"]
+[ext_resource type="PackedScene" uid="uid://c352bvyc68fd2" path="res://level/prefab/platform.tscn" id="8_3n20h"]
+[ext_resource type="PackedScene" uid="uid://ctuf7ogl3bq25" path="res://entity/enemy/noah/enemy_noah.tscn" id="9_ncy20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0050i"]
 size = Vector2(9338, 273)
@@ -15,8 +16,8 @@ size = Vector2(9338, 273)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxl4g"]
 size = Vector2(788, 7773)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wx1jv"]
-size = Vector2(969, 1253)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncy20"]
+size = Vector2(545, 153)
 
 [node name="LevelChurch" instance=ExtResource("1_661es")]
 script = ExtResource("2_1jgn0")
@@ -24,38 +25,35 @@ script = ExtResource("2_1jgn0")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
-motion_scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
 texture = ExtResource("3_oxl4g")
-centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
-motion_scale = Vector2(0.4, 0.4)
+motion_scale = Vector2(0.85, 0.85)
 
 [node name="Back2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" index="0"]
 texture = ExtResource("4_ncy20")
-centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
-motion_scale = Vector2(0.6, 0.6)
+motion_scale = Vector2(0.9, 0.9)
 
 [node name="Back3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="0"]
 texture = ExtResource("5_3n20h")
-centered = false
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" index="3"]
-motion_scale = Vector2(0.8, 0.8)
+motion_scale = Vector2(0.95, 0.95)
 
 [node name="Back4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4" index="0"]
 texture = ExtResource("6_wshav")
-centered = false
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground" index="4"]
 
 [node name="Core" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" index="0"]
 texture = ExtResource("7_yo5or")
-centered = false
+
+[node name="Environment" parent="." index="1"]
+position = Vector2(-3840, -2800)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
 position = Vector2(3386, 5736)
@@ -69,15 +67,114 @@ shape = SubResource("RectangleShape2D_oxl4g")
 position = Vector2(8074, 2994)
 shape = SubResource("RectangleShape2D_oxl4g")
 
+[node name="Platform" parent="Environment" index="3" instance=ExtResource("8_3n20h")]
+position = Vector2(3562, 5300)
+
+[node name="Platform2" parent="Environment" index="4" instance=ExtResource("8_3n20h")]
+position = Vector2(3829, 5220)
+
+[node name="Platform3" parent="Environment" index="5" instance=ExtResource("8_3n20h")]
+position = Vector2(3572, 4939)
+
+[node name="Platform4" parent="Environment" index="6" instance=ExtResource("8_3n20h")]
+position = Vector2(3829, 4939)
+
+[node name="Platform5" parent="Environment" index="7" instance=ExtResource("8_3n20h")]
+position = Vector2(3572, 4630)
+
+[node name="Platform6" parent="Environment" index="8" instance=ExtResource("8_3n20h")]
+position = Vector2(3829, 4630)
+
+[node name="Platform7" parent="Environment" index="9" instance=ExtResource("8_3n20h")]
+position = Vector2(3572, 4356)
+
+[node name="Platform8" parent="Environment" index="10" instance=ExtResource("8_3n20h")]
+position = Vector2(3829, 4356)
+
+[node name="Platform9" parent="Environment" index="11" instance=ExtResource("8_3n20h")]
+position = Vector2(3574, 4103)
+
+[node name="Platform10" parent="Environment" index="12" instance=ExtResource("8_3n20h")]
+position = Vector2(3831, 4103)
+
+[node name="Platform11" parent="Environment" index="13" instance=ExtResource("8_3n20h")]
+position = Vector2(3574, 3859)
+
+[node name="Platform12" parent="Environment" index="14" instance=ExtResource("8_3n20h")]
+position = Vector2(3831, 3859)
+
+[node name="Platform13" parent="Environment" index="15" instance=ExtResource("8_3n20h")]
+position = Vector2(3574, 3585)
+
+[node name="Platform14" parent="Environment" index="16" instance=ExtResource("8_3n20h")]
+position = Vector2(3831, 3585)
+
+[node name="Platform15" parent="Environment" index="17" instance=ExtResource("8_3n20h")]
+position = Vector2(3754, 3289)
+
+[node name="Platform16" parent="Environment" index="18" instance=ExtResource("8_3n20h")]
+position = Vector2(4011, 3289)
+
+[node name="Platform17" parent="Environment" index="19" instance=ExtResource("8_3n20h")]
+position = Vector2(3763, 2976)
+
+[node name="Platform18" parent="Environment" index="20" instance=ExtResource("8_3n20h")]
+position = Vector2(4020, 2976)
+
+[node name="Platform19" parent="Environment" index="21" instance=ExtResource("8_3n20h")]
+position = Vector2(3757, 2708)
+
+[node name="Platform20" parent="Environment" index="22" instance=ExtResource("8_3n20h")]
+position = Vector2(4014, 2708)
+
+[node name="Platform21" parent="Environment" index="23" instance=ExtResource("8_3n20h")]
+position = Vector2(3753, 2389)
+
+[node name="Platform22" parent="Environment" index="24" instance=ExtResource("8_3n20h")]
+position = Vector2(4010, 2389)
+
+[node name="Platform23" parent="Environment" index="25" instance=ExtResource("8_3n20h")]
+position = Vector2(3755, 2042)
+
+[node name="Platform24" parent="Environment" index="26" instance=ExtResource("8_3n20h")]
+position = Vector2(4012, 2042)
+
+[node name="Platform25" parent="Environment" index="27" instance=ExtResource("8_3n20h")]
+position = Vector2(3774, 1759)
+
+[node name="Platform26" parent="Environment" index="28" instance=ExtResource("8_3n20h")]
+position = Vector2(4031, 1759)
+
+[node name="Platform27" parent="Environment" index="29" instance=ExtResource("8_3n20h")]
+position = Vector2(3815, 1523)
+
+[node name="Platform28" parent="Environment" index="30" instance=ExtResource("8_3n20h")]
+position = Vector2(4072, 1523)
+
 [node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
-position = Vector2(86, 5599)
+position = Vector2(-3521, 2791)
+
+[node name="LT" parent="CameraRange" index="0"]
+position = Vector2(-3840, -2800)
 
 [node name="RB" parent="CameraRange" index="1"]
-position = Vector2(7680, 5600)
+position = Vector2(3840, 2800)
 
-[node name="AreaPass" parent="." index="6" instance=ExtResource("4_x8s5a")]
-position = Vector2(3197, 78)
+[node name="EnemyNoah" parent="Enemy" index="0" instance=ExtResource("9_ncy20")]
+position = Vector2(124, -1742)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPass" index="0"]
-position = Vector2(4705, 4897)
-shape = SubResource("RectangleShape2D_wx1jv")
+[node name="Area2D" type="Area2D" parent="." index="6"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(98.5, -1354.5)
+shape = SubResource("RectangleShape2D_ncy20")
+
+[node name="TimerEnd" type="Timer" parent="." index="7"]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="dead" from="Enemy/EnemyNoah" to="." method="_on_enemy_noah_dead"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="TimerEnd" to="." method="_on_timer_end_timeout"]

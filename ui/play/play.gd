@@ -3,7 +3,6 @@ extends Control
 
 var current_level: Level = null
 
-
 const LEVEL_RUINS = preload("uid://c1cnf4qh4sn0o")
 const LEVEL_SEWER = preload("uid://c4m7w371a50xy")
 const LEVEL_CITY = preload("uid://ctoymaqneykpq")
@@ -64,7 +63,7 @@ func _ready() -> void:
 	current_level.set_camera_limit()
 	%Player.dead.connect(func():%TimerEnd.start())
 	dialogue.finished.connect(func():Global.switch_scene(Global.UI_FAIL))
-	#switch_level("level_cyberpunk")
+	#switch_level("level_church")
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("tab"):

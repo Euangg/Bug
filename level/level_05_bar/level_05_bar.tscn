@@ -1,36 +1,106 @@
-[gd_scene load_steps=6 format=3 uid="uid://cey0hy37clu11"]
+[gd_scene load_steps=15 format=3 uid="uid://cey0hy37clu11"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_xb2my"]
-[ext_resource type="Texture2D" uid="uid://byph827gq2g0h" path="res://level/level_05_bar/level05bar.png" id="2_qf2ks"]
+[ext_resource type="Texture2D" uid="uid://csgnwtvqv07nw" path="res://level/level_05_bar/back.png" id="2_h8uqv"]
+[ext_resource type="Script" uid="uid://c6g35wgrsjwn2" path="res://level/level_05_bar/level_05_bar.gd" id="2_u2jln"]
 [ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="3_lobfl"]
+[ext_resource type="Texture2D" uid="uid://cwi0l18to8nhr" path="res://level/level_05_bar/core.png" id="4_bxe8t"]
+[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://entity/enemy/ball/enemy_ball.tscn" id="5_cx166"]
+[ext_resource type="Texture2D" uid="uid://bhppglba4ssk2" path="res://level/level_05_bar/front.png" id="5_pjf6o"]
+[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://entity/enemy/man/enemy_man.tscn" id="6_u2jln"]
+[ext_resource type="PackedScene" uid="uid://c2ivwhbwqwpjn" path="res://entity/enemy/man/enemy_man_2.tscn" id="7_krmyk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lobfl"]
-size = Vector2(2690, 528)
+size = Vector2(2690, 161)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjf6o"]
+size = Vector2(119, 1623)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8uqv"]
+size = Vector2(302.75, 41.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxe8t"]
+size = Vector2(1442.375, 41.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efjfc"]
 size = Vector2(418, 1404)
 
 [node name="Level05Bar" instance=ExtResource("1_xb2my")]
+script = ExtResource("2_u2jln")
 
-[node name="Level05Bar" type="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_qf2ks")
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Back" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_h8uqv")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+
+[node name="Core" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+texture = ExtResource("4_bxe8t")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
+motion_scale = Vector2(1.5, 1.5)
+
+[node name="Front" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+texture = ExtResource("5_pjf6o")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
-position = Vector2(1879, 1632)
+position = Vector2(915, 1463)
 shape = SubResource("RectangleShape2D_lobfl")
 
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment" index="1"]
+position = Vector2(-60, 593)
+shape = SubResource("RectangleShape2D_pjf6o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="2"]
+position = Vector2(138.625, 1076)
+shape = SubResource("RectangleShape2D_h8uqv")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="3"]
+position = Vector2(1043.8125, 877)
+shape = SubResource("RectangleShape2D_bxe8t")
+one_way_collision = true
+
 [node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
-position = Vector2(731, 1368)
+position = Vector2(105, 1399)
 
 [node name="RB" parent="CameraRange" index="1"]
-position = Vector2(3911, 2200)
+position = Vector2(1920, 1400)
+
+[node name="EnemyBall" parent="Enemy" index="0" instance=ExtResource("5_cx166")]
+position = Vector2(1514, 841)
+direction = -1
+
+[node name="EnemyMan" parent="Enemy" index="1" instance=ExtResource("6_u2jln")]
+position = Vector2(777, 1348)
+direction = -1
+
+[node name="EnemyMan2" parent="Enemy" index="2" instance=ExtResource("7_krmyk")]
+position = Vector2(1016, 1320)
+direction = -1
+
+[node name="EnemyMan3" parent="Enemy" index="3" instance=ExtResource("7_krmyk")]
+position = Vector2(1398, 1329)
+direction = -1
 
 [node name="Teleportation" parent="." index="6" instance=ExtResource("3_lobfl")]
-visible = false
 position = Vector2(3219, 785)
+monitoring = false
 target_level = "level_street"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
-position = Vector2(-45, -119)
+position = Vector2(-1090, -87)
 shape = SubResource("RectangleShape2D_efjfc")
+
+[node name="Timer" type="Timer" parent="." index="7"]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
