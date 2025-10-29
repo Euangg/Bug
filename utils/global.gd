@@ -58,6 +58,8 @@ const DIALOGUE_C_3_ENTER = preload("uid://birt60wtpnhyd")
 func play_dialogue(sfx:PackedScene):%Dialogue.add_child(sfx.instantiate())
 func clear_dialogue():for d in %Dialogue.get_children():d.queue_free()
 
+const UI_PRE_ENTER = preload("uid://dyajrc3icedew")
+const UI_POLICY = preload("uid://cy2v4yy56kypw")
 const UI_THEME = preload("uid://cw11diprqdn11")
 const UI_PLAY = preload("uid://b33na2hc1mtcl")
 const UI_FAIL = preload("uid://ds2udw36hcry6")
@@ -97,3 +99,5 @@ var player:Player=null
 var camera:Camera2D=null
 var enter_point_order:int
 var is_teleportation:bool=false
+var name_current_level:String
+var is_restart:bool=false

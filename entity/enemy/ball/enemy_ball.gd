@@ -7,7 +7,7 @@ enum State{NULL,IDLE,
 var current_state:State=State.NULL
 
 var is_player_detected:bool=false
-@export var speed_x:float=200
+@export var speed_x:float=400
 
 func _physics_process(delta: float) -> void:
 	#1/3.状态判断

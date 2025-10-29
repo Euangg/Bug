@@ -42,6 +42,7 @@ func switch_level(name_level:String):
 		%Level.call_deferred("add_child",new_level)
 		if current_level:current_level.queue_free()
 		current_level=new_level
+		Global.name_current_level=name_level
 func on_level_switched():
 	var mark:Marker2D=current_level.enter_point.get_child(Global.enter_point_order)
 	if mark: %Player.position=mark.position
@@ -64,6 +65,8 @@ func _ready() -> void:
 	%Player.dead.connect(func():%TimerEnd.start())
 	dialogue.finished.connect(func():Global.switch_scene(Global.UI_FAIL))
 	#switch_level("level_church")
+	if Global.is_restart:switch_level(Global.name_current_level)
+	
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("tab"):

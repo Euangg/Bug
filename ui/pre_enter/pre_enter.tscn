@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyajrc3icedew"]
+
+[ext_resource type="Script" uid="uid://bc0gu3e5v1y24" path="res://ui/pre_enter/pre_enter.gd" id="1_sfkx4"]
+
+[node name="PreEnter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sfkx4")

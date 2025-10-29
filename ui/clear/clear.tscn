@@ -1,6 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy4qt40ba7mq7"]
+[gd_scene load_steps=7 format=3 uid="uid://cy4qt40ba7mq7"]
 
 [ext_resource type="Script" uid="uid://exc44u77ri31" path="res://ui/clear/clear.gd" id="1_c2t4h"]
+[ext_resource type="Texture2D" uid="uid://xw164gbbkuiv" path="res://ui/clear/CG1.png" id="2_3tl31"]
+[ext_resource type="Texture2D" uid="uid://bdal17dc28ki5" path="res://ui/clear/CG1_2.png" id="3_jlrax"]
+
+[sub_resource type="Animation" id="Animation_8cgwi"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_3tl31"), ExtResource("3_jlrax")]
+}
+
+[sub_resource type="Animation" id="Animation_allwx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3tl31")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixaxt"]
+_data = {
+&"RESET": SubResource("Animation_allwx"),
+&"idle": SubResource("Animation_8cgwi")
+}
 
 [node name="Clear" type="Control"]
 layout_mode = 3
@@ -19,6 +60,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3tl31")
 
 [node name="Label" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -49,5 +99,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "退出至主菜单"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ixaxt")
+}
+autoplay = "idle"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

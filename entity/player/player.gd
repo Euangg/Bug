@@ -1,5 +1,9 @@
 class_name Player
 extends Entity
+
+const HP_UNIT = preload("uid://cd7h1i0ndjo7x")
+
+
 enum State{IDLE,RUN,
 	PRE_JUMP,
 	RISE,FALL,
@@ -25,6 +29,12 @@ func _ready() -> void:
 	shader_vignette=%ColorRect.material
 	shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
 	
+	for i in hp:
+		var pos=Vector2(100+150*i,50)
+		var hp_unit =HP_UNIT.instantiate()
+		hp_unit.position=pos
+		%ColorRect.add_child(hp_unit)
+	
 	await ready
 	node_ghost=Node2D.new()
 	get_parent().call_deferred("add_child",node_ghost)
@@ -33,6 +43,8 @@ func _ready() -> void:
 
 var is_show_ghost:bool=true
 var timer_ghost:float=0
+var cycle_ghost:float=0.05
+var life_ghost:float=0
 func _process(delta: float) -> void:
 	if is_show_ghost:
 		if timer_ghost<=0:
@@ -44,10 +56,17 @@ func _process(delta: float) -> void:
 			ghost.global_position=%Sprite2D.global_position
 			ghost.flip_h=true if direction==Direction.RIGHT else false
 			ghost.modulate=Color(randf(),randf(),randf(),0.5)
+			match hp:
+				1:ghost.modulate=Color(randf(),randf(),2*randf(),0.5)
+				2:ghost.modulate=Color(0,0,1,0.5)
+				3:ghost.modulate=Color(0.5,0.5,0.5,0.8)
+				4:ghost.modulate=Color(0,0,0,0.7)
+				5:pass
+			
 			node_ghost.add_child(ghost)
-			timer_ghost=0.05
-			create_tween().tween_property(ghost,"modulate:a",0.0,3).set_ease(Tween.EASE_OUT)
-			create_tween().tween_callback(ghost.queue_free).set_delay(3)
+			timer_ghost=cycle_ghost
+			create_tween().tween_property(ghost,"modulate:a",0.0,life_ghost).set_ease(Tween.EASE_OUT)
+			create_tween().tween_callback(ghost.queue_free).set_delay(life_ghost)
 		else:timer_ghost-=delta
 
 func _physics_process(delta: float) -> void:
@@ -141,6 +160,12 @@ func _physics_process(delta: float) -> void:
 				time_sprint_held=0
 				Global.stun(0.3)
 				Global.camera_shake=30
+				var hp_unit=%ColorRect.get_child(-1)
+				if life_ghost:life_ghost*=2.5
+				else: life_ghost=0.2
+				if hp_unit:
+					hp_unit.animation_player.play("die")
+					#reparent如果回血
 			State.ATK_COMMON:
 				%AnimationPlayer.play("atk_common")
 				%HitBox.connect("body_entered",atk_effect)
