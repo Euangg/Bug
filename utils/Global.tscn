@@ -44,7 +44,7 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 41.0
 grow_vertical = 0
-text = "v0.25"
+text = "v0.27"
 
 [connection signal="finished" from="Bgm" to="." method="_on_bgm_finished"]
 [connection signal="finished" from="Ambient" to="." method="_on_ambient_finished"]

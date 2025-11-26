@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://52m0ohtn51ho"]
+[gd_scene load_steps=21 format=3 uid="uid://52m0ohtn51ho"]
 
 [ext_resource type="PackedScene" uid="uid://dgsocw8tkiktn" path="res://entity/entity.tscn" id="1_4pl66"]
 [ext_resource type="Script" uid="uid://6ab03peejp44" path="res://entity/player/player.gd" id="2_bgq54"]
@@ -158,23 +158,6 @@ tracks/0/keys = {
 "values": [1, 2, 3, 2]
 }
 
-[sub_resource type="Animation" id="Animation_rgyib"]
-resource_name = "pre_jump"
-length = 0.05
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-
 [sub_resource type="Animation" id="Animation_qjkh3"]
 resource_name = "rise"
 length = 0.1
@@ -237,7 +220,6 @@ _data = {
 &"fall": SubResource("Animation_g6k8r"),
 &"hurt": SubResource("Animation_boad6"),
 &"idle": SubResource("Animation_g1dw6"),
-&"pre_jump": SubResource("Animation_rgyib"),
 &"rise": SubResource("Animation_qjkh3"),
 &"run": SubResource("Animation_rkbax"),
 &"sprint": SubResource("Animation_hg6s5")
@@ -301,11 +283,21 @@ unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
-[node name="TimerStep" type="Timer" parent="." index="4"]
+[node name="TimerSprintCd" type="Timer" parent="." index="4"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerCoyote" type="Timer" parent="." index="5"]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="TimerStep" type="Timer" parent="." index="6"]
 unique_name_in_owner = true
 wait_time = 0.23
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="7"]
 layer = 4
 
 [node name="JoyPad" parent="CanvasLayer" index="0" instance=ExtResource("5_482rp")]

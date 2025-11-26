@@ -5,7 +5,6 @@ const HP_UNIT = preload("uid://cd7h1i0ndjo7x")
 
 
 enum State{IDLE,RUN,
-	PRE_JUMP,
 	RISE,FALL,
 	SPRINT,
 	ATK_COMMON,
@@ -20,7 +19,6 @@ func clear_dead_connections():
 	for c in connections:dead.disconnect(c["callable"])
 
 var is_sprint_hit_enemy:bool
-var time_sprint_held:float
 var shader_vignette:ShaderMaterial
 var cover_hurt_sfx:bool=false
 
@@ -74,8 +72,7 @@ func _physics_process(delta: float) -> void:
 	var input_x=Input.get_axis("a","d")
 	var is_jump_pressed=Input.is_action_just_pressed("space")
 	var is_attack_pressed=Input.is_action_just_pressed("j")
-	var is_sprint_held=Input.is_action_pressed("l")
-	var is_sprint_released=Input.is_action_just_released("l")
+	var is_sprint_pressed=Input.is_action_just_pressed("l")
 	velocity.x=0
 	#1/3.状态判断
 	var next_state=current_state
@@ -86,25 +83,20 @@ func _physics_process(delta: float) -> void:
 			if velocity.y>0:next_state=State.FALL
 			if velocity.y<0:next_state=State.RISE
 			if is_attack_pressed:next_state=State.ATK_COMMON
-			if is_jump_pressed:next_state=State.PRE_JUMP
-			if is_sprint_released:next_state=State.SPRINT
+			if is_sprint_pressed&&%TimerSprintCd.is_stopped():next_state=State.SPRINT
 			if is_hurted:next_state=State.HURT
 		State.RUN:
 			if is_zero_approx(input_x):next_state=State.IDLE
 			if velocity.y>0:next_state=State.FALL
 			if velocity.y<0:next_state=State.RISE
 			if is_attack_pressed:next_state=State.ATK_COMMON
-			if is_jump_pressed:next_state=State.PRE_JUMP
-			if is_sprint_released:next_state=State.SPRINT
-			if is_hurted:next_state=State.HURT
-		State.PRE_JUMP:
-			if velocity.y<0:next_state=State.RISE
+			if is_sprint_pressed&&%TimerSprintCd.is_stopped():next_state=State.SPRINT
 			if is_hurted:next_state=State.HURT
 		State.RISE:
 			if velocity.y>0:next_state=State.FALL
 			if is_on_floor():next_state=State.IDLE
 			if is_attack_pressed:next_state=State.ATK_COMMON
-			if is_sprint_released:next_state=State.SPRINT
+			if is_sprint_pressed&&%TimerSprintCd.is_stopped():next_state=State.SPRINT
 			if is_hurted:next_state=State.HURT
 		State.FALL:
 			if velocity.y<0:next_state=State.RISE
@@ -112,7 +104,7 @@ func _physics_process(delta: float) -> void:
 				next_state=State.IDLE
 				Global.play_sfx(Global.SFX_DROP)
 			if is_attack_pressed:next_state=State.ATK_COMMON
-			if is_sprint_released:next_state=State.SPRINT
+			if is_sprint_pressed&&%TimerSprintCd.is_stopped():next_state=State.SPRINT
 			if is_hurted:next_state=State.HURT
 		State.SPRINT:
 			if %TimerSprint.is_stopped():next_state=State.IDLE
@@ -131,6 +123,7 @@ func _physics_process(delta: float) -> void:
 	if next_state==current_state:pass
 	else:
 		match current_state:
+			State.SPRINT:%TimerSprintCd.start()
 			State.RUN:%TimerStep.stop()
 			State.ATK_COMMON:
 				if %HitBox.is_connected("body_entered",atk_effect):
@@ -142,16 +135,13 @@ func _physics_process(delta: float) -> void:
 			State.RUN:
 				%AnimationPlayer.play("run")
 				%TimerStep.start()
-			State.PRE_JUMP:%AnimationPlayer.play("pre_jump")
 			State.RISE:%AnimationPlayer.play("rise")
 			State.FALL:%AnimationPlayer.play("fall")
 			State.SPRINT:
 				%AnimationPlayer.play("sprint")
 				Global.play_sfx(Global.SFX_SPRINT)
 				is_sprint_hit_enemy=false
-				if time_sprint_held>=0.5:%TimerSprint.start(0.3)
-				else:%TimerSprint.start(0.1)
-				time_sprint_held=0
+				%TimerSprint.start(0.3)
 			State.HURT:
 				%AnimationPlayer.play("hurt")
 				if cover_hurt_sfx:cover_hurt_sfx=true
@@ -159,7 +149,6 @@ func _physics_process(delta: float) -> void:
 				hp-=1
 				shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
 				is_hurted=false
-				time_sprint_held=0
 				Global.stun(0.3)
 				Global.camera_shake=30
 				var hp_unit=%HpUnit.get_child(-1)
@@ -184,18 +173,12 @@ func _physics_process(delta: float) -> void:
 	match current_state:
 		State.IDLE:
 			velocity.x=450*input_x
+			if is_jump_pressed:jump()
 			if not is_zero_approx(input_x):
 				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
-			if is_sprint_held:time_sprint_held+=delta
 		State.RUN:
 			velocity.x=450*input_x
-			if not is_zero_approx(input_x):
-				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
-			if is_sprint_held:time_sprint_held+=delta
-		State.PRE_JUMP:
-			if not %AnimationPlayer.is_playing():
-				velocity.y=-1900
-				Global.play_sfx(Global.SFX_JUMP)
+			if is_jump_pressed:jump()
 			if not is_zero_approx(input_x):
 				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
 		State.RISE:
@@ -204,6 +187,7 @@ func _physics_process(delta: float) -> void:
 				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
 		State.FALL:
 			velocity.x=450*input_x
+			if is_jump_pressed&&%TimerCoyote.time_left:jump()
 			if not is_zero_approx(input_x):
 				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
 		State.SPRINT:
@@ -217,7 +201,15 @@ func _physics_process(delta: float) -> void:
 			pass
 	
 	velocity.y+=gravity*delta
+	var was_on_floor=is_on_floor()
 	move_and_slide()
+	if is_on_floor():pass
+	else:if was_on_floor:%TimerCoyote.start()
+		
+func jump():
+	velocity.y=-1900
+	Global.play_sfx(Global.SFX_JUMP)
+	%TimerCoyote.stop()
 
 func atk_effect(enemy:Enemy):
 	enemy.is_hurted=true
