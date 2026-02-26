@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://sb377ee0lgks"]
+[gd_scene format=3 uid="uid://sb377ee0lgks"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_661es"]
 [ext_resource type="Script" uid="uid://cjj5uwffsomm5" path="res://level/level_church/level_church.gd" id="2_1jgn0"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cw4vnq8vbbhob" path="res://level/level_church/back_4.png" id="6_wshav"]
 [ext_resource type="Texture2D" uid="uid://bc8xab45xvvey" path="res://level/level_church/core.png" id="7_yo5or"]
 [ext_resource type="PackedScene" uid="uid://c352bvyc68fd2" path="res://level/prefab/platform.tscn" id="8_3n20h"]
-[ext_resource type="PackedScene" uid="uid://ctuf7ogl3bq25" path="res://entity/enemy/noah/enemy_noah.tscn" id="9_ncy20"]
+[ext_resource type="PackedScene" uid="uid://ctuf7ogl3bq25" path="res://enemy/noah/enemy_noah.tscn" id="9_ncy20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0050i"]
 size = Vector2(9338, 273)

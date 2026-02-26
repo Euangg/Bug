@@ -1,33 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyrx8abqo6sjw"]
+[gd_scene format=3 uid="uid://cyrx8abqo6sjw"]
 
-[ext_resource type="Script" uid="uid://d1yrcx5mvhswk" path="res://utils/Global.gd" id="1_2eh5f"]
+[ext_resource type="Script" uid="uid://d1yrcx5mvhswk" path="res://utils/global.gd" id="1_o7gr7"]
 
-[node name="Global" type="Node"]
-script = ExtResource("1_2eh5f")
+[node name="Global" type="Node" unique_id=1699382219]
+script = ExtResource("1_o7gr7")
 
-[node name="Bgm" type="AudioStreamPlayer" parent="."]
+[node name="Bgm" type="AudioStreamPlayer" parent="." unique_id=1350673527]
 unique_name_in_owner = true
 bus = &"Bgm"
 
-[node name="Ambient" type="AudioStreamPlayer" parent="."]
+[node name="Ambient" type="AudioStreamPlayer" parent="." unique_id=212472698]
 unique_name_in_owner = true
 bus = &"Ambient"
 
-[node name="Sfx" type="Node" parent="."]
+[node name="Sfx" type="Node" parent="." unique_id=737273657]
 unique_name_in_owner = true
 
-[node name="Dialogue" type="Node" parent="."]
-unique_name_in_owner = true
+[node name="Dialogue" type="Node" parent="." unique_id=1734597879]
 
-[node name="TimerStun" type="Timer" parent="."]
+[node name="TimerStun" type="Timer" parent="." unique_id=775555479]
 unique_name_in_owner = true
 wait_time = 0.2
 one_shot = true
 ignore_time_scale = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1654133180]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=898235179]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,7 +35,8 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect" unique_id=1784137406]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -44,7 +44,8 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 41.0
 grow_vertical = 0
-text = "v0.27"
+theme_override_font_sizes/font_size = 20
+text = "v0.29"
 
 [connection signal="finished" from="Bgm" to="." method="_on_bgm_finished"]
 [connection signal="finished" from="Ambient" to="." method="_on_ambient_finished"]

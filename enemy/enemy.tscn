@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cbkh2tq3o0xwf"]
+
+[ext_resource type="Script" uid="uid://b6a5pu1uvjyoo" path="res://enemy/enemy.gd" id="2_p1h7c"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1307404642]
+collision_layer = 4
+collision_mask = 129
+floor_snap_length = 5.0
+script = ExtResource("2_p1h7c")
+
+[node name="Graphic" type="Node2D" parent="." unique_id=1690456547]
+
+[node name="MarkerBoom" type="Marker2D" parent="Graphic" unique_id=346637568]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=462639808]

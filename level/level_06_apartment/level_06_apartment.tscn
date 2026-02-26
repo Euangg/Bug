@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://be1q8fgeey1e"]
+[gd_scene format=3 uid="uid://be1q8fgeey1e"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_hjvye"]
 [ext_resource type="Texture2D" uid="uid://d28anrrcwpdhs" path="res://level/level_06_apartment/core.png" id="2_bwl34"]
 [ext_resource type="Texture2D" uid="uid://dx1brejqc6cxx" path="res://level/level_06_apartment/front.png" id="3_7ixv6"]
-[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="4_2kij5"]
-[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://entity/enemy/ball/enemy_ball.tscn" id="4_rtklm"]
-[ext_resource type="PackedScene" uid="uid://csii2bkosawew" path="res://entity/enemy/flyer/enemy_flyer.tscn" id="5_2kij5"]
-[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://entity/enemy/man/enemy_man.tscn" id="6_l6ssa"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="4_2kij5"]
+[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://enemy/ball/enemy_ball.tscn" id="4_rtklm"]
+[ext_resource type="PackedScene" uid="uid://csii2bkosawew" path="res://enemy/flyer/enemy_flyer.tscn" id="5_2kij5"]
+[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://enemy/man/enemy_man.tscn" id="6_l6ssa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwl34"]
 size = Vector2(1898.5, 207.5)

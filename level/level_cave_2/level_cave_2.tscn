@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtab1ex720nxt"]
+[gd_scene format=3 uid="uid://dtab1ex720nxt"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_mv1v0"]
 [ext_resource type="Texture2D" uid="uid://bk1uic3y73p1q" path="res://level/level_cave_2/back1.png" id="2_ehl3r"]
 [ext_resource type="Texture2D" uid="uid://1nclrs1tv2di" path="res://level/level_cave_2/back2.png" id="3_31yyv"]
 [ext_resource type="Texture2D" uid="uid://eotgrvnk2xpf" path="res://level/level_cave_2/core.png" id="4_vl4qi"]
-[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="5_vl4qi"]
-[ext_resource type="PackedScene" uid="uid://dhgk10ijnkpm1" path="res://entity/enemy/jumper/enemy_jumper.tscn" id="6_mrq6w"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="5_vl4qi"]
+[ext_resource type="PackedScene" uid="uid://dhgk10ijnkpm1" path="res://enemy/jumper/enemy_jumper.tscn" id="6_mrq6w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31yyv"]
 size = Vector2(17832, 961)

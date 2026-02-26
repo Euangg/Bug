@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://w5od6b2m0uxp"]
+
+[ext_resource type="Script" uid="uid://dfgxhcfg6x7n0" path="res://level/event/single/single.gd" id="1_18wvu"]
+
+[node name="Single" type="Area2D" unique_id=1324012026]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_18wvu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

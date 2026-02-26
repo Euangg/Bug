@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw11diprqdn11"]
+[gd_scene format=3 uid="uid://cw11diprqdn11"]
 
 [ext_resource type="Script" uid="uid://bgrdj4holehwg" path="res://ui/theme/theme.gd" id="1_n6n1a"]
 [ext_resource type="Texture2D" uid="uid://cnmaa556j28qw" path="res://ui/theme/theme.png" id="2_sb2jn"]
@@ -20,7 +20,7 @@ region = Rect2(417, 250, 289, 62)
 atlas = ExtResource("3_c3kl4")
 region = Rect2(78, 250, 289, 62)
 
-[node name="Theme" type="Control"]
+[node name="Theme" type="Control" unique_id=1981399321]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n6n1a")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1230414582]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_sb2jn")
 
-[node name="TextureButton" type="TextureButton" parent="TextureRect"]
+[node name="TextureButton" type="TextureButton" parent="TextureRect" unique_id=1644438797]
 layout_mode = 0
 offset_left = 1448.0
 offset_top = 460.0
@@ -47,7 +47,7 @@ offset_bottom = 522.0
 texture_normal = SubResource("AtlasTexture_6otij")
 texture_hover = SubResource("AtlasTexture_crpep")
 
-[node name="TextureButton2" type="TextureButton" parent="TextureRect"]
+[node name="TextureButton2" type="TextureButton" parent="TextureRect" unique_id=344699745]
 layout_mode = 0
 offset_left = 1448.0
 offset_top = 588.0

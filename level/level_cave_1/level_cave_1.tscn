@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://l6m7am4bx8hx"]
+[gd_scene format=3 uid="uid://l6m7am4bx8hx"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_oapwk"]
 [ext_resource type="Texture2D" uid="uid://bhntpqxu6htly" path="res://level/level_cave_1/back.png" id="2_26kcf"]
 [ext_resource type="Script" uid="uid://ch4srrtj2722h" path="res://level/level_cave_1/level_cave_1.gd" id="2_hue4p"]
-[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="3_hue4p"]
-[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://entity/enemy/ball/enemy_ball.tscn" id="5_26kcf"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="3_hue4p"]
+[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://enemy/ball/enemy_ball.tscn" id="5_26kcf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lvcl"]
 size = Vector2(2188, 179)

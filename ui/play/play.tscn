@@ -1,16 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://b33na2hc1mtcl"]
+[gd_scene format=3 uid="uid://b33na2hc1mtcl"]
 
 [ext_resource type="Shader" uid="uid://bov6ygsuk36kx" path="res://ui/play/grayscale.gdshader" id="1_tnm53"]
 [ext_resource type="Script" uid="uid://c801ros4yhl66" path="res://ui/play/play.gd" id="1_xyo1v"]
 [ext_resource type="PackedScene" uid="uid://c1cnf4qh4sn0o" path="res://level/level_01_ruins/level_ruins.tscn" id="2_tnm53"]
-[ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://entity/player/player.tscn" id="4_tnm53"]
+[ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://player/player.tscn" id="4_tnm53"]
 [ext_resource type="AudioStream" uid="uid://cp2c03kemw805" path="res://sound/loop/sfx_ammotime_2.mp3" id="5_5cp7b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5cp7b"]
 shader = ExtResource("1_tnm53")
 shader_parameter/intensity = 0.0
 
-[node name="Play" type="Control"]
+[node name="Play" type="Control" unique_id=617517667]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,26 +19,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xyo1v")
 
-[node name="Level" type="Node2D" parent="."]
+[node name="Level" type="Node2D" parent="." unique_id=1307166870]
 unique_name_in_owner = true
 use_parent_material = true
 
-[node name="LevelRuins" parent="Level" instance=ExtResource("2_tnm53")]
+[node name="LevelRuins" parent="Level" unique_id=183414312 instance=ExtResource("2_tnm53")]
 
-[node name="Player" parent="." instance=ExtResource("4_tnm53")]
+[node name="Player" parent="." unique_id=1065153132 instance=ExtResource("4_tnm53")]
 unique_name_in_owner = true
 position = Vector2(246, 1033)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1134892850]
 unique_name_in_owner = true
 position = Vector2(-3, -15)
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="Player/Camera2D"]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Player/Camera2D" unique_id=2122352561]
 position = Vector2(0, -150.00003)
 scale = Vector2(51.92, 13.42)
 copy_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="Player/Camera2D/BackBufferCopy"]
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D/BackBufferCopy" unique_id=1657378032]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_5cp7b")
 anchors_preset = 15
@@ -52,25 +52,25 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="TimerTeleporation" type="Timer" parent="."]
+[node name="TimerTeleporation" type="Timer" parent="." unique_id=2089233970]
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="TimerEnd" type="Timer" parent="."]
+[node name="TimerEnd" type="Timer" parent="." unique_id=2040233284]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="SfxAmmotime" type="AudioStreamPlayer" parent="."]
+[node name="SfxAmmotime" type="AudioStreamPlayer" parent="." unique_id=791118892]
 unique_name_in_owner = true
 stream = ExtResource("5_5cp7b")
 bus = &"Sfx"
 
-[node name="Curtain" type="CanvasLayer" parent="."]
+[node name="Curtain" type="CanvasLayer" parent="." unique_id=1175151223]
 unique_name_in_owner = true
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="Curtain"]
+[node name="ColorRect" type="ColorRect" parent="Curtain" unique_id=814666353]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,7 +78,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Dialogue" type="AudioStreamPlayer" parent="Curtain"]
+[node name="Dialogue" type="AudioStreamPlayer" parent="Curtain" unique_id=1542964914]
 unique_name_in_owner = true
 bus = &"Dialogue"
 

@@ -1,14 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cey0hy37clu11"]
+[gd_scene format=3 uid="uid://cey0hy37clu11"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_xb2my"]
 [ext_resource type="Texture2D" uid="uid://csgnwtvqv07nw" path="res://level/level_05_bar/back.png" id="2_h8uqv"]
 [ext_resource type="Script" uid="uid://c6g35wgrsjwn2" path="res://level/level_05_bar/level_05_bar.gd" id="2_u2jln"]
-[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="3_lobfl"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="3_lobfl"]
 [ext_resource type="Texture2D" uid="uid://cwi0l18to8nhr" path="res://level/level_05_bar/core.png" id="4_bxe8t"]
-[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://entity/enemy/ball/enemy_ball.tscn" id="5_cx166"]
+[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://enemy/ball/enemy_ball.tscn" id="5_cx166"]
 [ext_resource type="Texture2D" uid="uid://bhppglba4ssk2" path="res://level/level_05_bar/front.png" id="5_pjf6o"]
-[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://entity/enemy/man/enemy_man.tscn" id="6_u2jln"]
-[ext_resource type="PackedScene" uid="uid://c2ivwhbwqwpjn" path="res://entity/enemy/man/enemy_man_2.tscn" id="7_krmyk"]
+[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://enemy/man/enemy_man.tscn" id="6_u2jln"]
+[ext_resource type="PackedScene" uid="uid://c2ivwhbwqwpjn" path="res://enemy/man/enemy_man_2.tscn" id="7_krmyk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lobfl"]
 size = Vector2(2690, 161)

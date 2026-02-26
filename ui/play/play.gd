@@ -1,77 +1,58 @@
 class_name Play
 extends Control
 
-var current_level: Level = null
+@onready var camera_2d: Camera2D = $Player/Camera2D
+@onready var player: Player = %Player
+@onready var dialogue: AudioStreamPlayer = %Dialogue
 
-const LEVEL_RUINS = preload("uid://c1cnf4qh4sn0o")
-const LEVEL_SEWER = preload("uid://c4m7w371a50xy")
-const LEVEL_CITY = preload("uid://ctoymaqneykpq")
-const LEVEL_CYBERPUNK = preload("uid://xe1j7c2ii011")
-const LEVEL_BAR = preload("uid://cey0hy37clu11")
-const LEVEL_APARTMENT = preload("uid://be1q8fgeey1e")
-
-const LEVEL_STREET = preload("uid://c0mq03nfqmt8l")
-const LEVEL_CAVE_1 = preload("uid://l6m7am4bx8hx")
-const LEVEL_CAVE_2 = preload("uid://dtab1ex720nxt")
-const LEVEL_CAVE_3 = preload("uid://j4ss5o1avea6")
-const LEVEL_CHURCH = preload("uid://sb377ee0lgks")
-
-const LEVEL_TEST = preload("uid://dn7bycqqe64nc")
-
-
-signal level_switched
-
-var map_level={
-	"level_ruins":LEVEL_RUINS,
-	"level_sewer":LEVEL_SEWER,
-	"level_city":LEVEL_CITY,
-	"level_cyberpunk":LEVEL_CYBERPUNK,
-	"level_bar":LEVEL_BAR,
-	"level_apartment":LEVEL_APARTMENT,
-	"level_street":LEVEL_STREET,
-	"level_cave_1":LEVEL_CAVE_1,
-	"level_cave_2":LEVEL_CAVE_2,
-	"level_cave_3":LEVEL_CAVE_3,
-	"level_church":LEVEL_CHURCH,
-	"level_test":LEVEL_TEST
+var dict_level={
+	"level_ruins":("uid://c1cnf4qh4sn0o"),
+	"level_sewer":("uid://c4m7w371a50xy"),
+	"level_city":("uid://ctoymaqneykpq"),
+	"level_cyberpunk":("uid://xe1j7c2ii011"),
+	"level_bar":("uid://cey0hy37clu11"),
+	"level_apartment":("uid://be1q8fgeey1e"),
+	"level_street":("uid://c0mq03nfqmt8l"),
+	"level_cave_1": ("uid://l6m7am4bx8hx"),
+	"level_cave_2": ("uid://dtab1ex720nxt"),
+	"level_cave_3":("uid://j4ss5o1avea6"),
+	"level_church":("uid://sb377ee0lgks"),
+	"level_test":("uid://dn7bycqqe64nc")
 }
-func switch_level(name_level:String):
-	var packed_level=map_level[name_level]
-	Global.clear_dialogue()
+func switch_level(str_level:String):
+	print("switch 2 "+ str_level )
+	var old_level:Array=%Level.get_children()
+	for l in old_level:l.queue_free()
+	
+	var new_level:Level=load(dict_level[str_level]).instantiate()
+	%Level.add_child(new_level)
+	Global.str_current_level=str_level
 	Global.play_sfx(Global.SFX_SWITCH)
-	if packed_level:
-		player.clear_dead_connections()
-		player.dead.connect(func():%TimerEnd.start())
-		clear_dialogue_connections()
-		var new_level:Level=packed_level.instantiate()
-		%Level.call_deferred("add_child",new_level)
-		if current_level:current_level.queue_free()
-		current_level=new_level
-		Global.name_current_level=name_level
-func on_level_switched():
-	var mark:Marker2D=current_level.enter_point.get_child(Global.enter_point_order)
-	if mark: %Player.position=mark.position
-	current_level.set_camera_limit()
+	
+	var marks=new_level.enter_point.get_children()
+	%Player.position=marks[0].position
+	
+	camera_2d.limit_left=new_level.lt.position.x
+	camera_2d.limit_top=new_level.lt.position.y
+	camera_2d.limit_right=new_level.rb.position.x
+	camera_2d.limit_bottom=new_level.rb.position.y
+	
 	for g in %Player.node_ghost.get_children():g.queue_free()
 	%TimerTeleporation.start()
-	
 	var tween:Tween=create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(Global.color_rect,"color:a",0,0.5)
 
-@onready var player: Player = %Player
-@onready var dialogue: AudioStreamPlayer = %Dialogue
 func _ready() -> void:
-	Global.ui_play=self
-	level_switched.connect(on_level_switched)
 	Global.camera=%Camera2D
-	current_level=%Level.get_child(0)
-	current_level.set_camera_limit()
-	%Player.dead.connect(func():%TimerEnd.start())
-	dialogue.finished.connect(func():Global.switch_scene(Global.UI_FAIL))
-	if Global.is_restart:switch_level(Global.name_current_level)
-	switch_level("level_test")
+	if Global.is_restart:switch_level(Global.str_current_level)
+	else:switch_level("level_ruins")
 
+	%Player.dead.connect(func():
+		print("dead")
+		%TimerEnd.start())
+	dialogue.finished.connect(func():Global.switch_scene(Global.UI_FAIL))
+	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("tab"):
 		Engine.time_scale=0.15

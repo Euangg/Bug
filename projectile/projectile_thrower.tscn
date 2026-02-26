@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwysknnbfaugv"]
+[gd_scene format=3 uid="uid://cwysknnbfaugv"]
 
 [ext_resource type="PackedScene" uid="uid://bvffq0xgd745n" path="res://projectile/projectile.tscn" id="1_0lbfr"]
 [ext_resource type="Script" uid="uid://d0mdr2tdbj0ks" path="res://projectile/projectile_thrower.gd" id="2_0lbfr"]
-[ext_resource type="Texture2D" uid="uid://63y2oar458iy" path="res://entity/enemy/thrower/enemy_thrower.png" id="3_0lbfr"]
+[ext_resource type="Texture2D" uid="uid://63y2oar458iy" path="res://enemy/thrower/enemy_thrower.png" id="3_0lbfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mm6j"]
 size = Vector2(92, 50)

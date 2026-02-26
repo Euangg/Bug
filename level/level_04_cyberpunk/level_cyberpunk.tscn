@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://xe1j7c2ii011"]
+[gd_scene format=3 uid="uid://xe1j7c2ii011"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_vap3g"]
 [ext_resource type="Texture2D" uid="uid://b3fb57pxtmu47" path="res://level/level_04_cyberpunk/back_1.png" id="2_07twj"]
@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dynj1yv1yogkv" path="res://level/level_04_cyberpunk/back_5.png" id="6_ppnxm"]
 [ext_resource type="Texture2D" uid="uid://bp2i82ygu8dd0" path="res://level/level_04_cyberpunk/core.png" id="7_o03n4"]
 [ext_resource type="Texture2D" uid="uid://d2vg27k4w2hxx" path="res://level/level_04_cyberpunk/front_1.png" id="8_y56f1"]
-[ext_resource type="Script" uid="uid://brmlj4s6w1kco" path="res://level/area_teleportation/teleportation.gd" id="10_oekwa"]
-[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://entity/enemy/plasma_cannon/enemy_plasma_cannon.tscn" id="10_qshg0"]
+[ext_resource type="Script" uid="uid://brmlj4s6w1kco" path="res://level/event/teleportation/teleportation.gd" id="10_oekwa"]
+[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://enemy/plasma_cannon/enemy_plasma_cannon.tscn" id="10_qshg0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07twj"]
 size = Vector2(2413.5, 860)

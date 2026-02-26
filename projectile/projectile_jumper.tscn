@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://db2c1jf6vflq5"]
+[gd_scene format=3 uid="uid://db2c1jf6vflq5"]
 
 [ext_resource type="PackedScene" uid="uid://bvffq0xgd745n" path="res://projectile/projectile.tscn" id="1_5ygv8"]
 [ext_resource type="Script" uid="uid://ds1gcrit1ib68" path="res://projectile/projectile_jumper.gd" id="2_0k2jt"]
-[ext_resource type="Texture2D" uid="uid://d0qkwgoogm2ma" path="res://entity/enemy/jumper/enmey_jumper.png" id="3_4s4a2"]
+[ext_resource type="Texture2D" uid="uid://d0qkwgoogm2ma" path="res://enemy/jumper/enmey_jumper.png" id="3_4s4a2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ygv8"]
 radius = 11.0

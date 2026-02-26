@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4m7w371a50xy"]
+[gd_scene format=3 uid="uid://c4m7w371a50xy"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_sj37q"]
+[ext_resource type="Script" uid="uid://dm13dchyjygkg" path="res://level/level_02_sewer/level_sewer.gd" id="2_088b4"]
 [ext_resource type="Texture2D" uid="uid://dec6fpsquj428" path="res://level/level_02_sewer/core1.png" id="2_d1ytu"]
 [ext_resource type="Texture2D" uid="uid://cbrup4y8x48k6" path="res://level/level_02_sewer/core2.png" id="3_2p2pk"]
 [ext_resource type="PackedScene" uid="uid://c352bvyc68fd2" path="res://level/prefab/platform.tscn" id="4_0yjsf"]
-[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="4_2p2pk"]
-[ext_resource type="PackedScene" uid="uid://csii2bkosawew" path="res://entity/enemy/flyer/enemy_flyer.tscn" id="5_mmmqi"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="4_2p2pk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ytu"]
 size = Vector2(2481, 499)
@@ -16,76 +16,71 @@ size = Vector2(1606.5, 2474)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1axou"]
 size = Vector2(1078, 422.5)
 
-[node name="LevelSewer" instance=ExtResource("1_sj37q")]
+[node name="LevelSewer" unique_id=155278796 instance=ExtResource("1_sj37q")]
+script = ExtResource("2_088b4")
 
-[node name="ColorRect" type="ColorRect" parent="." index="0"]
+[node name="ColorRect" type="ColorRect" parent="." index="0" unique_id=1271816983]
 offset_top = -840.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
-[node name="Core1" type="Sprite2D" parent="." index="1"]
+[node name="Core1" type="Sprite2D" parent="." index="1" unique_id=389460697]
 position = Vector2(974, 120)
 texture = ExtResource("2_d1ytu")
 
-[node name="Core2" type="Sprite2D" parent="Core1" index="0"]
+[node name="Core2" type="Sprite2D" parent="Core1" index="0" unique_id=1047242640]
 texture = ExtResource("3_2p2pk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=1987294807]
 position = Vector2(987, 1276)
 shape = SubResource("RectangleShape2D_d1ytu")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=1157557287]
 position = Vector2(-369.25, -123)
 shape = SubResource("RectangleShape2D_2p2pk")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" index="2"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=886386338]
 position = Vector2(2317, -123)
 shape = SubResource("RectangleShape2D_2p2pk")
 
-[node name="Platform" parent="Environment" index="3" instance=ExtResource("4_0yjsf")]
+[node name="Platform" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="3" unique_id=1048638699 instance=ExtResource("4_0yjsf")]
 position = Vector2(880, 759)
 
-[node name="Platform2" parent="Environment" index="4" instance=ExtResource("4_0yjsf")]
+[node name="Platform2" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="4" unique_id=2020654802 instance=ExtResource("4_0yjsf")]
 position = Vector2(1149, 552)
 
-[node name="Platform3" parent="Environment" index="5" instance=ExtResource("4_0yjsf")]
+[node name="Platform3" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="5" unique_id=438697272 instance=ExtResource("4_0yjsf")]
 position = Vector2(1347, 319)
 
-[node name="Platform4" parent="Environment" index="6" instance=ExtResource("4_0yjsf")]
+[node name="Platform4" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="6" unique_id=2143728797 instance=ExtResource("4_0yjsf")]
 position = Vector2(1026, 93)
 
-[node name="Platform5" parent="Environment" index="7" instance=ExtResource("4_0yjsf")]
+[node name="Platform5" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="7" unique_id=995531014 instance=ExtResource("4_0yjsf")]
 position = Vector2(782, -124)
 
-[node name="Platform6" parent="Environment" index="8" instance=ExtResource("4_0yjsf")]
+[node name="Platform6" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="8" unique_id=96299842 instance=ExtResource("4_0yjsf")]
 position = Vector2(1026, -373)
 
-[node name="Platform7" parent="Environment" index="9" instance=ExtResource("4_0yjsf")]
+[node name="Platform7" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="9" unique_id=868927458 instance=ExtResource("4_0yjsf")]
 position = Vector2(729, -597)
 
-[node name="Platform8" parent="Environment" index="10" instance=ExtResource("4_0yjsf")]
+[node name="Platform8" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="10" unique_id=620224946 instance=ExtResource("4_0yjsf")]
 position = Vector2(1026, -831)
 
-[node name="Marker2D" type="Marker2D" parent="EnterPoint" index="0"]
-position = Vector2(624, 1026)
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=421577348]
+position = Vector2(635, 976)
 
-[node name="Teleportation" parent="." index="5" instance=ExtResource("4_2p2pk")]
+[node name="LT" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="0" unique_id=35742969]
+position = Vector2(0, -840)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(1920, 1080)
+
+[node name="Teleportation" parent="." index="5" unique_id=247644684 instance=ExtResource("4_2p2pk")]
 position = Vector2(920, -12)
 target_level = "level_city"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0" unique_id=995438639]
 position = Vector2(59, -1032.25)
 shape = SubResource("RectangleShape2D_1axou")
-
-[node name="LT" parent="CameraRange" index="0"]
-position = Vector2(0, -840)
-
-[node name="RB" parent="CameraRange" index="1"]
-position = Vector2(1920, 1080)
-
-[node name="EnemyFlyer" parent="Enemy" index="0" instance=ExtResource("5_mmmqi")]
-position = Vector2(1132, 610)
-
-[node name="EnemyFlyer2" parent="Enemy" index="1" instance=ExtResource("5_mmmqi")]
-position = Vector2(619, -616)

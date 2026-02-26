@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxyuas23t6y4y"]
+[gd_scene format=3 uid="uid://dxyuas23t6y4y"]
 
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_217uw"]
 [ext_resource type="Texture2D" uid="uid://cctswit752yst" path="res://level/level_01_ruins/level_2/back_1.png" id="2_ax03m"]
@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://5xlqnqbjpyi0" path="res://level/level_01_ruins/level_2/back_4.png" id="5_31y88"]
 [ext_resource type="Texture2D" uid="uid://cggi105dsnqne" path="res://level/level_01_ruins/level_2/back_5.png" id="6_fwhj2"]
 [ext_resource type="Texture2D" uid="uid://b47n0ntlt5wtl" path="res://level/level_01_ruins/level_2/core.png" id="7_2auxq"]
-[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/area_teleportation/teleportation.tscn" id="8_mbu0e"]
-[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://entity/enemy/plasma_cannon/enemy_plasma_cannon.tscn" id="10_x3uea"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="8_mbu0e"]
+[ext_resource type="PackedScene" uid="uid://bn1v73eb47jsk" path="res://enemy/plasma_cannon/enemy_plasma_cannon.tscn" id="10_x3uea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo0xd"]
 size = Vector2(3501, 445)

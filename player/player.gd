@@ -1,0 +1,216 @@
+class_name Player
+extends Entity
+
+func on_hit():
+	Global.play_sfx(Global.SFX_HIT)
+	Global.stun()
+	Global.camera_shake=3
+
+const HP_UNIT = preload("uid://cd7h1i0ndjo7x")
+var hp=5
+var is_hurt:bool=false
+func on_be_hit():if %TimerInvincible.is_stopped():is_hurt=true
+
+enum State{NULL,
+	IDLE,RUN,
+	RISE,FALL,
+	SPRINT,
+	ATK_COMMON,
+	HURT,DIE,
+}
+var current_state:State=State.NULL
+
+signal dead
+
+func clear_dead_connections():
+	var connections=get_signal_connection_list("dead")
+	for c in connections:dead.disconnect(c["callable"])
+
+var shader_vignette:ShaderMaterial
+func refresh_vignette():shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
+
+var node_ghost:Node2D
+
+func _ready() -> void:
+	Global.player=self
+	shader_vignette=%ColorRect.material
+	refresh_vignette()
+	
+	for i in hp:
+		var pos=Vector2(100+150*i,50)
+		var hp_unit =HP_UNIT.instantiate()
+		hp_unit.position=pos
+		%HpUnit.add_child(hp_unit)
+	
+	await ready
+	node_ghost=Node2D.new()
+	get_parent().call_deferred("add_child",node_ghost)
+	await node_ghost.ready
+	get_parent().move_child(node_ghost,self.get_index())
+
+var is_show_ghost:bool=true
+var timer_ghost:float=0
+var cycle_ghost:float=0.05
+var life_ghost:float=0
+func _process(delta: float) -> void:
+	if is_show_ghost:
+		if timer_ghost<=0:
+			var ghost=Sprite2D.new()
+			ghost.texture=%Sprite2D.texture
+			ghost.hframes=%Sprite2D.hframes
+			ghost.vframes=%Sprite2D.vframes
+			ghost.frame=%Sprite2D.frame
+			ghost.global_position=%Sprite2D.global_position
+			ghost.flip_h=true if direction==Direction.RIGHT else false
+			ghost.modulate=Color(randf(),randf(),randf(),0.5)
+			match hp:
+				1:ghost.modulate=Color(randf(),randf(),2*randf(),0.5)
+				2:ghost.modulate=Color(0,0,1,0.5)
+				3:ghost.modulate=Color(0.5,0.5,0.5,0.8)
+				4:ghost.modulate=Color(0,0,0,0.7)
+				5:pass
+			
+			node_ghost.add_child(ghost)
+			timer_ghost=cycle_ghost
+			create_tween().tween_property(ghost,"modulate:a",0.0,life_ghost).set_ease(Tween.EASE_OUT)
+			create_tween().tween_callback(ghost.queue_free).set_delay(life_ghost)
+		else:timer_ghost-=delta
+	if %TimerInvincible.time_left:%Sprite2D.modulate.a=0.1+0.2*(sin(60*%TimerInvincible.time_left)+1)
+	else:%Sprite2D.modulate.a=1
+
+func _physics_process(delta: float) -> void:
+	var input_x=Input.get_axis("a","d")
+	var is_jump_pressed=Input.is_action_just_pressed("space")
+	var is_attack_pressed=Input.is_action_just_pressed("j")
+	var is_sprint_pressed=Input.is_action_just_pressed("l")
+	is_sprint_pressed=false#应急处理
+	velocity.x=0
+	#1/3.状态判断
+	var next_state=current_state
+	match current_state:
+		State.NULL:next_state=State.IDLE
+		State.IDLE:
+			if is_zero_approx(input_x):pass
+			else:next_state=State.RUN
+			if velocity.y>0:next_state=State.FALL
+			if velocity.y<0:next_state=State.RISE
+			if is_attack_pressed:next_state=State.ATK_COMMON
+			if is_sprint_pressed&&%TimerSprintCd.is_stopped():next_state=State.SPRINT
+			if is_hurt:next_state=State.HURT
+		State.RUN:
+			if is_zero_approx(input_x):next_state=State.IDLE
+			if velocity.y>0:next_state=State.FALL
+			if velocity.y<0:next_state=State.RISE
+			if is_attack_pressed:next_state=State.ATK_COMMON
+			if is_sprint_pressed&&%TimerSprintCd.is_stopped():next_state=State.SPRINT
+			if is_hurt:next_state=State.HURT
+		State.RISE:
+			if velocity.y>0:next_state=State.FALL
+			if is_on_floor():next_state=State.IDLE
+			if is_attack_pressed:next_state=State.ATK_COMMON
+			if is_sprint_pressed&&%TimerSprintCd.is_stopped():next_state=State.SPRINT
+			if is_hurt:next_state=State.HURT
+		State.FALL:
+			if velocity.y<0:next_state=State.RISE
+			if is_on_floor():
+				next_state=State.IDLE
+				Global.play_sfx(Global.SFX_DROP)
+			if is_attack_pressed:next_state=State.ATK_COMMON
+			if is_sprint_pressed&&%TimerSprintCd.is_stopped():next_state=State.SPRINT
+			if is_hurt:next_state=State.HURT
+		State.SPRINT:
+			if %TimerSprint.is_stopped():next_state=State.IDLE
+		State.HURT:
+			if not %AnimationPlayer.is_playing():
+				next_state=State.IDLE
+				if hp<=0:next_state=State.DIE
+		State.ATK_COMMON:
+			if not %AnimationPlayer.is_playing():next_state=State.IDLE
+			if is_hurt:next_state=State.HURT
+		State.DIE:pass
+	#2/3.状态切换
+	if next_state==current_state:pass
+	else:
+		match current_state:
+			State.SPRINT:%TimerSprintCd.start()
+			State.RUN:%TimerStep.stop()
+			State.ATK_COMMON:%Hitbox.set_deferred("monitoring",false)
+		match next_state:
+			State.IDLE:%AnimationPlayer.play("idle")
+			State.RUN:
+				%AnimationPlayer.play("run")
+				%TimerStep.start()
+			State.RISE:%AnimationPlayer.play("rise")
+			State.FALL:%AnimationPlayer.play("fall")
+			State.SPRINT:
+				%AnimationPlayer.play("sprint")
+				Global.play_sfx(Global.SFX_SPRINT)
+				%TimerSprint.start(0.3)
+			State.HURT:
+				is_hurt=false
+				%AnimationPlayer.play("hurt")
+				%TimerInvincible.start()
+				Global.play_sfx(Global.SFX_HURT)
+				hp-=1
+				shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
+				Global.stun(0.3)
+				Global.camera_shake=30
+				var hp_unit=%HpUnit.get_child(-1)
+				if life_ghost:life_ghost*=2.5
+				else: life_ghost=0.2
+				if hp_unit:
+					hp_unit.animation_player.play("die")
+					hp_unit.reparent(%HpUnitDie)
+			State.ATK_COMMON:
+				%AnimationPlayer.play("atk_common")
+				Global.play_sfx(Global.SFX_ATTACK)
+				%Hitbox.set_deferred("monitoring",true)
+			State.DIE:
+				%AnimationPlayer.play("die")
+				Global.play_sfx(Global.SFX_DEATH)
+				dead.emit()
+		current_state=next_state
+	#3/3.状态运行
+	match current_state:
+		State.IDLE:
+			velocity.x=450*input_x
+			if is_jump_pressed:jump()
+			if not is_zero_approx(input_x):
+				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
+		State.RUN:
+			velocity.x=450*input_x
+			if is_jump_pressed:jump()
+			if not is_zero_approx(input_x):
+				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
+		State.RISE:
+			velocity.x=450*input_x
+			if not is_zero_approx(input_x):
+				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
+		State.FALL:
+			velocity.x=450*input_x
+			if is_jump_pressed&&%TimerCoyote.time_left:jump()
+			if not is_zero_approx(input_x):
+				direction=Direction.LEFT if input_x<0 else Direction.RIGHT
+		State.SPRINT:
+			#if %HitBoxSprint.has_overlapping_bodies():is_sprint_hit_enemy=true
+			is_hurt=false
+			velocity.x=1500*direction
+		State.HURT:
+			#velocity.x=1000*direction_hurt#击退
+			pass
+		State.ATK_COMMON:pass
+	
+	velocity.y+=gravity*delta
+	var was_on_floor=is_on_floor()
+	move_and_slide()
+	if is_on_floor():pass
+	else:if was_on_floor:%TimerCoyote.start()
+		
+func jump():
+	velocity.y=-1900
+	Global.play_sfx(Global.SFX_JUMP)
+	%TimerCoyote.stop()
+
+var sfx_steps=[Global.SFX_STEP_1,Global.SFX_STEP_2,Global.SFX_STEP_3]
+func _on_timer_step_timeout() -> void:
+	Global.play_sfx(sfx_steps.pick_random())

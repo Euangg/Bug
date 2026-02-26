@@ -1,28 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ngyifqf18ygu"]
+[gd_scene format=3 uid="uid://ngyifqf18ygu"]
 
 [ext_resource type="Script" uid="uid://cbxwoqy52e7v" path="res://level/level.gd" id="1_7lnir"]
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" unique_id=167514725]
 use_parent_material = true
 script = ExtResource("1_7lnir")
 
-[node name="Environment" type="StaticBody2D" parent="."]
+[node name="Environment" type="StaticBody2D" parent="." unique_id=1932339603]
 collision_mask = 0
 
-[node name="EnvironmentEnemy" type="StaticBody2D" parent="."]
-unique_name_in_owner = true
-collision_layer = 128
-collision_mask = 0
+[node name="EnterPoint" type="Node" parent="." unique_id=846471292]
 
-[node name="EnterPoint" type="Node" parent="."]
-unique_name_in_owner = true
+[node name="CameraRange" type="Node" parent="." unique_id=1220560832]
 
-[node name="CameraRange" type="Node" parent="."]
+[node name="LT" type="Marker2D" parent="CameraRange" unique_id=35742969]
 
-[node name="LT" type="Marker2D" parent="CameraRange"]
-unique_name_in_owner = true
-
-[node name="RB" type="Marker2D" parent="CameraRange"]
-unique_name_in_owner = true
-
-[node name="Enemy" type="Node2D" parent="."]
+[node name="RB" type="Marker2D" parent="CameraRange" unique_id=779205183]

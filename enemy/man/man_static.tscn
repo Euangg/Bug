@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b4fu07nvhch3w"]
+
+[ext_resource type="Script" uid="uid://cjrb2ryvq5hho" path="res://enemy/man/man_static.gd" id="1_4u3im"]
+[ext_resource type="Texture2D" uid="uid://dh728xwqxxouj" path="res://enemy/man/enemy_man.png" id="1_j4q4b"]
+[ext_resource type="PackedScene" uid="uid://d3edhhl6gr4d" path="res://entity/hurtbox/hurtbox.tscn" id="2_ckt6u"]
+[ext_resource type="PackedScene" uid="uid://cyi15vmi0bcqb" path="res://entity/hitbox/hitbox.tscn" id="3_6y8b7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6y8b7"]
+size = Vector2(96, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4u3im"]
+size = Vector2(66, 170)
+
+[sub_resource type="Animation" id="Animation_wg0tl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4u3im"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg0tl"]
+_data = {
+&"RESET": SubResource("Animation_wg0tl"),
+&"idle": SubResource("Animation_4u3im")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4q4b"]
+size = Vector2(66, 170)
+
+[node name="ManStatic" type="CharacterBody2D" unique_id=1880661247]
+collision_layer = 0
+collision_mask = 33
+script = ExtResource("1_4u3im")
+
+[node name="Graphic" type="Node2D" parent="." unique_id=724657769]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphic" unique_id=664248088]
+position = Vector2(-9, -95)
+texture = ExtResource("1_j4q4b")
+flip_h = true
+hframes = 3
+vframes = 4
+region_rect = Rect2(31, 20, 110, 177)
+
+[node name="Hurtbox" parent="Graphic" unique_id=716986136 instance=ExtResource("2_ckt6u")]
+collision_layer = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hurtbox" unique_id=645646581]
+position = Vector2(0, -86)
+shape = SubResource("RectangleShape2D_6y8b7")
+
+[node name="Hitbox" parent="Graphic" unique_id=986071656 instance=ExtResource("3_6y8b7")]
+collision_mask = 512
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hitbox" unique_id=1153742537]
+position = Vector2(0, -86)
+shape = SubResource("RectangleShape2D_4u3im")
+
+[node name="MarkerBoom" type="Marker2D" parent="Graphic" unique_id=1226407010]
+position = Vector2(0, -95)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1979231952]
+libraries/ = SubResource("AnimationLibrary_wg0tl")
+autoplay = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=29042697]
+position = Vector2(0, -86)
+shape = SubResource("RectangleShape2D_j4q4b")
+
+[connection signal="hit" from="Graphic/Hurtbox" to="." method="_on_hurtbox_hitted"]
+
+[editable path="Graphic/Hurtbox"]

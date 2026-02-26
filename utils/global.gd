@@ -1,34 +1,32 @@
 extends Node
 
-var is_mobile:bool=false
 func _ready() -> void:
-	if OS.has_feature("mobile"):is_mobile=true
+	if OS.has_feature("debug"):%Label.text+="-debug"
+	if OS.has_feature("release"):%Label.text+="-release"
+	if OS.has_feature("windows"):%Label.text+="-windows"
+	if OS.has_feature("android"):%Label.text+="-android"
 
-const BGM_THEME = preload("uid://je7u4m541dwf")
-const BGM_RUINS = preload("uid://dtvdxt84y1r7i")
-const BGM_CYBERPUNK = preload("uid://cb8clc75d23q8")
-const BGM_TOWN = preload("uid://dggu0xqst1wkc")
-const BGM_CAVE = preload("uid://ymlvkd8o4mae")
-const BGM_FLAT = preload("uid://bdbftcd40rbgx")
-const BGM_CHURCH = preload("uid://yv10y1pnfn1y")
-
-func play_bgm(bgm:AudioStream):
-	%Bgm.stream=bgm
+const BGM_THEME = ("uid://je7u4m541dwf")
+const BGM_RUINS = ("uid://dtvdxt84y1r7i")
+const BGM_CYBERPUNK = ("uid://cb8clc75d23q8")
+const BGM_TOWN = ("uid://dggu0xqst1wkc")
+const BGM_CAVE = ("uid://ymlvkd8o4mae")
+const BGM_FLAT = ("uid://bdbftcd40rbgx")
+const BGM_CHURCH = ("uid://yv10y1pnfn1y")
+func play_bgm(path_bgm:String):
+	%Bgm.stream=load(path_bgm)
 	%Bgm.play()
 func stop_bgm():%Bgm.stop()
 func _on_bgm_finished() -> void:%Bgm.play()
 
-const AMBIENT_TUTORIAL = preload("uid://bfaruyeuj7hlq")
-const AMBIENT_1 = preload("uid://dc10dikalkq8t")
-const AMBIENT_CAVE = preload("uid://beewphvxfjtep")
-func play_ambient(ambient:AudioStream):
-	%Ambient.stream=ambient
+const AMBIENT_TUTORIAL = ("uid://bfaruyeuj7hlq")
+const AMBIENT_1 = ("uid://dc10dikalkq8t")
+const AMBIENT_CAVE = ("uid://beewphvxfjtep")
+func play_ambient(path_ambient:String):
+	%Ambient.stream=load(path_ambient)
 	%Ambient.play()
 func stop_ambient():%Ambient.stop()
 func _on_ambient_finished() -> void:%Ambient.play()
-
-const SFX_IMPACT = preload("uid://c2isctsk0iub5")
-const SFX_IMPACT_1 = preload("uid://ck58vnydx53b4")
 
 const SFX_BUTTON_CLICK = preload("uid://cak5j1u74pllk")
 const SFX_BUTTON_ON = preload("uid://p8wen4phjbj3")
@@ -71,33 +69,20 @@ func play_sfx_pitched(sfx:PackedScene,p:float):
 	s.pitch_scale=p
 	%Sfx.add_child(s)
 
-const DIALOGUE_C_3_FAILURE_S = preload("uid://mc40vyxc72u2")
-const DIALOGUE_C_3_VICTORY_S = preload("uid://budfin8yjlqgj")
-
-const DIALOGUE_C_1_START = preload("uid://cyd3e0wnnthop")
-const DIALOGUE_C_3_ENTER = preload("uid://birt60wtpnhyd")
-const DIALOGUE_C_3_VICTORY = preload("uid://ir2kpvd1fwk7")
-
-func play_dialogue(sfx:PackedScene):%Dialogue.add_child(sfx.instantiate())
-func clear_dialogue():for d in %Dialogue.get_children():d.queue_free()
-
-const UI_PRE_ENTER = preload("uid://dyajrc3icedew")
-const UI_POLICY = preload("uid://cy2v4yy56kypw")
-const UI_THEME = preload("uid://cw11diprqdn11")
-const UI_INTRO = preload("uid://cd8beddty8fv7")
-const UI_PLAY = preload("uid://b33na2hc1mtcl")
-const UI_FAIL = preload("uid://ds2udw36hcry6")
-const UI_CLEAR = preload("uid://cy4qt40ba7mq7")
-const UI_DEVELOPER = preload("uid://ce68q30ob1o3q")
+const UI_THEME = "uid://cw11diprqdn11"
+const UI_INTRO = "uid://cd8beddty8fv7"
+const UI_PLAY = "uid://b33na2hc1mtcl"
+const UI_FAIL = "uid://ds2udw36hcry6"
+const UI_CLEAR = "uid://cy4qt40ba7mq7"
+const UI_DEVELOPER = "uid://ce68q30ob1o3q"
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
-func switch_scene(packed_scene:PackedScene):
+func switch_scene(path_scene:String):
 	var tree:=get_tree()
 	var tween:Tween=create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(color_rect,"color:a",1,0.5)
 	await tween.finished
-	
-	get_tree().call_deferred("change_scene_to_packed",packed_scene)
+	get_tree().call_deferred("change_scene_to_file",path_scene)
 	#get_tree().change_scene_to_packed(packed_scene)
 	
 	await tree.tree_changed
@@ -119,10 +104,9 @@ const PROJECTILE_1 = preload("uid://db2c1jf6vflq5")
 const PROJECTILE_THROWER = preload("uid://cwysknnbfaugv")
 const PROJECTILE_FLYER = preload("uid://2lfwbxys80s8")
 
-var ui_play:Play=null
 var player:Player=null
 var camera:Camera2D=null
-var enter_point_order:int
-var is_teleportation:bool=false
-var name_current_level:String
+var str_current_level:String
 var is_restart:bool=false
+
+var is_teleportation:bool=false

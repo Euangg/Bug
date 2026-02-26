@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj4781x814ch"]
+[gd_scene format=3 uid="uid://dj4781x814ch"]
 
 [ext_resource type="Script" uid="uid://dpmd4qwx23v82" path="res://test.gd" id="1_6uqi0"]
-[ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://entity/player/player.tscn" id="1_37kl0"]
-[ext_resource type="PackedScene" uid="uid://c4a77vtbtgmso" path="res://entity/enemy/shield/enemy_shield.tscn" id="3_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://player/player.tscn" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://c4a77vtbtgmso" path="res://enemy/shield/enemy_shield.tscn" id="3_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://c5b3trv1jrg5e" path="res://tile/tile.tscn" id="3_ppyta"]
+[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://enemy/ball/enemy_ball.tscn" id="3_ykrsh"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_6uqi0")
@@ -19,3 +20,6 @@ position = Vector2(379, 616)
 
 [node name="EnemyShield" parent="." instance=ExtResource("3_6uqi0")]
 position = Vector2(1464, 748)
+
+[node name="EnemyBall" parent="." instance=ExtResource("3_ykrsh")]
+position = Vector2(1875, 1824)
