@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bov6ygsuk36kx" path="res://ui/play/grayscale.gdshader" id="1_tnm53"]
 [ext_resource type="Script" uid="uid://c801ros4yhl66" path="res://ui/play/play.gd" id="1_xyo1v"]
-[ext_resource type="PackedScene" uid="uid://c1cnf4qh4sn0o" path="res://level/level_01_ruins/level_ruins.tscn" id="2_tnm53"]
+[ext_resource type="PackedScene" uid="uid://c1cnf4qh4sn0o" path="res://level/01_01_ruins/01_01.tscn" id="2_tnm53"]
 [ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://player/player.tscn" id="4_tnm53"]
 [ext_resource type="AudioStream" uid="uid://cp2c03kemw805" path="res://sound/loop/sfx_ammotime_2.mp3" id="5_5cp7b"]
 

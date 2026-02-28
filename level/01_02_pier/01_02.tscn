@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://dxyuas23t6y4y"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_217uw"]
+[ext_resource type="Texture2D" uid="uid://cctswit752yst" path="res://level/01_02_pier/back_1.png" id="2_ax03m"]
+[ext_resource type="Script" uid="uid://c5imb0s3cnwrv" path="res://level/01_02_pier/01_02.gd" id="2_x3uea"]
+[ext_resource type="Texture2D" uid="uid://bvbtqfu8sxg13" path="res://level/01_02_pier/back_2.png" id="3_x3uea"]
+[ext_resource type="Texture2D" uid="uid://cgecnq16h0vk8" path="res://level/01_02_pier/back_3.png" id="4_rajgj"]
+[ext_resource type="Texture2D" uid="uid://5xlqnqbjpyi0" path="res://level/01_02_pier/back_4.png" id="5_31y88"]
+[ext_resource type="Texture2D" uid="uid://cggi105dsnqne" path="res://level/01_02_pier/back_5.png" id="6_fwhj2"]
+[ext_resource type="Texture2D" uid="uid://b47n0ntlt5wtl" path="res://level/01_02_pier/core.png" id="7_2auxq"]
+[ext_resource type="Texture2D" uid="uid://0680qsxukqop" path="res://level/01_01_ruins/core.png" id="9_xb436"]
+[ext_resource type="PackedScene" uid="uid://byk5428itqeq5" path="res://level/01_02_pier/event/fight_1/fight_1.tscn" id="10_fw3ew"]
+[ext_resource type="PackedScene" uid="uid://cnn8x68jd0d6f" path="res://level/01_02_pier/event/fight_2/fight_2.tscn" id="11_j20bd"]
+[ext_resource type="PackedScene" uid="uid://bokp41wmxo6f" path="res://level/01_02_pier/event/fight_3/fight_3.tscn" id="12_yoolk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j20bd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jgp4j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fw3ew"]
+
+[node name="Level2" unique_id=684658788 instance=ExtResource("1_217uw")]
+script = ExtResource("2_x3uea")
+
+[node name="Back5" type="Parallax2D" parent="." index="0" unique_id=944124406]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="Back" type="Sprite2D" parent="Back5" index="0" unique_id=2054853809]
+position = Vector2(0, -390)
+texture = ExtResource("2_ax03m")
+centered = false
+
+[node name="Back4" type="Parallax2D" parent="." index="1" unique_id=2025518824]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="Back" type="Sprite2D" parent="Back4" index="0" unique_id=891060647]
+position = Vector2(0, -263)
+texture = ExtResource("3_x3uea")
+centered = false
+
+[node name="Back3" type="Parallax2D" parent="." index="2" unique_id=454901963]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="Back" type="Sprite2D" parent="Back3" index="0" unique_id=439061332]
+position = Vector2(0, -293)
+texture = ExtResource("4_rajgj")
+centered = false
+
+[node name="Back2" type="Parallax2D" parent="." index="3" unique_id=902880438]
+scroll_scale = Vector2(0.6, 0.6)
+
+[node name="Back" type="Sprite2D" parent="Back2" index="0" unique_id=872204272]
+position = Vector2(0, -217)
+texture = ExtResource("5_31y88")
+centered = false
+
+[node name="Back1" type="Parallax2D" parent="." index="4" unique_id=72122199]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="Back" type="Sprite2D" parent="Back1" index="0" unique_id=219710299]
+position = Vector2(0, -59)
+texture = ExtResource("6_fwhj2")
+centered = false
+
+[node name="Core" type="Sprite2D" parent="Back1" index="1" unique_id=829147310]
+position = Vector2(0, -52)
+texture = ExtResource("7_2auxq")
+centered = false
+
+[node name="Core" type="Sprite2D" parent="." index="5" unique_id=999354879]
+texture = ExtResource("9_xb436")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=663563528]
+position = Vector2(861.5, 1045)
+shape = SubResource("WorldBoundaryShape2D_j20bd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=34447320]
+position = Vector2(1921, 725)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_jgp4j")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=871710593]
+position = Vector2(-1, 788)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_fw3ew")
+one_way_collision = true
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=367800473]
+position = Vector2(97, 1039)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(1920, 1400)
+
+[node name="Event" type="Node" parent="." index="9" unique_id=939141252]
+
+[node name="Fight1" parent="Event" index="0" unique_id=438777886 instance=ExtResource("10_fw3ew")]
+unique_name_in_owner = true
+
+[node name="Marker2D" parent="Event/Fight1/SpawnPoint" parent_id_path=PackedInt32Array(438777886, 1686999423) index="0" unique_id=1662644802]
+position = Vector2(2025, 977)
+
+[node name="Marker2D2" parent="Event/Fight1/SpawnPoint" parent_id_path=PackedInt32Array(438777886, 1686999423) index="1" unique_id=1000098742]
+position = Vector2(2515, 974)
+
+[node name="Fight2" parent="Event" index="1" unique_id=918953766 instance=ExtResource("11_j20bd")]
+unique_name_in_owner = true
+
+[node name="Marker2D" parent="Event/Fight2/SpawnPoint" parent_id_path=PackedInt32Array(918953766, 1686999423) index="0" unique_id=1662644802]
+position = Vector2(-388, 836)
+
+[node name="Marker2D2" parent="Event/Fight2/SpawnPoint" parent_id_path=PackedInt32Array(918953766, 1686999423) index="1" unique_id=1000098742]
+position = Vector2(2256, 890)
+
+[node name="Fight3" parent="Event" index="2" unique_id=1287435253 instance=ExtResource("12_yoolk")]
+unique_name_in_owner = true
+
+[node name="Marker2D" parent="Event/Fight3/SpawnPoint" parent_id_path=PackedInt32Array(1287435253, 1686999423) index="0" unique_id=1662644802]
+position = Vector2(-264, 738)
+
+[node name="Marker2D2" parent="Event/Fight3/SpawnPoint" parent_id_path=PackedInt32Array(1287435253, 1686999423) index="1" unique_id=1000098742]
+position = Vector2(2128, 807)
+
+[connection signal="finish" from="Event/Fight1" to="." method="_on_fight_1_finish"]
+[connection signal="finish" from="Event/Fight2" to="." method="_on_fight_2_finish"]
+
+[editable path="Event/Fight1"]
+[editable path="Event/Fight2"]
+[editable path="Event/Fight3"]

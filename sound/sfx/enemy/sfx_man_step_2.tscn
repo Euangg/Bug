@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cop2y31i6e4v0"]
-
-[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_f1rek"]
-[ext_resource type="AudioStream" uid="uid://l3sn8oe3okv3" path="res://sound/sfx/enemy/sfx_man_step_2.mp3" id="2_f1rek"]
-
-[node name="SfxManStep2" instance=ExtResource("1_f1rek")]
-stream = ExtResource("2_f1rek")
-volume_db = -5.0

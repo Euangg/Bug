@@ -4,7 +4,7 @@
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1307404642]
 collision_layer = 4
-collision_mask = 129
+collision_mask = 33
 floor_snap_length = 5.0
 script = ExtResource("2_p1h7c")
 

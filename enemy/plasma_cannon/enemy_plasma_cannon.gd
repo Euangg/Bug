@@ -11,7 +11,6 @@ enum State{NULL,
 }
 var current_state:State=State.NULL
 
-signal dead
 var input_x:float=0
 
 func _physics_process(delta: float) -> void:

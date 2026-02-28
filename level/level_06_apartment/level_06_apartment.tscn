@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="4_2kij5"]
 [ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://enemy/ball/enemy_ball.tscn" id="4_rtklm"]
 [ext_resource type="PackedScene" uid="uid://csii2bkosawew" path="res://enemy/flyer/enemy_flyer.tscn" id="5_2kij5"]
-[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://enemy/man/enemy_man.tscn" id="6_l6ssa"]
+[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://enemy/man/man.tscn" id="6_l6ssa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwl34"]
 size = Vector2(1898.5, 207.5)

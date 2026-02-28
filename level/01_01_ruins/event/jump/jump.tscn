@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cwsmjmbsresw3"]
+
+[ext_resource type="PackedScene" uid="uid://w5od6b2m0uxp" path="res://level/event/single/single.tscn" id="1_5ffh4"]
+[ext_resource type="Script" uid="uid://ej0vkhc2rqup" path="res://level/01_01_ruins/event/jump/jump.gd" id="1_h7hy8"]
+
+[sub_resource type="Animation" id="Animation_bsomt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [160]
+}
+
+[sub_resource type="Animation" id="Animation_rqllw"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [160, 80]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h7hy8"]
+_data = {
+&"RESET": SubResource("Animation_bsomt"),
+&"idle": SubResource("Animation_rqllw")
+}
+
+[node name="Jump" type="Node2D" unique_id=1352514720]
+script = ExtResource("1_h7hy8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=496895268]
+unique_name_in_owner = true
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=811425205]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -452.5
+offset_top = -370.0
+offset_right = 452.5
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 160
+text = "空格 跳跃"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=476001477]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_h7hy8")
+
+[node name="SingleWake" parent="." unique_id=1324012026 instance=ExtResource("1_5ffh4")]
+
+[node name="SingleFinish" parent="." unique_id=1116043972 instance=ExtResource("1_5ffh4")]
+
+[connection signal="finish" from="." to="." method="_on_finish"]
+[connection signal="body_entered" from="SingleWake" to="." method="_on_single_wake_body_entered"]
+[connection signal="body_entered" from="SingleFinish" to="." method="_on_single_finish_body_entered"]

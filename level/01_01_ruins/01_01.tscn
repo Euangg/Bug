@@ -1,0 +1,194 @@
+[gd_scene format=3 uid="uid://c1cnf4qh4sn0o"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_ydgix"]
+[ext_resource type="Script" uid="uid://db5vvwoubp18g" path="res://level/01_01_ruins/01_01.gd" id="2_mo6hq"]
+[ext_resource type="Texture2D" uid="uid://cctswit752yst" path="res://level/01_02_pier/back_1.png" id="3_dk27x"]
+[ext_resource type="Texture2D" uid="uid://ca66j7msk7ynm" path="res://level/01_01_ruins/back_1.png" id="4_kpsqg"]
+[ext_resource type="Texture2D" uid="uid://b3abay31bb0x7" path="res://level/01_01_ruins/back_2.png" id="5_uikor"]
+[ext_resource type="Texture2D" uid="uid://bvbtqfu8sxg13" path="res://level/01_02_pier/back_2.png" id="6_5vul0"]
+[ext_resource type="Texture2D" uid="uid://bf2ami5gnvvhi" path="res://level/01_01_ruins/back_3.png" id="7_hshxw"]
+[ext_resource type="Texture2D" uid="uid://cgecnq16h0vk8" path="res://level/01_02_pier/back_3.png" id="8_pfgat"]
+[ext_resource type="Texture2D" uid="uid://5xlqnqbjpyi0" path="res://level/01_02_pier/back_4.png" id="9_5jekl"]
+[ext_resource type="Texture2D" uid="uid://1f8utn2qatp5" path="res://level/01_01_ruins/back_4.png" id="10_3rifh"]
+[ext_resource type="Texture2D" uid="uid://cggi105dsnqne" path="res://level/01_02_pier/back_5.png" id="11_1mpjj"]
+[ext_resource type="Texture2D" uid="uid://0680qsxukqop" path="res://level/01_01_ruins/core.png" id="12_m87p2"]
+[ext_resource type="Texture2D" uid="uid://b47n0ntlt5wtl" path="res://level/01_02_pier/core.png" id="13_gf5of"]
+[ext_resource type="Texture2D" uid="uid://xjvel8sq8svq" path="res://level/01_01_ruins/pipe.png" id="14_0a64w"]
+[ext_resource type="Texture2D" uid="uid://rfw8rd6bn6bg" path="res://level/01_01_ruins/front_1.png" id="15_nu7ox"]
+[ext_resource type="PackedScene" uid="uid://bdy3vp4adj4i6" path="res://level/area_dead/dead_area.tscn" id="16_m58r3"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="17_l8a6o"]
+[ext_resource type="PackedScene" uid="uid://btrvthi2mwkcj" path="res://level/01_01_ruins/event/move/move.tscn" id="18_y2rvg"]
+[ext_resource type="PackedScene" uid="uid://doo3yt81h4nbj" path="res://level/01_01_ruins/event/atk/atk.tscn" id="19_ktp2f"]
+[ext_resource type="PackedScene" uid="uid://b4fu07nvhch3w" path="res://enemy/man/man_static.tscn" id="20_am717"]
+[ext_resource type="PackedScene" uid="uid://cwsmjmbsresw3" path="res://level/01_01_ruins/event/jump/jump.tscn" id="20_mo6hq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81l32"]
+size = Vector2(6241, 191)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lx8gb"]
+size = Vector2(3366, 191)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moo38"]
+size = Vector2(887.71875, 1357)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drb32"]
+size = Vector2(1547, 257)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nokfs"]
+size = Vector2(320, 1178)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhqic"]
+size = Vector2(260, 1069)
+
+[node name="LevelRuins" unique_id=135694952 instance=ExtResource("1_ydgix")]
+script = ExtResource("2_mo6hq")
+
+[node name="Back4" type="Parallax2D" parent="." index="0" unique_id=714480331]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="Right" type="Sprite2D" parent="Back4" index="0" unique_id=282398354]
+use_parent_material = true
+position = Vector2(2880, 700)
+texture = ExtResource("3_dk27x")
+
+[node name="Left1" type="Sprite2D" parent="Back4" index="1" unique_id=1861785846]
+texture = ExtResource("4_kpsqg")
+centered = false
+
+[node name="Left2" type="Sprite2D" parent="Back4" index="2" unique_id=397427992]
+texture = ExtResource("4_kpsqg")
+centered = false
+
+[node name="Back3" type="Parallax2D" parent="." index="1" unique_id=318219263]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="Left" type="Sprite2D" parent="Back3" index="0" unique_id=682331475]
+texture = ExtResource("5_uikor")
+centered = false
+
+[node name="Right" type="Sprite2D" parent="Back3" index="1" unique_id=1413537533]
+position = Vector2(2880, 700)
+texture = ExtResource("6_5vul0")
+
+[node name="Back2" type="Parallax2D" parent="." index="2" unique_id=361799028]
+scroll_scale = Vector2(0.6, 0.6)
+
+[node name="Left" type="Sprite2D" parent="Back2" index="0" unique_id=1584301634]
+texture = ExtResource("7_hshxw")
+centered = false
+
+[node name="Right" type="Sprite2D" parent="Back2" index="1" unique_id=1246335475]
+position = Vector2(2880, 700)
+texture = ExtResource("8_pfgat")
+
+[node name="Back1" type="Parallax2D" parent="." index="3" unique_id=546243839]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="Right" type="Sprite2D" parent="Back1" index="0" unique_id=731886082]
+position = Vector2(2880, 700)
+texture = ExtResource("9_5jekl")
+
+[node name="Left" type="Sprite2D" parent="Back1" index="1" unique_id=1656124562]
+texture = ExtResource("10_3rifh")
+centered = false
+
+[node name="Right2" type="Sprite2D" parent="Back1" index="2" unique_id=1130807459]
+position = Vector2(2880, 700)
+texture = ExtResource("11_1mpjj")
+
+[node name="Core" type="Node2D" parent="." index="4" unique_id=1778558338]
+
+[node name="LandLeft" type="Sprite2D" parent="Core" index="0" unique_id=639371778]
+texture = ExtResource("12_m87p2")
+centered = false
+
+[node name="LandRight" type="Sprite2D" parent="Core" index="1" unique_id=1268231222]
+position = Vector2(2880, 700)
+texture = ExtResource("13_gf5of")
+
+[node name="Pipe" type="Sprite2D" parent="Core" index="2" unique_id=2072429270]
+position = Vector2(2880, 700)
+texture = ExtResource("14_0a64w")
+
+[node name="Front1" type="Parallax2D" parent="." index="5" unique_id=1314293005]
+scroll_scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Front1" index="0" unique_id=1980950441]
+position = Vector2(0, 318)
+texture = ExtResource("15_nu7ox")
+centered = false
+
+[node name="LandLeft" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=663036679]
+position = Vector2(239.5, 1134)
+shape = SubResource("RectangleShape2D_81l32")
+
+[node name="LandRight" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=672981289]
+position = Vector2(5279, 1134)
+shape = SubResource("RectangleShape2D_lx8gb")
+
+[node name="BoundLeft" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=485985692]
+position = Vector2(-444, 680)
+shape = SubResource("RectangleShape2D_moo38")
+
+[node name="BoundRight" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="3" unique_id=2024433550]
+position = Vector2(4357, 680)
+shape = SubResource("RectangleShape2D_moo38")
+
+[node name="DeadArea" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="4" unique_id=2098324733 instance=ExtResource("16_m58r3")]
+position = Vector2(3282, 1363)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/DeadArea" index="0" unique_id=1429988865]
+position = Vector2(177.5, 118.5)
+shape = SubResource("RectangleShape2D_drb32")
+
+[node name="Teleportation" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="5" unique_id=795776597 instance=ExtResource("17_l8a6o")]
+position = Vector2(948, 395)
+target_level = "1-2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Teleportation" index="0" unique_id=317388195]
+position = Vector2(3053, 134)
+shape = SubResource("RectangleShape2D_nokfs")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=972475275]
+position = Vector2(115, 1039)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(3840, 1400)
+
+[node name="Event" type="Node" parent="." index="9" unique_id=874777145]
+
+[node name="Move" parent="Event" index="0" unique_id=1056651580 instance=ExtResource("18_y2rvg")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event/Move/Single" parent_id_path=PackedInt32Array(1056651580, 1324012026) index="0" unique_id=463744950]
+position = Vector2(1381, 524.5)
+shape = SubResource("RectangleShape2D_yhqic")
+
+[node name="Atk" parent="Event" index="1" unique_id=2117541841 node_paths=PackedStringArray("enemy") instance=ExtResource("19_ktp2f")]
+position = Vector2(2781, 1036)
+enemy = NodePath("../../ManStatic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event/Atk/SingleWake" parent_id_path=PackedInt32Array(2117541841, 1324012026) index="0" unique_id=398454779]
+position = Vector2(-1177, -517)
+shape = SubResource("RectangleShape2D_yhqic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event/Atk/SingleFinish" parent_id_path=PackedInt32Array(2117541841, 11930018) index="0" unique_id=439417731]
+position = Vector2(-311, -531)
+shape = SubResource("RectangleShape2D_yhqic")
+
+[node name="Jump" parent="Event" index="2" unique_id=1352514720 instance=ExtResource("20_mo6hq")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event/Jump/SingleWake" parent_id_path=PackedInt32Array(1352514720, 1324012026) index="0" unique_id=756064967]
+position = Vector2(2861, 505)
+shape = SubResource("RectangleShape2D_yhqic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event/Jump/SingleFinish" parent_id_path=PackedInt32Array(1352514720, 1116043972) index="0" unique_id=1990926495]
+position = Vector2(3733, 509)
+shape = SubResource("RectangleShape2D_yhqic")
+
+[node name="ManStatic" parent="." index="10" unique_id=1880661247 instance=ExtResource("20_am717")]
+position = Vector2(2201, 1039)
+direction = -1
+
+[editable path="Event/Move"]
+[editable path="Event/Atk"]
+[editable path="Event/Jump"]

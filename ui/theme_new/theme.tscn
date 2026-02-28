@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://bruoffbxcl3bh"]
+
+[ext_resource type="Script" uid="uid://bgrdj4holehwg" path="res://ui/theme/theme.gd" id="1_7idbl"]
+[ext_resource type="Texture2D" uid="uid://n3wqpujk6yrs" path="res://ui/theme_new/合成 1_00000.png" id="1_hf4fd"]
+[ext_resource type="Texture2D" uid="uid://c32p2i6n2gfqr" path="res://ui/theme_new/合成 1_00001.png" id="2_7idbl"]
+[ext_resource type="Texture2D" uid="uid://cr6314i46fh8s" path="res://ui/theme_new/合成 1_00002.png" id="3_psdke"]
+[ext_resource type="Texture2D" uid="uid://f3tjs7jq4ssn" path="res://ui/theme_new/合成 1_00003.png" id="4_11h30"]
+[ext_resource type="Texture2D" uid="uid://d2i106lqc006x" path="res://ui/theme_new/合成 1_00004.png" id="5_cp7w1"]
+[ext_resource type="Texture2D" uid="uid://csh4malrf68t3" path="res://ui/theme_new/合成 1_00005.png" id="6_3w6g2"]
+[ext_resource type="Texture2D" uid="uid://c3jptldpej2ah" path="res://ui/theme_new/合成 1_00006.png" id="7_d2n7l"]
+[ext_resource type="Texture2D" uid="uid://dcqdk0tysrw4h" path="res://ui/theme_new/合成 1_00007.png" id="8_0prtu"]
+[ext_resource type="Texture2D" uid="uid://d2an8ptohw3o" path="res://ui/theme_new/合成 1_00008.png" id="9_tbn3q"]
+[ext_resource type="Texture2D" uid="uid://cvh04wamvommx" path="res://ui/theme_new/合成 1_00009.png" id="10_fi2ks"]
+[ext_resource type="Texture2D" uid="uid://bnpea3hraehyr" path="res://ui/theme_new/合成 1_00010.png" id="11_ou14g"]
+[ext_resource type="Texture2D" uid="uid://c1dxslw77vomp" path="res://ui/theme_new/合成 1_00011.png" id="12_0qfkn"]
+[ext_resource type="Texture2D" uid="uid://cn4ygof6pr76v" path="res://ui/theme_new/合成 1_00012.png" id="13_x0j1i"]
+[ext_resource type="Texture2D" uid="uid://cih25fdu0pe0d" path="res://ui/theme_new/合成 1_00013.png" id="14_nc54e"]
+[ext_resource type="Texture2D" uid="uid://cupijip7tkrv2" path="res://ui/theme_new/合成 1_00014.png" id="15_o54fh"]
+[ext_resource type="Texture2D" uid="uid://p7xsmw4cljao" path="res://ui/theme_new/合成 1_00015.png" id="16_iehj5"]
+[ext_resource type="Texture2D" uid="uid://bfe6rba2iym2c" path="res://ui/theme_new/合成 1_00016.png" id="17_n4ig8"]
+[ext_resource type="Texture2D" uid="uid://bsnjrpu0f4gpx" path="res://ui/theme_new/合成 1_00017.png" id="18_y4cey"]
+[ext_resource type="Texture2D" uid="uid://cfaj21esowh3s" path="res://ui/theme_new/合成 1_00018.png" id="19_735p0"]
+[ext_resource type="Texture2D" uid="uid://dxipehkyoyn0n" path="res://ui/theme_new/合成 1_00019.png" id="20_gg7su"]
+[ext_resource type="Texture2D" uid="uid://cdsr1jgegadqc" path="res://ui/theme_new/合成 1_00020.png" id="21_wkj8u"]
+[ext_resource type="Texture2D" uid="uid://dnvjwv8wxov3k" path="res://ui/theme_new/合成 1_00021.png" id="22_uh443"]
+[ext_resource type="Texture2D" uid="uid://c1adk7rcp4oi2" path="res://ui/theme_new/合成 1_00022.png" id="23_2hsvb"]
+[ext_resource type="Texture2D" uid="uid://bo4wbeko0o53b" path="res://ui/theme_new/合成 1_00023.png" id="24_i8nr1"]
+[ext_resource type="Texture2D" uid="uid://bn4cft6lwjebl" path="res://ui/theme_new/合成 1_00024.png" id="25_3n64e"]
+[ext_resource type="Texture2D" uid="uid://ca8j7pjku2ivl" path="res://ui/theme_new/合成 1_00025.png" id="26_p03iy"]
+[ext_resource type="Texture2D" uid="uid://cdue6ep4o8jdh" path="res://ui/theme_new/合成 1_00026.png" id="27_0usri"]
+[ext_resource type="Texture2D" uid="uid://dkp22kjbsm5ah" path="res://ui/theme_new/合成 1_00027.png" id="28_1mfhu"]
+[ext_resource type="Texture2D" uid="uid://ba70mm0lt8afa" path="res://ui/theme_new/合成 1_00028.png" id="29_dc55q"]
+[ext_resource type="Texture2D" uid="uid://wnqc5u0viia3" path="res://ui/theme_new/合成 1_00029.png" id="30_wpcwn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdpkj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hf4fd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7idbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_psdke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_11h30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cp7w1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3w6g2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d2n7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0prtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tbn3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fi2ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ou14g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0qfkn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_x0j1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_nc54e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_o54fh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_iehj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_n4ig8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_y4cey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_735p0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_gg7su")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_wkj8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_uh443")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_2hsvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_i8nr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_3n64e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_p03iy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_0usri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_1mfhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_dc55q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_wpcwn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="Theme" type="Control" unique_id=805494283]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7idbl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=969905987]
+sprite_frames = SubResource("SpriteFrames_xdpkj")
+autoplay = "default"
+frame = 16
+frame_progress = 0.32332024
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1911143353]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -454.0
+offset_top = 114.0
+offset_right = -46.0
+offset_bottom = 413.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1519724393]
+custom_minimum_size = Vector2(400, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 100
+text = "开始游戏"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=667614333]
+custom_minimum_size = Vector2(400, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 100
+text = "退出"
+
+[connection signal="mouse_entered" from="VBoxContainer/Button" to="." method="_on_control_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button2" to="." method="_on_control_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

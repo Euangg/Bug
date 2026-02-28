@@ -2,24 +2,23 @@
 
 [ext_resource type="Script" uid="uid://dpmd4qwx23v82" path="res://test.gd" id="1_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://player/player.tscn" id="1_37kl0"]
-[ext_resource type="PackedScene" uid="uid://c4a77vtbtgmso" path="res://enemy/shield/enemy_shield.tscn" id="3_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://c5b3trv1jrg5e" path="res://tile/tile.tscn" id="3_ppyta"]
-[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://enemy/ball/enemy_ball.tscn" id="3_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://enemy/man/man.tscn" id="4_ppyta"]
 
-[node name="Test" type="Node2D"]
+[node name="Test" type="Node2D" unique_id=2001275017]
 script = ExtResource("1_6uqi0")
 
-[node name="Player" parent="." instance=ExtResource("1_37kl0")]
+[node name="Player" parent="." unique_id=1417812268 instance=ExtResource("1_37kl0")]
 position = Vector2(379, 616)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=731176439]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1655926196]
+collision_mask = 0
 
-[node name="Tile" parent="StaticBody2D" instance=ExtResource("3_ppyta")]
+[node name="Tile" parent="StaticBody2D" unique_id=1137515109 instance=ExtResource("3_ppyta")]
+position = Vector2(-4, -7)
 
-[node name="EnemyShield" parent="." instance=ExtResource("3_6uqi0")]
-position = Vector2(1464, 748)
-
-[node name="EnemyBall" parent="." instance=ExtResource("3_ykrsh")]
-position = Vector2(1875, 1824)
+[node name="Man" parent="." unique_id=1684873667 instance=ExtResource("4_ppyta")]
+position = Vector2(1830, 899)
+direction = -1

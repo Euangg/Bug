@@ -6,7 +6,8 @@ extends Control
 @onready var dialogue: AudioStreamPlayer = %Dialogue
 
 var dict_level={
-	"level_ruins":("uid://c1cnf4qh4sn0o"),
+	"1-1":("uid://c1cnf4qh4sn0o"),
+	"1-2":("uid://dxyuas23t6y4y"),
 	"level_sewer":("uid://c4m7w371a50xy"),
 	"level_city":("uid://ctoymaqneykpq"),
 	"level_cyberpunk":("uid://xe1j7c2ii011"),
@@ -20,7 +21,7 @@ var dict_level={
 	"level_test":("uid://dn7bycqqe64nc")
 }
 func switch_level(str_level:String):
-	print("switch 2 "+ str_level )
+	print("switch to "+ str_level )
 	var old_level:Array=%Level.get_children()
 	for l in old_level:l.queue_free()
 	
@@ -46,7 +47,7 @@ func switch_level(str_level:String):
 func _ready() -> void:
 	Global.camera=%Camera2D
 	if Global.is_restart:switch_level(Global.str_current_level)
-	else:switch_level("level_ruins")
+	else:switch_level("1-1")
 
 	%Player.dead.connect(func():
 		print("dead")
@@ -54,6 +55,7 @@ func _ready() -> void:
 	dialogue.finished.connect(func():Global.switch_scene(Global.UI_FAIL))
 	
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("esc"):Global.switch_scene(Global.UI_THEME)
 	if Input.is_action_just_pressed("tab"):
 		Engine.time_scale=0.15
 		Global.play_sfx(Global.SFX_AMMOTIME_1)

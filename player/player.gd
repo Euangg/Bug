@@ -1,5 +1,9 @@
 class_name Player
 extends Entity
+const SFX_STEP_1 = preload("uid://buoxodwwgmfa0")
+const SFX_STEP_2 = preload("uid://01v6olxlbbev")
+const SFX_STEP_3 = preload("uid://c6bvvmlplb0bk")
+var sfx_steps=[SFX_STEP_1,SFX_STEP_2,SFX_STEP_3]
 
 func on_hit():
 	Global.play_sfx(Global.SFX_HIT)
@@ -29,8 +33,8 @@ func clear_dead_connections():
 var shader_vignette:ShaderMaterial
 func refresh_vignette():shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
 
-var node_ghost:Node2D
-
+var node_ghost:Node
+@onready var marker_tip: Marker2D = $Graphic/MarkerTip
 func _ready() -> void:
 	Global.player=self
 	shader_vignette=%ColorRect.material
@@ -42,11 +46,7 @@ func _ready() -> void:
 		hp_unit.position=pos
 		%HpUnit.add_child(hp_unit)
 	
-	await ready
-	node_ghost=Node2D.new()
-	get_parent().call_deferred("add_child",node_ghost)
-	await node_ghost.ready
-	get_parent().move_child(node_ghost,self.get_index())
+	node_ghost=%NodeGhost
 
 var is_show_ghost:bool=true
 var timer_ghost:float=0
@@ -133,13 +133,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		match current_state:
 			State.SPRINT:%TimerSprintCd.start()
-			State.RUN:%TimerStep.stop()
 			State.ATK_COMMON:%Hitbox.set_deferred("monitoring",false)
 		match next_state:
 			State.IDLE:%AnimationPlayer.play("idle")
-			State.RUN:
-				%AnimationPlayer.play("run")
-				%TimerStep.start()
+			State.RUN:%AnimationPlayer.play("run")
 			State.RISE:%AnimationPlayer.play("rise")
 			State.FALL:%AnimationPlayer.play("fall")
 			State.SPRINT:
@@ -164,7 +161,6 @@ func _physics_process(delta: float) -> void:
 			State.ATK_COMMON:
 				%AnimationPlayer.play("atk_common")
 				Global.play_sfx(Global.SFX_ATTACK)
-				%Hitbox.set_deferred("monitoring",true)
 			State.DIE:
 				%AnimationPlayer.play("die")
 				Global.play_sfx(Global.SFX_DEATH)
@@ -211,6 +207,7 @@ func jump():
 	Global.play_sfx(Global.SFX_JUMP)
 	%TimerCoyote.stop()
 
-var sfx_steps=[Global.SFX_STEP_1,Global.SFX_STEP_2,Global.SFX_STEP_3]
-func _on_timer_step_timeout() -> void:
-	Global.play_sfx(sfx_steps.pick_random())
+func play_step() -> void:
+	Global.play_sfx2d(sfx_steps.pick_random(),position)
+
+func hitbox_on()->void:%Hitbox.set_deferred("monitoring",true)

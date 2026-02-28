@@ -1,73 +1,74 @@
-[gd_scene load_steps=10 format=3 uid="uid://cd8beddty8fv7"]
+[gd_scene format=3 uid="uid://cd8beddty8fv7"]
 
-[ext_resource type="Texture2D" uid="uid://bdqflafo286ui" path="res://ui/intro/intro_0.png" id="1_c5cpu"]
 [ext_resource type="Script" uid="uid://crhp6h7se1qih" path="res://ui/intro/intro.gd" id="1_qxmol"]
 [ext_resource type="Texture2D" uid="uid://c1673g8k7ld3b" path="res://ui/intro/intro_1.png" id="3_0ub06"]
-
-[sub_resource type="Animation" id="Animation_70l5b"]
-resource_name = "event"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Intro1:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_5kowt"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Intro1:modulate")
+tracks/0/path = NodePath("Intro1/Label:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro1/Label2:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0dp2m"]
-_data = {
-&"RESET": SubResource("Animation_5kowt"),
-&"event": SubResource("Animation_70l5b")
-}
-
-[sub_resource type="Animation" id="Animation_0ub06"]
-resource_name = "event"
+[sub_resource type="Animation" id="Animation_70l5b"]
+resource_name = "line_1"
 length = 0.5
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("Intro1/Label:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [0.0, 1.0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect/Label:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+
+[sub_resource type="Animation" id="Animation_qxmol"]
+resource_name = "line_2"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro1/Label2:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0dp2m"]
+_data = {
+&"RESET": SubResource("Animation_5kowt"),
+&"line_1": SubResource("Animation_70l5b"),
+&"line_2": SubResource("Animation_qxmol")
 }
 
 [sub_resource type="Animation" id="Animation_hnl6g"]
@@ -84,17 +85,36 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
 }
-tracks/1/type = "value"
+
+[sub_resource type="Animation" id="Animation_0ub06"]
+resource_name = "event"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect/Label:modulate")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [{
+"args": [],
+"method": &"start_game"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_70l5b"]
@@ -103,7 +123,7 @@ _data = {
 &"event": SubResource("Animation_0ub06")
 }
 
-[node name="Intro" type="Control"]
+[node name="Intro" type="Control" unique_id=1603107415]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,16 +132,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qxmol")
 
-[node name="Intro0" type="Sprite2D" parent="."]
-texture = ExtResource("1_c5cpu")
-centered = false
-
-[node name="Intro1" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="Intro1" type="Sprite2D" parent="." unique_id=2011449477]
 texture = ExtResource("3_0ub06")
 centered = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Label" type="Label" parent="Intro1" unique_id=996652738]
+offset_left = 203.0
+offset_top = 906.0
+offset_right = 1703.0
+offset_bottom = 962.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "大部分人只见过退潮后的潮间带，以为此时的裸露意味着安全与平稳"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Label2" type="Label" parent="Intro1" unique_id=1822567072]
+offset_left = 203.0
+offset_top = 987.0
+offset_right = 1703.0
+offset_bottom = 1043.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "他们以为所有生物都像他们一样，觉得上了岸就是劫后余生……"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=245901205]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,37 +167,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Label" type="Label" parent="ColorRect"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -510.5
-offset_top = -418.5
-offset_right = 510.5
-offset_bottom = 418.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-text = "操作提示:
-按住AD-左右移动
-按下SPACE-跳跃
-按下J-攻击
-按下K-冲刺（可蓄力）
-按住TAB-进入子弹时间"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=934916424]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_0dp2m")
-}
+libraries/ = SubResource("AnimationLibrary_0dp2m")
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=1193466776]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_70l5b")
-}
+libraries/ = SubResource("AnimationLibrary_70l5b")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

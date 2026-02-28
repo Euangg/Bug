@@ -35,8 +35,6 @@ const SFX_SWITCH = preload("uid://c3lkmsp3h40mj")
 const SFX_LASER_1 = preload("uid://d1j3poqwtk5c")
 const SFX_LASER_3 = preload("uid://dcdf1fgrtrsi7")
 
-const SFX_MAN_STEP_1 = preload("uid://i7bg2tavyt4a")
-const SFX_MAN_STEP_2 = preload("uid://cop2y31i6e4v0")
 const SFX_JUMPER_FIRE = preload("uid://d0gauquut8wh7")
 const SFX_JUMPER_JUMP = preload("uid://dibywm646h8rj")
 const SFX_JUMPER_LAND = preload("uid://d2s321bgwbgop")
@@ -53,9 +51,6 @@ const SFX_BOOM_2 = preload("uid://cw70dumvcrb4u")
 
 const SFX_ATTACK = preload("uid://cbywfslpikhew")
 const SFX_SPRINT = preload("uid://bfsq4eys8ye7l")
-const SFX_STEP_1 = preload("uid://wy2biutkp7vm")
-const SFX_STEP_2 = preload("uid://chrys5gsvfbrf")
-const SFX_STEP_3 = preload("uid://bbsvrcoc5p51f")
 const SFX_DROP = preload("uid://de3lfa4oninkg")
 const SFX_JUMP = preload("uid://d3cwyht8qrn0l")
 const SFX_HIT = preload("uid://kespeoj5jdqc")
@@ -68,8 +63,14 @@ func play_sfx_pitched(sfx:PackedScene,p:float):
 	var s:AudioStreamPlayer=sfx.instantiate()
 	s.pitch_scale=p
 	%Sfx.add_child(s)
+const SFX_2D = preload("uid://b06na1sjulpq5")
+func play_sfx2d(stream:AudioStream,position:Vector2):
+	var sfx:AudioStreamPlayer2D=SFX_2D.instantiate()
+	sfx.stream=stream
+	sfx.position=position
+	%Sfx.add_child(sfx)
 
-const UI_THEME = "uid://cw11diprqdn11"
+const UI_THEME = ("uid://bruoffbxcl3bh")
 const UI_INTRO = "uid://cd8beddty8fv7"
 const UI_PLAY = "uid://b33na2hc1mtcl"
 const UI_FAIL = "uid://ds2udw36hcry6"
@@ -100,6 +101,8 @@ func _on_timer_stun_timeout() -> void:
 	Engine.time_scale=1
 
 const EFFECT_BOOM = preload("uid://ckl3f6gmbo15j")
+const EFFECT_TIP = preload("uid://dmb2x8b3j0kgm")
+
 const PROJECTILE_1 = preload("uid://db2c1jf6vflq5")
 const PROJECTILE_THROWER = preload("uid://cwysknnbfaugv")
 const PROJECTILE_FLYER = preload("uid://2lfwbxys80s8")

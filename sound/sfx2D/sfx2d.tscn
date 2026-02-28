@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b06na1sjulpq5"]
+
+[ext_resource type="Script" uid="uid://dllg2o8cx8cgb" path="res://sound/sfx2D/sfx_2d.gd" id="1_0fhcf"]
+
+[node name="Sfx2d" type="AudioStreamPlayer2D" unique_id=1596779818]
+autoplay = true
+script = ExtResource("1_0fhcf")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

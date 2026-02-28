@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_ko2gb"]
 [ext_resource type="Texture2D" uid="uid://ceshpghrhtdq0" path="res://level/level_03_city/back.png" id="2_om7um"]
 [ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="3_wav24"]
-[ext_resource type="Texture2D" uid="uid://0680qsxukqop" path="res://level/level_01_ruins/core.png" id="5_14g8d"]
+[ext_resource type="Texture2D" uid="uid://0680qsxukqop" path="res://level/01_01_ruins/core.png" id="5_14g8d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om7um"]
 size = Vector2(4124, 172)
