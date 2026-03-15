@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ctoymaqneykpq"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_ko2gb"]
+[ext_resource type="Texture2D" uid="uid://ceshpghrhtdq0" path="res://level/2_2_city/back.png" id="2_om7um"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="3_wav24"]
+[ext_resource type="Texture2D" uid="uid://0680qsxukqop" path="res://level/1_1_ruins/core.png" id="5_14g8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om7um"]
+size = Vector2(4124, 172)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wav24"]
+size = Vector2(1041, 2053)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxog"]
+size = Vector2(142, 273.5)
+
+[node name="LevelCity" unique_id=1733865672 instance=ExtResource("1_ko2gb")]
+
+[node name="Back" type="Sprite2D" parent="." index="0" unique_id=1862290044]
+texture = ExtResource("2_om7um")
+centered = false
+
+[node name="Core" type="Sprite2D" parent="Back" index="0" unique_id=283142271]
+position = Vector2(809, 877)
+texture = ExtResource("5_14g8d")
+
+[node name="Core2" type="Sprite2D" parent="Back/Core" index="0" unique_id=666940130]
+position = Vector2(1862, 0)
+texture = ExtResource("5_14g8d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=1500486456]
+position = Vector2(1833, 1302)
+shape = SubResource("RectangleShape2D_om7um")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=512571803]
+position = Vector2(-520, 773)
+shape = SubResource("RectangleShape2D_wav24")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=557654962]
+position = Vector2(3136, 597)
+shape = SubResource("RectangleShape2D_wav24")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=1280339382]
+position = Vector2(97, 1207)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(2500, 1400)
+
+[node name="Teleportation" parent="." index="4" unique_id=1886393750 instance=ExtResource("3_wav24")]
+position = Vector2(1667, 649)
+target_level = "2-3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0" unique_id=939275476]
+position = Vector2(905, 427)
+shape = SubResource("RectangleShape2D_utxog")

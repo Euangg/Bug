@@ -5,14 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://del401sqqpdrx" path="res://enemy/ball/enemy_ball.png" id="3_3n7dq"]
 [ext_resource type="AudioStream" uid="uid://dmv27vydrrj61" path="res://sound/loop/sfx_ball_round.mp3" id="4_r30k1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6di6r"]
-radius = 38.052597
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlwm5"]
 size = Vector2(800, 180)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6di6r"]
-size = Vector2(84, 83)
+[sub_resource type="CircleShape2D" id="CircleShape2D_6di6r"]
+radius = 38.052597
 
 [sub_resource type="Animation" id="Animation_vog5p"]
 length = 0.001
@@ -138,60 +135,56 @@ _data = {
 &"pre_attack": SubResource("Animation_yog0w")
 }
 
-[node name="EnemyBall" instance=ExtResource("1_jlwm5")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6di6r"]
+size = Vector2(84, 83)
+
+[node name="EnemyBall" unique_id=1716775090 instance=ExtResource("1_jlwm5")]
 script = ExtResource("2_r30k1")
 speed_x = 600.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0"]
+[node name="Direction_AreaDetective#CollisionShape2D2" type="CollisionShape2D" parent="." index="0" unique_id=1323246784]
+position = Vector2(400, -80)
+shape = SubResource("RectangleShape2D_jlwm5")
+
+[node name="Direction_HitBox#CollisionShape2D2" type="CollisionShape2D" parent="." index="1" unique_id=824349106]
+position = Vector2(0, -42)
+shape = SubResource("CircleShape2D_6di6r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=32734223]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_cxu4e")
+autoplay = &"move"
+
+[node name="TimerLookback" type="Timer" parent="." index="3" unique_id=410414865]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4" unique_id=412434811]
+unique_name_in_owner = true
+stream = ExtResource("4_r30k1")
+bus = &"Sfx"
+
+[node name="Direction#Sprite2D" type="Sprite2D" parent="." index="5" unique_id=1103340516]
 position = Vector2(0, -45)
 texture = ExtResource("3_3n7dq")
 flip_h = true
 hframes = 2
 vframes = 3
 
-[node name="HitBox" type="Area2D" parent="Direction" index="1"]
+[node name="Direction#HitBox" type="Area2D" parent="." index="6" unique_id=1456458939]
 visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitBox" index="0"]
-position = Vector2(0, -42)
-shape = SubResource("CircleShape2D_6di6r")
-
-[node name="MarkerBoom" parent="Direction" index="2"]
-position = Vector2(0, -42)
-
-[node name="AreaDetective" type="Area2D" parent="Direction" index="3"]
+[node name="Direction#AreaDetective" type="Area2D" parent="." index="7" unique_id=691877484]
 visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/AreaDetective" index="0"]
-position = Vector2(400, -80)
-shape = SubResource("RectangleShape2D_jlwm5")
-
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="9" unique_id=462639808]
 visible = false
 position = Vector2(0, -41.5)
 shape = SubResource("RectangleShape2D_6di6r")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_cxu4e")
-}
-autoplay = "move"
-
-[node name="TimerLookback" type="Timer" parent="." index="3"]
-unique_name_in_owner = true
-one_shot = true
-autostart = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
-unique_name_in_owner = true
-stream = ExtResource("4_r30k1")
-bus = &"Sfx"
-
-[connection signal="body_entered" from="Direction/HitBox" to="." method="_on_hit_box_body_entered"]
-[connection signal="body_entered" from="Direction/AreaDetective" to="." method="_on_area_detective_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

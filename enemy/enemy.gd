@@ -1,16 +1,14 @@
 class_name Enemy
 extends Entity
+const BOOM = preload("uid://ckl3f6gmbo15j")
 
 signal dead
-
 @export var hp:int=1
-
 @onready var marker_boom: Marker2D = $Graphic/MarkerBoom
 func die_leave_boom():
-	var effect:Node2D=Global.EFFECT_BOOM.instantiate()
-	effect.global_position=marker_boom.global_position
-	get_parent().add_child(effect)
-	Global.play_sfx(Global.SFX_BOOM)
+	var effect:Node2D=BOOM.instantiate()
+	effect.position=marker_boom.global_position
+	add_sibling(effect)
 	dead.emit()
 	queue_free()
 

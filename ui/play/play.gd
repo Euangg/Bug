@@ -8,9 +8,9 @@ extends Control
 var dict_level={
 	"1-1":("uid://c1cnf4qh4sn0o"),
 	"1-2":("uid://dxyuas23t6y4y"),
-	"level_sewer":("uid://c4m7w371a50xy"),
-	"level_city":("uid://ctoymaqneykpq"),
-	"level_cyberpunk":("uid://xe1j7c2ii011"),
+	"2-1":("uid://c4m7w371a50xy"),
+	"2-2":("uid://ctoymaqneykpq"),
+	"2-3":("uid://xe1j7c2ii011"),
 	"level_bar":("uid://cey0hy37clu11"),
 	"level_apartment":("uid://be1q8fgeey1e"),
 	"level_street":("uid://c0mq03nfqmt8l"),
@@ -46,9 +46,9 @@ func switch_level(str_level:String):
 
 func _ready() -> void:
 	Global.camera=%Camera2D
-	if Global.is_restart:switch_level(Global.str_current_level)
-	else:switch_level("1-1")
-
+	switch_level(Global.str_enter_level)
+	#switch_level(Global.str_enter_level)
+	
 	%Player.dead.connect(func():
 		print("dead")
 		%TimerEnd.start())

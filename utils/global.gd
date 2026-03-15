@@ -35,9 +35,6 @@ const SFX_SWITCH = preload("uid://c3lkmsp3h40mj")
 const SFX_LASER_1 = preload("uid://d1j3poqwtk5c")
 const SFX_LASER_3 = preload("uid://dcdf1fgrtrsi7")
 
-const SFX_JUMPER_FIRE = preload("uid://d0gauquut8wh7")
-const SFX_JUMPER_JUMP = preload("uid://dibywm646h8rj")
-const SFX_JUMPER_LAND = preload("uid://d2s321bgwbgop")
 const SFX_THROWER_SHOOT = preload("uid://dtvh1fnsxb8e1")
 const SFX_THROWER_STEP_1 = preload("uid://c4ximflekjetk")
 const SFX_THROWER_STEP_2 = preload("uid://br03gomgm4x7f")
@@ -46,8 +43,6 @@ const SFX_PLASMA_TURN = preload("uid://bloa0jehrde0o")
 const SFX_FLYER_SHOOT = preload("uid://d335srixdg06")
 
 const SFX_LASER_HIT = preload("uid://bupaluw1s7y1s")
-const SFX_BOOM = preload("uid://g5ke2amnrthx")
-const SFX_BOOM_2 = preload("uid://cw70dumvcrb4u")
 
 const SFX_ATTACK = preload("uid://cbywfslpikhew")
 const SFX_SPRINT = preload("uid://bfsq4eys8ye7l")
@@ -71,11 +66,12 @@ func play_sfx2d(stream:AudioStream,position:Vector2):
 	%Sfx.add_child(sfx)
 
 const UI_THEME = ("uid://bruoffbxcl3bh")
-const UI_INTRO = "uid://cd8beddty8fv7"
-const UI_PLAY = "uid://b33na2hc1mtcl"
-const UI_FAIL = "uid://ds2udw36hcry6"
-const UI_CLEAR = "uid://cy4qt40ba7mq7"
-const UI_DEVELOPER = "uid://ce68q30ob1o3q"
+const UI_PLAY = ("uid://b33na2hc1mtcl")
+const UI_FAIL = ("uid://ds2udw36hcry6")
+const UI_CLEAR = ("uid://cy4qt40ba7mq7")
+const UI_DEVELOPER = ("uid://ce68q30ob1o3q")
+const UI_INTRO = ("uid://cd8beddty8fv7")
+const UI_CG2 = ("uid://d0bpvxb5r8jas")
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 func switch_scene(path_scene:String):
 	var tree:=get_tree()
@@ -97,19 +93,16 @@ func stun(time:float=0.2):
 	if %TimerStun.is_stopped():%TimerStun.start(0.2)
 	else:%TimerStun.start(%TimerStun.time_left+0.2)
 
-func _on_timer_stun_timeout() -> void:
-	Engine.time_scale=1
+func _on_timer_stun_timeout():Engine.time_scale=1
 
-const EFFECT_BOOM = preload("uid://ckl3f6gmbo15j")
 const EFFECT_TIP = preload("uid://dmb2x8b3j0kgm")
 
-const PROJECTILE_1 = preload("uid://db2c1jf6vflq5")
 const PROJECTILE_THROWER = preload("uid://cwysknnbfaugv")
 const PROJECTILE_FLYER = preload("uid://2lfwbxys80s8")
 
 var player:Player=null
 var camera:Camera2D=null
+var str_enter_level:String="1-1"
 var str_current_level:String
-var is_restart:bool=false
 
 var is_teleportation:bool=false

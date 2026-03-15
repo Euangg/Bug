@@ -5,7 +5,7 @@ func _ready() -> void:
 	Global.play_bgm(Global.BGM_THEME)
 
 func _on_button_pressed() -> void:
-	Global.is_restart=false
+	Global.str_enter_level="1-1"
 	Global.switch_scene(Global.UI_INTRO)
 	Global.play_sfx(Global.SFX_BUTTON_CLICK)
 

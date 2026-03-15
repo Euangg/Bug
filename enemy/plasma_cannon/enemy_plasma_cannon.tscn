@@ -9,18 +9,12 @@
 [ext_resource type="AudioStream" uid="uid://cgxrjk31cd3u2" path="res://sound/loop/sfx_plasma_move.mp3" id="7_rj26a"]
 [ext_resource type="PackedScene" uid="uid://bgliou7lie7ee" path="res://entity/health_bar.tscn" id="8_6uiaq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
-size = Vector2(500, 257)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrxao"]
-size = Vector2(74, 239.5)
-
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_pc2ri"]
 a = Vector2(20, -204)
 b = Vector2(57, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mvqj"]
-size = Vector2(74, 231)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrxao"]
+size = Vector2(74, 239.5)
 
 [sub_resource type="Animation" id="Animation_ofsxj"]
 length = 0.001
@@ -368,12 +362,64 @@ _data = {
 &"pre_attack": SubResource("Animation_ppra6")
 }
 
-[node name="EnemyPlasmaCannon" instance=ExtResource("1_d8b3q")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
+size = Vector2(500, 257)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mvqj"]
+size = Vector2(74, 231)
+
+[node name="EnemyPlasmaCannon" unique_id=1268643101 instance=ExtResource("1_d8b3q")]
 floor_snap_length = 1.0
 script = ExtResource("2_k46t8")
 hp = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0"]
+[node name="Direction_HitBox#CollisionShape2D2" type="CollisionShape2D" parent="." index="0" unique_id=2062245913]
+unique_name_in_owner = true
+visible = false
+shape = SubResource("SegmentShape2D_pc2ri")
+debug_color = Color(0, 1, 0, 0.41960785)
+script = ExtResource("4_ukea0")
+
+[node name="Direction_HurtBox#CollisionShape2D2" type="CollisionShape2D" parent="." index="1" unique_id=727685905]
+visible = false
+position = Vector2(0, -120.25)
+shape = SubResource("RectangleShape2D_nrxao")
+debug_color = Color(1.4439225e-06, 0.6516923, 0.0010509831, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1094566424]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ppra6")
+autoplay = &"idle"
+
+[node name="TimerIdle" type="Timer" parent="." index="3" unique_id=105475044]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="TimerMove" type="Timer" parent="." index="4" unique_id=1515221833]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="SfxLaser" type="AudioStreamPlayer" parent="." index="5" unique_id=493183135]
+unique_name_in_owner = true
+stream = ExtResource("6_fqexd")
+bus = &"Sfx"
+
+[node name="SfxMove" type="AudioStreamPlayer" parent="." index="6" unique_id=689555695]
+unique_name_in_owner = true
+stream = ExtResource("7_rj26a")
+bus = &"Sfx"
+
+[node name="HealthBar" parent="." index="7" unique_id=1312608040 instance=ExtResource("8_6uiaq")]
+offset_top = -262.0
+offset_bottom = -262.0
+scale = Vector2(2, 2)
+
+[node name="Direction_DetectiveBox#CollisionShape2D2" type="CollisionShape2D" parent="." index="8" unique_id=603171397]
+visible = false
+position = Vector2(236, -129)
+shape = SubResource("RectangleShape2D_ofsxj")
+
+[node name="Direction#Sprite2D" type="Sprite2D" parent="." index="9" unique_id=20314124]
 position = Vector2(0, -150)
 texture = ExtResource("2_tpy64")
 flip_h = true
@@ -381,7 +427,7 @@ hframes = 8
 vframes = 12
 frame = 8
 
-[node name="Sprite2D2" type="Sprite2D" parent="Direction" index="1"]
+[node name="Direction#Sprite2D2" type="Sprite2D" parent="." index="10" unique_id=1668892920]
 unique_name_in_owner = true
 position = Vector2(0, -150)
 texture = ExtResource("2_tpy64")
@@ -389,28 +435,7 @@ flip_h = true
 hframes = 8
 vframes = 12
 
-[node name="DetectiveBox" type="Area2D" parent="Direction" index="2"]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/DetectiveBox" index="0"]
-visible = false
-position = Vector2(236, -129)
-shape = SubResource("RectangleShape2D_ofsxj")
-
-[node name="HurtBox" type="Area2D" parent="Direction" index="3"]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HurtBox" index="0"]
-visible = false
-position = Vector2(0, -120.25)
-shape = SubResource("RectangleShape2D_nrxao")
-debug_color = Color(1.4439225e-06, 0.6516923, 0.0010509831, 0.41960785)
-
-[node name="Laser" type="Sprite2D" parent="Direction" index="4"]
+[node name="Direction#Laser" type="Sprite2D" parent="." index="11" unique_id=458364053]
 unique_name_in_owner = true
 visible = false
 position = Vector2(19.000004, -205)
@@ -419,54 +444,24 @@ scale = Vector2(15.90194, 1.1657951)
 texture = ExtResource("4_qvo6o")
 offset = Vector2(6.507922, 0.122024536)
 
-[node name="HitBox" type="Area2D" parent="Direction" index="5"]
+[node name="Direction#HitBox" type="Area2D" parent="." index="12" unique_id=739674345]
 unique_name_in_owner = true
 collision_layer = 32
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitBox" index="0"]
+[node name="Direction#HurtBox" type="Area2D" parent="." index="13" unique_id=802870292]
 unique_name_in_owner = true
-visible = false
-shape = SubResource("SegmentShape2D_pc2ri")
-debug_color = Color(0, 1, 0, 0.41960785)
-script = ExtResource("4_ukea0")
+collision_layer = 0
+collision_mask = 2
 
-[node name="MarkerBoom" parent="Direction" index="6"]
-position = Vector2(0, -135)
+[node name="Direction#DetectiveBox" type="Area2D" parent="." index="14" unique_id=1337076903]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="16" unique_id=462639808]
 visible = false
 position = Vector2(0, -115.5)
 shape = SubResource("RectangleShape2D_2mvqj")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_ppra6")
-}
-autoplay = "idle"
-
-[node name="TimerIdle" type="Timer" parent="." index="3"]
-unique_name_in_owner = true
-one_shot = true
-
-[node name="TimerMove" type="Timer" parent="." index="4"]
-unique_name_in_owner = true
-one_shot = true
-
-[node name="SfxLaser" type="AudioStreamPlayer" parent="." index="5"]
-unique_name_in_owner = true
-stream = ExtResource("6_fqexd")
-bus = &"Sfx"
-
-[node name="SfxMove" type="AudioStreamPlayer" parent="." index="6"]
-unique_name_in_owner = true
-stream = ExtResource("7_rj26a")
-bus = &"Sfx"
-
-[node name="HealthBar" parent="." index="7" instance=ExtResource("8_6uiaq")]
-offset_top = -262.0
-offset_bottom = -262.0
-scale = Vector2(2, 2)
 
 [connection signal="finished" from="SfxMove" to="." method="_on_sfx_move_finished"]

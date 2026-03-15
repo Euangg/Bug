@@ -9,4 +9,4 @@ enum Direction{LEFT=-1,RIGHT=1}
 		if not is_node_ready():await ready
 		graphic.scale.x=direction
 
-static var gravity=4800
+var gravity=4800

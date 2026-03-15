@@ -98,6 +98,12 @@ collision_layer = 8192
 position = Vector2(0, -86)
 shape = SubResource("RectangleShape2D_h6f88")
 
+[node name="RayCast2D" type="RayCast2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="4" unique_id=912046879]
+unique_name_in_owner = true
+position = Vector2(30, -4)
+target_position = Vector2(0, 20)
+collision_mask = 33
+
 [node name="CollisionShape2D" parent="." index="1" unique_id=462639808]
 position = Vector2(0, -88)
 shape = SubResource("RectangleShape2D_6di6r")

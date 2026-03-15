@@ -3,8 +3,9 @@ extends Projectile
 #击中玩家消失、击中环境消失
 #生命周期
 
+var gravity=4800
 func _physics_process(delta: float) -> void:
-	velocity.y+=Entity.gravity*delta
+	velocity.y+=gravity*delta
 	
 	rotation=velocity.angle()
 	position+=velocity*delta
