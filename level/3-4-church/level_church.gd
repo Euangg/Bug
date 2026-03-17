@@ -4,6 +4,7 @@ extends Level
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var tween:Tween=create_tween()
 	tween.tween_property(Global.camera,"zoom",Vector2(0.4,0.4),0.5)
+	%TimerEnd.start()
 
 
 func _on_enemy_noah_dead() -> void:

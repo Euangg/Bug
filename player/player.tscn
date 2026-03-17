@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://flmse7eowt8n" path="res://player/joy_pad.tscn" id="5_482rp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0kkn"]
-size = Vector2(116.5, 124)
+size = Vector2(143.5, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw30f"]
 size = Vector2(56, 176)
@@ -42,7 +42,7 @@ tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.16),
+"times": PackedFloat32Array(0, 0.08, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [40, 41, 42]
@@ -54,11 +54,14 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.12),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.08, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"hitbox_on"
+}, {
+"args": [],
+"method": &"hitbox_off"
 }]
 }
 
@@ -265,7 +268,7 @@ unique_name_in_owner = true
 collision_mask = 8192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hitbox" unique_id=589096993]
-position = Vector2(60.75, -64)
+position = Vector2(74.25, -64)
 shape = SubResource("RectangleShape2D_n0kkn")
 
 [node name="Hurtbox" parent="Graphic" unique_id=716986136 instance=ExtResource("4_g6k8r")]

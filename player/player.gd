@@ -211,3 +211,4 @@ func play_step() -> void:
 	Global.play_sfx2d(sfx_steps.pick_random(),position)
 
 func hitbox_on()->void:%Hitbox.set_deferred("monitoring",true)
+func hitbox_off()->void:%Hitbox.set_deferred("monitoring",false)
