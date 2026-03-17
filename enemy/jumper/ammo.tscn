@@ -5,13 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://cyi15vmi0bcqb" path="res://entity/hitbox/hitbox.tscn" id="3_yvhoi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_drbl0"]
+radius = 18.0
 
 [node name="Ammo" type="Node2D" unique_id=561534686]
 script = ExtResource("1_1nf2h")
 
 [node name="EnmeyJumper" type="Sprite2D" parent="." unique_id=621349164]
-position = Vector2(-11, 0)
+position = Vector2(-22, 0)
 rotation = -1.5707964
+scale = Vector2(2, 2)
 texture = ExtResource("2_yvhoi")
 region_enabled = true
 region_rect = Rect2(88, 594, 22, 42)

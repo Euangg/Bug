@@ -65,16 +65,16 @@ position = Vector2(165, 947)
 [node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
 position = Vector2(28000, 1400)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." index="10" unique_id=1784377795]
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="8" unique_id=1784377795]
 
-[node name="DeadArea" parent="." index="11" unique_id=226759811 instance=ExtResource("4_bt2en")]
+[node name="DeadArea" parent="." index="9" unique_id=226759811 instance=ExtResource("4_bt2en")]
 position = Vector2(548, 1796)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea" index="0" unique_id=909067561]
 position = Vector2(15381.5, 178)
 shape = SubResource("RectangleShape2D_thy2b")
 
-[node name="Teleportation" parent="." index="12" unique_id=870517760 instance=ExtResource("7_cle4f")]
+[node name="Teleportation" parent="." index="10" unique_id=870517760 instance=ExtResource("7_cle4f")]
 position = Vector2(11828, 253)
 target_level = "level_ruins"
 

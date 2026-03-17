@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://dpmd4qwx23v82" path="res://test.gd" id="1_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://player/player.tscn" id="1_37kl0"]
 [ext_resource type="PackedScene" uid="uid://c5b3trv1jrg5e" path="res://tile/tile.tscn" id="3_ppyta"]
-[ext_resource type="PackedScene" uid="uid://dhgk10ijnkpm1" path="res://enemy/jumper/enemy_jumper.tscn" id="4_ppyta"]
-[ext_resource type="PackedScene" uid="uid://c352bvyc68fd2" path="res://level/prefab/platform.tscn" id="5_g14j6"]
-[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://enemy/man/man.tscn" id="6_vbegm"]
+[ext_resource type="PackedScene" uid="uid://cfjeu1cxrotip" path="res://enemy/monitor/monitor.tscn" id="4_ykrsh"]
 
 [node name="Test" type="Node2D" unique_id=2001275017]
 script = ExtResource("1_6uqi0")
@@ -22,13 +20,5 @@ collision_mask = 0
 [node name="Tile" parent="StaticBody2D" unique_id=1137515109 instance=ExtResource("3_ppyta")]
 position = Vector2(-4, -7)
 
-[node name="EnemyJumper" parent="." unique_id=110282466 instance=ExtResource("4_ppyta")]
-unique_name_in_owner = true
-position = Vector2(1105, 289)
-hp = 2
-
-[node name="Platform" parent="." unique_id=1212255089 instance=ExtResource("5_g14j6")]
-position = Vector2(1469, 637)
-
-[node name="Man" parent="." unique_id=1684873667 instance=ExtResource("6_vbegm")]
-position = Vector2(1365, 466)
+[node name="Enemy" parent="StaticBody2D" unique_id=1307404642 instance=ExtResource("4_ykrsh")]
+position = Vector2(1050, 633)

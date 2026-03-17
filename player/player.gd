@@ -7,11 +7,11 @@ var sfx_steps=[SFX_STEP_1,SFX_STEP_2,SFX_STEP_3]
 
 func on_hit():
 	Global.play_sfx(Global.SFX_HIT)
-	Global.stun()
+	Global.stun(0.1)
 	Global.camera_shake=3
 
 const HP_UNIT = preload("uid://cd7h1i0ndjo7x")
-var hp=5
+var hp=6
 var is_hurt:bool=false
 func on_be_hit():if %TimerInvincible.is_stopped():is_hurt=true
 
@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 				2:ghost.modulate=Color(0,0,1,0.5)
 				3:ghost.modulate=Color(0.5,0.5,0.5,0.8)
 				4:ghost.modulate=Color(0,0,0,0.7)
-				5:pass
+				5:ghost.modulate=Color(0,0,0,0.5)
 			
 			node_ghost.add_child(ghost)
 			timer_ghost=cycle_ghost
@@ -150,10 +150,10 @@ func _physics_process(delta: float) -> void:
 				Global.play_sfx(Global.SFX_HURT)
 				hp-=1
 				shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
-				Global.stun(0.3)
+				Global.stun(0.2)
 				Global.camera_shake=30
 				var hp_unit=%HpUnit.get_child(-1)
-				if life_ghost:life_ghost*=2.5
+				if life_ghost:life_ghost*=2
 				else: life_ghost=0.2
 				if hp_unit:
 					hp_unit.animation_player.play("die")

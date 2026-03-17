@@ -167,7 +167,7 @@ one_shot = true
 [node name="TimerInvincible" type="Timer" parent="." index="5" unique_id=1050990523]
 unique_name_in_owner = true
 process_mode = 3
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [connection signal="hit" from="Graphic/Hurtbox" to="." method="_on_hurtbox_hit"]

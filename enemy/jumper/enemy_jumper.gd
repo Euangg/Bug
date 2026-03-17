@@ -11,6 +11,7 @@ enum State{NULL,IDLE,
 }
 var current_state:State=State.NULL
 var has_spawn_dust=false
+var fire_cycle=1
 var target:Player=null
 func _ready() -> void:
 	gravity=3000
@@ -54,10 +55,18 @@ func _physics_process(delta: float) -> void:
 				if current_state==State.RISE:
 					var p:Projectile=AMMO.instantiate()
 					p.position=position
-					p.velocity=position.direction_to(Global.player.position)*800
+					
+					if fire_cycle:
+						p.velocity=position.direction_to(Global.player.position)*800
+					else:
+						p.scale=Vector2(2,2)
+						p.modulate=Color(0x00ff00ff)
+						p.velocity=position.direction_to(Global.player.position)*500
 					p.rotation=p.velocity.angle()
 					add_sibling(p)
 					Global.play_sfx2d(SFX_FIRE,position)
+					fire_cycle+=1
+					fire_cycle%=3
 	current_state=next_state
 	#3/3.状态运行
 	match current_state:

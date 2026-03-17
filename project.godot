@@ -8,6 +8,10 @@
 
 config_version=5
 
+[Fmod]
+
+General/banks_path="res://sound/banks"
+
 [animation]
 
 compatibility/default_parent_skeleton_in_mesh_instance_3d=true
@@ -29,6 +33,7 @@ buses/default_bus_layout="res://sound/default_bus_layout.tres"
 [autoload]
 
 Global="*res://utils/global.tscn"
+FmodManager="*uid://cds10pm7hwn3p"
 
 [display]
 
@@ -38,6 +43,10 @@ window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 
 [gui]
 

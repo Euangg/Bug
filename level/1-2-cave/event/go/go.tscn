@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://wfix1gnnhwt3"]
+
+[ext_resource type="Script" uid="uid://b07ac8wt7pach" path="res://level/1-2-cave/event/go/go.gd" id="1_gd7wv"]
+[ext_resource type="PackedScene" uid="uid://w5od6b2m0uxp" path="res://level/event/single/single.tscn" id="2_etc3v"]
+
+[sub_resource type="Animation" id="Animation_gd7wv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r466m"]
+resource_name = "show"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [30, 100]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gd7wv"]
+_data = {
+&"RESET": SubResource("Animation_gd7wv"),
+&"show": SubResource("Animation_r466m")
+}
+
+[node name="Go" type="Node2D" unique_id=1444722560]
+script = ExtResource("1_gd7wv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1878798679]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=62909627]
+unique_name_in_owner = true
+light_mask = 13
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_top = 184.0
+offset_right = 165.0
+offset_bottom = 218.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "杀掉沿途所有挡路的敌人！"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1918877508]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_gd7wv")
+
+[node name="SingleWake" parent="." unique_id=1324012026 instance=ExtResource("2_etc3v")]
+
+[connection signal="body_entered" from="SingleWake" to="." method="_on_single_wake_body_entered"]

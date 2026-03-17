@@ -7,17 +7,20 @@ extends Control
 
 var dict_level={
 	"1-1":("uid://c1cnf4qh4sn0o"),
-	"1-2":("uid://dxyuas23t6y4y"),
-	"2-1":("uid://c4m7w371a50xy"),
-	"2-2":("uid://ctoymaqneykpq"),
-	"2-3":("uid://xe1j7c2ii011"),
-	"level_bar":("uid://cey0hy37clu11"),
-	"level_apartment":("uid://be1q8fgeey1e"),
-	"level_street":("uid://c0mq03nfqmt8l"),
-	"level_cave_1": ("uid://l6m7am4bx8hx"),
-	"level_cave_2": ("uid://dtab1ex720nxt"),
-	"level_cave_3":("uid://j4ss5o1avea6"),
-	"level_church":("uid://sb377ee0lgks"),
+	"1-2":("uid://dtab1ex720nxt"),
+	"1-3":("uid://j4ss5o1avea6"),
+	"1-4":("uid://dxyuas23t6y4y"),
+	
+	"2-1": ("uid://l6m7am4bx8hx"),
+	"2-2":("uid://c4m7w371a50xy"),
+	"2-3":("uid://ctoymaqneykpq"),
+	"2-4":("uid://xe1j7c2ii011"),
+	
+	"3-1":("uid://cey0hy37clu11"),
+	"3-2":("uid://be1q8fgeey1e"),
+	"3-3":("uid://c0mq03nfqmt8l"),
+	"3-4":("uid://sb377ee0lgks"),
+	
 	"level_test":("uid://dn7bycqqe64nc")
 }
 func switch_level(str_level:String):

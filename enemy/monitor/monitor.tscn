@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cfjeu1cxrotip"]
+
+[ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://enemy/enemy.tscn" id="1_u7xjp"]
+[ext_resource type="Texture2D" uid="uid://da7wqjv1c60v5" path="res://enemy/monitor/底座.png" id="2_4u6km"]
+[ext_resource type="Script" uid="uid://ru5h2lqqbk6c" path="res://enemy/monitor/monitor.gd" id="2_t72cm"]
+[ext_resource type="Texture2D" uid="uid://b51ph1ss7d8dd" path="res://enemy/monitor/头.png" id="3_t72cm"]
+
+[node name="Enemy" unique_id=1307404642 instance=ExtResource("1_u7xjp")]
+script = ExtResource("2_t72cm")
+
+[node name="bottom" type="Sprite2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="1" unique_id=1360401151]
+position = Vector2(-10, 54)
+texture = ExtResource("2_4u6km")
+
+[node name="head" type="Node2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="2" unique_id=232269671]
+unique_name_in_owner = true
+position = Vector2(-29, 84)
+
+[node name="head" type="Sprite2D" parent="Graphic/head" index="0" unique_id=2091873178]
+position = Vector2(-7.6293945e-06, 0)
+rotation = -0.36762223
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_t72cm")
+offset = Vector2(35, 10)
+
+[node name="MarkerFire" type="Marker2D" parent="Graphic/head" index="1" unique_id=29013980]
+unique_name_in_owner = true
+position = Vector2(63, 0)

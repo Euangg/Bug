@@ -1,18 +1,25 @@
 extends Node
 
+var master_string_bank: FmodBank
+var master_bank: FmodBank
 func _ready() -> void:
 	if OS.has_feature("debug"):%Label.text+="-debug"
 	if OS.has_feature("release"):%Label.text+="-release"
 	if OS.has_feature("windows"):%Label.text+="-windows"
 	if OS.has_feature("android"):%Label.text+="-android"
+	
+	master_string_bank=FmodServer.load_bank("res://sound/banks/Master.strings.bank", FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	master_bank=FmodServer.load_bank("res://sound/banks/Master.bank", FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
 
-const BGM_THEME = ("uid://je7u4m541dwf")
-const BGM_RUINS = ("uid://dtvdxt84y1r7i")
-const BGM_CYBERPUNK = ("uid://cb8clc75d23q8")
-const BGM_TOWN = ("uid://dggu0xqst1wkc")
-const BGM_CAVE = ("uid://ymlvkd8o4mae")
-const BGM_FLAT = ("uid://bdbftcd40rbgx")
-const BGM_CHURCH = ("uid://yv10y1pnfn1y")
+var fmod_bgm:FmodEvent=null
+func fmod_play_bgm(str:String):
+	if fmod_bgm:
+		fmod_bgm.stop(0)
+		fmod_bgm.release()
+		fmod_bgm=null
+	fmod_bgm=FmodServer.create_event_instance(str)
+	fmod_bgm.start()
+
 func play_bgm(path_bgm:String):
 	%Bgm.stream=load(path_bgm)
 	%Bgm.play()

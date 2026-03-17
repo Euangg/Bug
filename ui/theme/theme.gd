@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	Global.stop_ambient()
-	Global.play_bgm(Global.BGM_THEME)
+	Global.fmod_play_bgm("event:/BGM/BGM_theme")
 
 func _on_button_pressed() -> void:
 	Global.str_enter_level="1-1"
@@ -12,10 +12,6 @@ func _on_button_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	get_tree().quit()
 	Global.play_sfx(Global.SFX_BUTTON_CLICK)
-
-func _exit_tree() -> void:
-	Global.stop_bgm()
-
 
 func _on_control_mouse_entered() -> void:
 	Global.play_sfx(Global.SFX_BUTTON_ON)

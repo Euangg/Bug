@@ -1,6 +1,7 @@
 class_name Enemy
 extends Entity
-const BOOM = preload("uid://ckl3f6gmbo15j")
+const BOOM_OLD = preload("uid://ckl3f6gmbo15j")
+const BOOM = preload("uid://cdgg06kfanyun")
 
 signal dead
 @export var hp:int=1
