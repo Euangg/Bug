@@ -42,7 +42,7 @@ tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.12),
+"times": PackedFloat32Array(0, 0.08, 0.16),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [40, 41, 42]
@@ -270,6 +270,7 @@ shape = SubResource("RectangleShape2D_n0kkn")
 
 [node name="Hurtbox" parent="Graphic" unique_id=716986136 instance=ExtResource("4_g6k8r")]
 unique_name_in_owner = true
+visible = false
 collision_layer = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hurtbox" unique_id=5571477]
@@ -280,6 +281,7 @@ shape = SubResource("RectangleShape2D_yw30f")
 position = Vector2(0, -212)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=462639808]
+visible = false
 position = Vector2(0, -88)
 shape = SubResource("RectangleShape2D_dat78")
 
