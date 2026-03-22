@@ -106,4 +106,4 @@ libraries/ = SubResource("AnimationLibrary_gd7wv")
 
 [node name="SingleWake" parent="." unique_id=1324012026 instance=ExtResource("2_etc3v")]
 
-[connection signal="body_entered" from="SingleWake" to="." method="_on_single_wake_body_entered"]
+[connection signal="trigger" from="SingleWake" to="." method="_on_single_wake_trigger"]

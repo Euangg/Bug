@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://cgkyd7j8tjsog"]
+
+[ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://enemy/enemy.tscn" id="1_d5kic"]
+[ext_resource type="Script" uid="uid://ck2lqvt3x7io1" path="res://enemy/man/man_green.gd" id="2_d5kic"]
+[ext_resource type="Texture2D" uid="uid://bw52eu7fhuk4y" path="res://enemy/man/man_green.tres" id="3_d5kic"]
+[ext_resource type="PackedScene" uid="uid://cyi15vmi0bcqb" path="res://entity/hitbox/hitbox.tscn" id="4_5ch7b"]
+[ext_resource type="PackedScene" uid="uid://d3edhhl6gr4d" path="res://entity/hurtbox/hurtbox.tscn" id="5_cbnr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mwvl"]
+size = Vector2(96, 157)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6f88"]
+size = Vector2(96, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6di6r"]
+size = Vector2(96, 176)
+
+[sub_resource type="Animation" id="Animation_vog5p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_d5kic"]
+resource_name = "atk"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_ammo"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4yucu"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_vpdny"]
+resource_name = "move"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_step"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxu4e"]
+_data = {
+&"RESET": SubResource("Animation_vog5p"),
+&"atk": SubResource("Animation_d5kic"),
+&"idle": SubResource("Animation_4yucu"),
+&"move": SubResource("Animation_vpdny")
+}
+
+[node name="ManGreen" unique_id=1684873667 instance=ExtResource("1_d5kic")]
+script = ExtResource("2_d5kic")
+speed_x = 300.0
+auto = false
+
+[node name="RayCastTarget" type="RayCast2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="0" unique_id=834021446]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -113)
+target_position = Vector2(700, 0)
+collision_mask = 514
+collide_with_areas = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="1" unique_id=1437482459]
+position = Vector2(-10, -95)
+texture = ExtResource("3_d5kic")
+flip_h = true
+hframes = 3
+vframes = 2
+frame = 3
+
+[node name="MarkerBoom" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="2" unique_id=346637568]
+position = Vector2(0, -89)
+
+[node name="MarkerShoot" type="Marker2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="3" unique_id=354381893]
+unique_name_in_owner = true
+position = Vector2(57, -108)
+
+[node name="Hitbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="4" unique_id=986071656 instance=ExtResource("4_5ch7b")]
+visible = false
+collision_mask = 512
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hitbox" index="0" unique_id=782237773]
+position = Vector2(0, -88.5)
+shape = SubResource("RectangleShape2D_3mwvl")
+
+[node name="Hurtbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="5" unique_id=716986136 instance=ExtResource("5_cbnr8")]
+visible = false
+collision_layer = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hurtbox" index="0" unique_id=1184088848]
+position = Vector2(0, -86)
+shape = SubResource("RectangleShape2D_h6f88")
+
+[node name="RayCast2D" type="RayCast2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="6" unique_id=912046879]
+unique_name_in_owner = true
+position = Vector2(30, -4)
+target_position = Vector2(0, 20)
+collision_mask = 33
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=462639808]
+visible = false
+position = Vector2(0, -88)
+shape = SubResource("RectangleShape2D_6di6r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=5395816]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_cxu4e")
+autoplay = &"idle"
+
+[node name="Timer" type="Timer" parent="." index="3" unique_id=580474748]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="hit" from="Graphic/Hurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="Graphic/Hurtbox"]

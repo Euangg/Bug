@@ -72,6 +72,5 @@ libraries/ = SubResource("AnimationLibrary_h7hy8")
 
 [node name="SingleFinish" parent="." unique_id=1116043972 instance=ExtResource("1_5ffh4")]
 
-[connection signal="finish" from="." to="." method="_on_finish"]
-[connection signal="body_entered" from="SingleWake" to="." method="_on_single_wake_body_entered"]
-[connection signal="body_entered" from="SingleFinish" to="." method="_on_single_finish_body_entered"]
+[connection signal="trigger" from="SingleWake" to="." method="_on_single_wake_trigger"]
+[connection signal="trigger" from="SingleFinish" to="." method="_on_single_finish_trigger"]

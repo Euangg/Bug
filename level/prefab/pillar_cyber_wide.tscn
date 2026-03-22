@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cjrrw3mvps6ac"]
+
+[ext_resource type="Texture2D" uid="uid://eys4y68017i5" path="res://level/prefab/pillar_cyber_wide.png" id="1_1gcfi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qmup"]
+size = Vector2(295, 20)
+
+[node name="Platform2" type="Node2D" unique_id=1212255089]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1185121935]
+position = Vector2(0, 120)
+texture = ExtResource("1_1gcfi")
+region_enabled = true
+region_rect = Rect2(0, 0, 296, 240)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=870520659]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=657709559]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_6qmup")
+one_way_collision = true

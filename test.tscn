@@ -1,24 +1,25 @@
-[gd_scene format=3 uid="uid://dj4781x814ch"]
+[gd_scene format=4 uid="uid://dj4781x814ch"]
 
 [ext_resource type="Script" uid="uid://dpmd4qwx23v82" path="res://test.gd" id="1_6uqi0"]
-[ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://player/player.tscn" id="1_37kl0"]
-[ext_resource type="PackedScene" uid="uid://c5b3trv1jrg5e" path="res://tile/tile.tscn" id="3_ppyta"]
-[ext_resource type="PackedScene" uid="uid://cfjeu1cxrotip" path="res://enemy/monitor/monitor.tscn" id="4_ykrsh"]
+[ext_resource type="TileSet" uid="uid://cgmvgsqm38s0v" path="res://tile/tile.tres" id="2_g14j6"]
+[ext_resource type="PackedScene" uid="uid://c7mpxo656hw73" path="res://enemy/fuel_tank/fuel_tank.tscn" id="4_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://wqkxgtudjgft" path="res://enemy/fuel_tank/fire.tscn" id="5_g14j6"]
+[ext_resource type="PackedScene" uid="uid://mr7m8xrfbci1" path="res://enemy/dog/dog.tscn" id="5_ykrsh"]
 
 [node name="Test" type="Node2D" unique_id=2001275017]
 script = ExtResource("1_6uqi0")
 
-[node name="Player" parent="." unique_id=1417812268 instance=ExtResource("1_37kl0")]
-unique_name_in_owner = true
-position = Vector2(379, 616)
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1488574523]
+tile_map_data = PackedByteArray("AAD//xAAAAAFAAIAAAD//w8AAAAFAAIAAAD//w4AAAAFAAIAAAD//w0AAAAFAAIAAAAAABAAAAAFAAIAAAABABAAAAAFAAIAAAACABAAAAAFAAIAAAADABAAAAAFAAIAAAAEABAAAAAFAAIAAAAFABAAAAAFAAIAAAAGABAAAAAFAAIAAAAHABAAAAAFAAIAAAAIABAAAAAFAAIAAAAJABAAAAAFAAIAAAAKABAAAAAFAAIAAAALABAAAAAFAAIAAAAMABAAAAAFAAIAAAANABAAAAAFAAIAAAAOABAAAAAFAAIAAAAPABAAAAAFAAIAAAAQABAAAAAFAAIAAAARABAAAAAFAAIAAAASABAAAAAFAAIAAAATABAAAAAFAAIAAAAUABAAAAAFAAIAAAAVABAAAAAFAAIAAAAWABAAAAAFAAIAAAAXABAAAAAFAAIAAAAYABAAAAAFAAIAAAAZABAAAAAFAAIAAAAaABAAAAAFAAIAAAAbABAAAAAFAAIAAAAcABAAAAAFAAIAAAAdABAAAAAHAAAAAAD//wwAAAAHAAAAAAD//wsAAAAHAAAAAAD//woAAAAHAAAAAAD//wkAAAAHAAAAAAD//wgAAAAHAAAAAAD//wcAAAAHAAAAAAD//wYAAAAHAAAAAAAeABAAAAACAAEAAAAfABAAAAACAAEAAAAgABAAAAACAAEAAAAhABAAAAACAAEAAAAiABAAAAACAAEAAAAjABAAAAACAAEAAAAkABAAAAACAAEAAAAlABAAAAACAAEAAAAmABAAAAACAAEAAAAnABAAAAACAAEAAAAoABAAAAACAAEAAAApABAAAAACAAEAAAAqABAAAAACAAEAAAArABAAAAACAAEAAAAsABAAAAACAAEAAAAtABAAAAACAAEAAAAuABAAAAACAAEAAAAvABAAAAACAAEAAAAwABAAAAACAAEAAAAxABAAAAACAAEAAAAyABAAAAACAAEAAAAzABAAAAACAAEAAAA0ABAAAAACAAEAAAA1ABAAAAACAAEAAAA2ABAAAAACAAEAAAA3ABAAAAACAAEAAAA4ABAAAAACAAEAAAA5ABAAAAACAAEAAAA6ABAAAAACAAEAAAA7ABAAAAACAAEAAAA8ABAAAAACAAEAAAA9ABAAAAACAAEAAAA+ABAAAAACAAEAAAA/ABAAAAACAAEAAABAABAAAAACAAEAAABBABAAAAACAAEAAABCABAAAAACAAEAAABDABAAAAACAAEAAABEABAAAAACAAEAAABFABAAAAACAAEAAABGABAAAAACAAEAAABHABAAAAACAAEAAABIABAAAAACAAEAAABJAA8AAAACAAEAAABKAA8AAAACAAEAAABKAA4AAAACAAEAAABLAA4AAAACAAEAAABMAA4AAAACAAEAAABMAA0AAAACAAEAAABNAA0AAAACAAEAAABNAAwAAAACAAEAAABOAAwAAAACAAEAAABPAAwAAAACAAEAAABPAAsAAAACAAEAAABQAAsAAAACAAEAAABQAAoAAAACAAEAAABRAAoAAAACAAEAAABSAAkAAAACAAEAAABTAAkAAAACAAEAAABTAAgAAAACAAEAAABUAAgAAAACAAEAAABVAAgAAAACAAEAAAA=")
+tile_set = ExtResource("2_g14j6")
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=731176439]
+[node name="FuelTank" parent="." unique_id=1307404642 instance=ExtResource("4_ykrsh")]
+position = Vector2(825, 1326)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1655926196]
-collision_mask = 0
+[node name="Fire" parent="." unique_id=526854199 instance=ExtResource("5_g14j6")]
+position = Vector2(889, 1240)
 
-[node name="Tile" parent="StaticBody2D" unique_id=1137515109 instance=ExtResource("3_ppyta")]
-position = Vector2(-4, -7)
+[node name="Dog" parent="." unique_id=2100200155 instance=ExtResource("5_ykrsh")]
+position = Vector2(415, 833)
 
-[node name="Enemy" parent="StaticBody2D" unique_id=1307404642 instance=ExtResource("4_ykrsh")]
-position = Vector2(1050, 633)
+[node name="Camera2D" type="Camera2D" parent="Dog" unique_id=1102607775]

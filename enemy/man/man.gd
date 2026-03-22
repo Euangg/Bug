@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 		if %RayCast2D.is_colliding():pass
 		else:direction*=-1
 
-func _on_hurtbox_hit() -> void:die_leave_boom()
+func _on_hurtbox_hit() -> void:die_leave_effect(Enemy.BOOM)
 
 func play_step() -> void:
 	Global.play_sfx2d(sfx_steps.pick_random(),position)

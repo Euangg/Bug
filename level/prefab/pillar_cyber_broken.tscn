@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://jaxvolaaohw2"]
+
+[ext_resource type="Texture2D" uid="uid://f8vtmept88yh" path="res://level/prefab/pillar_cyber_broken.png" id="1_7ceap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qmup"]
+size = Vector2(112, 20)
+
+[node name="Platform" type="Node2D" unique_id=1212255089]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1185121935]
+position = Vector2(30, 120)
+texture = ExtResource("1_7ceap")
+region_rect = Rect2(0, 0, 296, 240)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=870520659]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=657709559]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_6qmup")
+one_way_collision = true

@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://wqkxgtudjgft"]
+
+[ext_resource type="Script" uid="uid://b0giilkcdlhr" path="res://enemy/fuel_tank/fire.gd" id="1_foub5"]
+[ext_resource type="Texture2D" uid="uid://4s68jm4pfbrb" path="res://enemy/fuel_tank/Frame 21.png" id="1_udafd"]
+
+[sub_resource type="Animation" id="Animation_foub5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bvx4j"]
+resource_name = "end"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_2qvjm"]
+resource_name = "loop"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_3fgw3"]
+resource_name = "start"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhqlb"]
+_data = {
+&"RESET": SubResource("Animation_foub5"),
+&"end": SubResource("Animation_bvx4j"),
+&"loop": SubResource("Animation_2qvjm"),
+&"start": SubResource("Animation_3fgw3")
+}
+
+[node name="Fire" type="Node2D" unique_id=526854199]
+position = Vector2(523, 325)
+scale = Vector2(2, 2)
+script = ExtResource("1_foub5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=600406318]
+position = Vector2(77, -14)
+texture = ExtResource("1_udafd")
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=756344506]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_fhqlb")
+autoplay = &"start"
+
+[node name="Timer" type="Timer" parent="." unique_id=48163373]
+unique_name_in_owner = true
+one_shot = true

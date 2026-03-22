@@ -1,22 +1,25 @@
 extends Enemy
+const LASER = preload("uid://q5awvt2yi17v")
+const SFX_LASER_SHOOT = preload("uid://w57ijmkdyn63")
 
-enum State{NULL,IDLE,
-	PRE_ATTACK,
+enum State{NULL,IDLE,ATK,
+	PRE_SCROLL,
 	MOVE
 }
 var current_state:State=State.NULL
 
-var is_player_detected:bool=false
 @export var speed_x:float=400
 
 func _physics_process(delta: float) -> void:
-	#1/3.状态判断
 	var next_state=current_state
 	match current_state:
 		State.NULL:next_state=State.IDLE
 		State.IDLE:
-			if is_player_detected:next_state=State.PRE_ATTACK
-		State.PRE_ATTACK:
+			if %RayCastDetect.is_colliding():next_state=State.ATK
+		State.ATK:
+			if %AnimationPlayer.is_playing():pass
+			else:next_state=State.PRE_SCROLL
+		State.PRE_SCROLL:
 			if not %AnimationPlayer.is_playing():next_state=State.MOVE
 		State.MOVE:pass
 	#2/3.状态切换
@@ -28,8 +31,9 @@ func _physics_process(delta: float) -> void:
 			State.IDLE:
 				%AnimationPlayer.play("idle")
 				velocity.x=0
-			State.PRE_ATTACK:
-				%AnimationPlayer.play("pre_attack")
+			State.ATK:%AnimationPlayer.play("atk")
+			State.PRE_SCROLL:
+				%AnimationPlayer.play("pre_scroll")
 				Global.play_sfx(Global.SFX_BALL_TRANSFORM)
 			State.MOVE:
 				%AnimationPlayer.play("move")
@@ -44,30 +48,15 @@ func _physics_process(delta: float) -> void:
 		State.MOVE:
 			velocity.x=direction*speed_x
 	
-	if is_hurted:
-		var effect:Node2D=Global.EFFECT_BOOM.instantiate()
-		effect.global_position=%MarkerBoom.global_position
-		get_parent().add_child(effect)
-		Global.play_sfx(Global.SFX_BOOM)
-		hp-=1
-		if hp<=0:queue_free()
-		is_hurted=false
-	else:
-		velocity.y+=gravity*delta
-		move_and_slide()
-	
+	velocity.y+=gravity*delta
+	move_and_slide()
 
+func shoot_ammo():
+	var p:Projectile=LASER.instantiate()
+	p.position=%MarkerFire.global_position
+	p.scale.x=direction
+	add_sibling(p)
+	Global.play_sfx2d(SFX_LASER_SHOOT,position)
 
-func _on_hit_box_body_entered(body: Node2D) -> void:
-	if hp>0:
-		var player:Player=body
-		player.is_hurted=true
-		player.direction_hurt=direction
-
-
-func _on_area_detective_body_entered(body: Node2D) -> void:
-	is_player_detected=true
-
-
-func _on_audio_stream_player_finished() -> void:
-	%AnimationPlayer.play()
+func _on_hurtbox_hit() -> void:
+	die_leave_effect(BOOM)

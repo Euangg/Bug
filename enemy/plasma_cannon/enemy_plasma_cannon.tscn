@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://enemy/enemy.tscn" id="1_d8b3q"]
 [ext_resource type="Script" uid="uid://cl1ofd0qi7djm" path="res://enemy/plasma_cannon/enemy_plasma_cannon.gd" id="2_k46t8"]
 [ext_resource type="Texture2D" uid="uid://cdqcj2itsy2xc" path="res://enemy/plasma_cannon/frame_full.png" id="2_tpy64"]
-[ext_resource type="Texture2D" uid="uid://dk1ekut57ukn3" path="res://asset/laser_1.png" id="4_qvo6o"]
+[ext_resource type="Texture2D" uid="uid://dk1ekut57ukn3" path="res://enemy/ball/laser_1.png" id="4_qvo6o"]
 [ext_resource type="Script" uid="uid://p7m6lqmm1gx1" path="res://enemy/plasma_cannon/collision_shape_2d.gd" id="4_ukea0"]
 [ext_resource type="AudioStream" uid="uid://gmk2vwa2cx8s" path="res://sound/loop/sfx_laser_2.mp3" id="6_fqexd"]
 [ext_resource type="AudioStream" uid="uid://cgxrjk31cd3u2" path="res://sound/loop/sfx_plasma_move.mp3" id="7_rj26a"]

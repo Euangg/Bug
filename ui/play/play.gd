@@ -11,19 +11,18 @@ var dict_level={
 	"1-3":("uid://j4ss5o1avea6"),
 	"1-4":("uid://dxyuas23t6y4y"),
 	
-	"2-1": ("uid://l6m7am4bx8hx"),
+	"2-1":("uid://l6m7am4bx8hx"),
 	"2-2":("uid://c4m7w371a50xy"),
 	"2-3":("uid://ctoymaqneykpq"),
-	"2-4":("uid://xe1j7c2ii011"),
+	"2-4":("uid://dn7bycqqe64nc"),
+	"2-5":("uid://xe1j7c2ii011"),
 	
 	"3-1":("uid://cey0hy37clu11"),
 	"3-2":("uid://be1q8fgeey1e"),
 	"3-3":("uid://c0mq03nfqmt8l"),
 	"3-4":("uid://sb377ee0lgks"),
-	
-	"level_test":("uid://dn7bycqqe64nc")
 }
-func switch_level(str_level:String):
+func switch_level(str_level:String,order:int=0):
 	print("switch to "+ str_level )
 	var old_level:Array=%Level.get_children()
 	for l in old_level:l.queue_free()
@@ -34,7 +33,7 @@ func switch_level(str_level:String):
 	Global.play_sfx(Global.SFX_SWITCH)
 	
 	var marks=new_level.enter_point.get_children()
-	%Player.position=marks[0].position
+	%Player.position=marks[order].position
 	
 	camera_2d.limit_left=new_level.lt.position.x
 	camera_2d.limit_top=new_level.lt.position.y
@@ -43,6 +42,8 @@ func switch_level(str_level:String):
 	
 	for g in %Player.node_ghost.get_children():g.queue_free()
 	%TimerTeleporation.start()
+	
+	get_tree().paused=false
 	var tween:Tween=create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(Global.color_rect,"color:a",0,0.5)
@@ -50,7 +51,6 @@ func switch_level(str_level:String):
 func _ready() -> void:
 	Global.camera=%Camera2D
 	switch_level(Global.str_enter_level)
-	#switch_level(Global.str_enter_level)
 	
 	%Player.dead.connect(func():
 		print("dead")

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c34v2v2wr5cgb"]
+
+[ext_resource type="Script" uid="uid://bj011twopxwl6" path="res://level/area_trans/trans.gd" id="1_gb68g"]
+
+[node name="Trans" type="Area2D" unique_id=2121581952]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_gb68g")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

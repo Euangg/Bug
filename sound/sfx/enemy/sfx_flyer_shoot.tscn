@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d335srixdg06"]
+[gd_scene format=3 uid="uid://d335srixdg06"]
 
 [ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_p30xh"]
-[ext_resource type="AudioStream" uid="uid://w57ijmkdyn63" path="res://sound/sfx/enemy/sfx_flyer_shoot.mp3" id="2_p30xh"]
+[ext_resource type="AudioStream" uid="uid://w57ijmkdyn63" path="res://enemy/ball/sfx_laser_shoot.mp3" id="2_p30xh"]
 
-[node name="SfxFlyerShoot" instance=ExtResource("1_p30xh")]
+[node name="SfxFlyerShoot" unique_id=836442735 instance=ExtResource("1_p30xh")]
 stream = ExtResource("2_p30xh")

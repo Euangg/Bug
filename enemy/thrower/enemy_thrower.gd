@@ -1,4 +1,8 @@
 extends Enemy
+const SFX_THROWER_SHOOT = preload("uid://bby03bap6bdqy")
+const SFX_THROWER_STEP_1 = preload("uid://10imep4sul6h")
+const SFX_THROWER_STEP_2 = preload("uid://by4qql5xugxl5")
+
 enum State{NULL,IDLE,
 	MOVE,ATTACK,
 }
@@ -50,10 +54,6 @@ func _physics_process(delta: float) -> void:
 			if is_zero_approx(dx):pass
 			else:direction=sign(dx)
 	
-	if is_hurted:
-		is_hurted=false
-		hp-=1
-		if hp<=0:die_boom()
 	velocity.y+=gravity*delta
 	move_and_slide()
 
@@ -67,9 +67,9 @@ func thorw_box():
 	else:
 		p.velocity.x=1200*sign(dx)
 		var t=dx/p.velocity.x
-		p.velocity.y=dy/t-0.5*Entity.gravity*t
+		p.velocity.y=dy/t-0.5*gravity*t
 	add_sibling(p)
-	Global.play_sfx(Global.SFX_THROWER_SHOOT)
+	Global.play_sfx2d(SFX_THROWER_SHOOT,position)
 
 func _on_area_detection_body_entered(body: Node2D) -> void:
 	is_player_detected=true
@@ -77,6 +77,8 @@ func _on_area_detection_body_entered(body: Node2D) -> void:
 func _on_area_detection_body_exited(body: Node2D) -> void:
 	is_player_detected=false
 
-var sfx_steps=[Global.SFX_THROWER_STEP_1,Global.SFX_THROWER_STEP_2]
-func _on_timer_step_timeout() -> void:
-	Global.play_sfx(sfx_steps.pick_random())
+var sfx_steps=[SFX_THROWER_STEP_1,SFX_THROWER_STEP_2]
+func play_step() -> void:
+	Global.play_sfx2d(sfx_steps.pick_random(),position)
+
+func _on_hurtbox_hit() -> void:die_leave_effect(BOOM)

@@ -4,9 +4,23 @@
 [ext_resource type="Texture2D" uid="uid://da7wqjv1c60v5" path="res://enemy/monitor/底座.png" id="2_4u6km"]
 [ext_resource type="Script" uid="uid://ru5h2lqqbk6c" path="res://enemy/monitor/monitor.gd" id="2_t72cm"]
 [ext_resource type="Texture2D" uid="uid://b51ph1ss7d8dd" path="res://enemy/monitor/头.png" id="3_t72cm"]
+[ext_resource type="PackedScene" uid="uid://d3edhhl6gr4d" path="res://entity/hurtbox/hurtbox.tscn" id="5_rbx2o"]
+[ext_resource type="PackedScene" uid="uid://cyi15vmi0bcqb" path="res://entity/hitbox/hitbox.tscn" id="6_4ya0u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_neomt"]
+size = Vector2(88, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbx2o"]
+size = Vector2(109, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfdlx"]
+size = Vector2(96, 121)
 
 [node name="Enemy" unique_id=1307404642 instance=ExtResource("1_u7xjp")]
 script = ExtResource("2_t72cm")
+
+[node name="MarkerBoom" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="0" unique_id=346637568]
+position = Vector2(0, 76)
 
 [node name="bottom" type="Sprite2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="1" unique_id=1360401151]
 position = Vector2(-10, 54)
@@ -26,3 +40,45 @@ offset = Vector2(35, 10)
 [node name="MarkerFire" type="Marker2D" parent="Graphic/head" index="1" unique_id=29013980]
 unique_name_in_owner = true
 position = Vector2(63, 0)
+
+[node name="Hitbox" parent="Graphic/head" index="2" unique_id=986071656 instance=ExtResource("6_4ya0u")]
+position = Vector2(29, -84)
+collision_mask = 512
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/head/Hitbox" index="0" unique_id=816300121]
+position = Vector2(0, 86)
+shape = SubResource("RectangleShape2D_neomt")
+
+[node name="RayCastDetect" type="RayCast2D" parent="Graphic/head" index="3" unique_id=1146281937]
+unique_name_in_owner = true
+position = Vector2(63, 0)
+target_position = Vector2(600, 0)
+collision_mask = 2
+
+[node name="Hurtbox" parent="Graphic/head" index="4" unique_id=716986136 instance=ExtResource("5_rbx2o")]
+position = Vector2(0, 122)
+collision_layer = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/head/Hurtbox" index="0" unique_id=486732028]
+position = Vector2(32.5, -120)
+shape = SubResource("RectangleShape2D_rbx2o")
+
+[node name="Hurtbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="3" unique_id=969820315 instance=ExtResource("5_rbx2o")]
+position = Vector2(0, 122)
+collision_layer = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hurtbox" index="0" unique_id=871496150]
+position = Vector2(0, -61.5)
+shape = SubResource("RectangleShape2D_wfdlx")
+
+[node name="Timer" type="Timer" parent="." index="2" unique_id=1453552163]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[connection signal="hit" from="Graphic/head/Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="hit" from="Graphic/Hurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="Graphic/head/Hurtbox"]
+[editable path="Graphic/Hurtbox"]

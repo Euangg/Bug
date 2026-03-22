@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://enemy/enemy.tscn" id="1_3luig"]
 [ext_resource type="Script" uid="uid://bwmtghwaw2sdj" path="res://enemy/man/man.gd" id="2_v1v0j"]
-[ext_resource type="Texture2D" uid="uid://dh728xwqxxouj" path="res://enemy/man/enemy_man.png" id="3_qfydu"]
+[ext_resource type="Texture2D" uid="uid://b30lass2e3dfa" path="res://enemy/man/man_purple.tres" id="3_3luig"]
 [ext_resource type="PackedScene" uid="uid://cyi15vmi0bcqb" path="res://entity/hitbox/hitbox.tscn" id="4_audel"]
 [ext_resource type="PackedScene" uid="uid://d3edhhl6gr4d" path="res://entity/hurtbox/hurtbox.tscn" id="5_4v1p6"]
 
@@ -74,10 +74,10 @@ speed_x = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="0" unique_id=1437482459]
 position = Vector2(-10, -95)
-texture = ExtResource("3_qfydu")
+texture = ExtResource("3_3luig")
 flip_h = true
 hframes = 3
-vframes = 4
+vframes = 2
 frame = 3
 
 [node name="MarkerBoom" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="1" unique_id=346637568]

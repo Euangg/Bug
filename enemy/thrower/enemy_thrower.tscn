@@ -3,19 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://enemy/enemy.tscn" id="1_1xxe0"]
 [ext_resource type="Texture2D" uid="uid://63y2oar458iy" path="res://enemy/thrower/enemy_thrower.png" id="2_nee8l"]
 [ext_resource type="Script" uid="uid://do6ltv26vj0i8" path="res://enemy/thrower/enemy_thrower.gd" id="2_qdrwu"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk60c"]
-size = Vector2(95, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly6jm"]
-size = Vector2(1038, 415)
+[ext_resource type="PackedScene" uid="uid://d3edhhl6gr4d" path="res://entity/hurtbox/hurtbox.tscn" id="4_ix61i"]
+[ext_resource type="PackedScene" uid="uid://cyi15vmi0bcqb" path="res://entity/hitbox/hitbox.tscn" id="5_ng885"]
 
 [sub_resource type="Animation" id="Animation_nk60c"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +28,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -64,7 +60,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -82,7 +78,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,59 +96,72 @@ _data = {
 &"move": SubResource("Animation_bf6qg")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly6jm"]
+size = Vector2(1038, 415)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi6kv"]
+size = Vector2(111, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk60c"]
+size = Vector2(95, 99)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qdrwu"]
 size = Vector2(110, 136)
 
 [node name="EnemyThrower" unique_id=1490512165 instance=ExtResource("1_1xxe0")]
 script = ExtResource("2_qdrwu")
 
-[node name="Direction_HitBox#CollisionShape2D2" type="CollisionShape2D" parent="." index="0" unique_id=2059678206]
-position = Vector2(0.5, -68)
-shape = SubResource("RectangleShape2D_nk60c")
-
-[node name="Direction_AreaDetection#CollisionShape2D2" type="CollisionShape2D" parent="." index="1" unique_id=1195215868]
-position = Vector2(310, -197.5)
-shape = SubResource("RectangleShape2D_ly6jm")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1362450547]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0" unique_id=1362450547]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_7d7re")
 
-[node name="TimerIdle" type="Timer" parent="." index="3" unique_id=1886284246]
+[node name="TimerIdle" type="Timer" parent="." index="1" unique_id=1886284246]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="TimerMove" type="Timer" parent="." index="4" unique_id=1227201347]
+[node name="TimerMove" type="Timer" parent="." index="2" unique_id=1227201347]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="TimerStep" type="Timer" parent="." index="5" unique_id=1935015213]
-unique_name_in_owner = true
-wait_time = 0.3
-
-[node name="Direction#Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1341194006]
+[node name="Sprite2D" type="Sprite2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="1" unique_id=1341194006]
 position = Vector2(0, -70)
 texture = ExtResource("2_nee8l")
 hframes = 3
 vframes = 4
 
-[node name="Direction#MarkerBox" type="Marker2D" parent="." index="8" unique_id=146822690]
+[node name="MarkerBox" type="Marker2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="2" unique_id=146822690]
 unique_name_in_owner = true
 position = Vector2(2, -101)
 
-[node name="Direction#HitBox" type="Area2D" parent="." index="9" unique_id=467837441]
+[node name="AreaDetect" type="Area2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="3" unique_id=39250055]
 visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="Direction#AreaDetection" type="Area2D" parent="." index="10" unique_id=39250055]
-visible = false
-collision_layer = 0
-collision_mask = 2
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphic/AreaDetect" index="0" unique_id=1195215868]
+position = Vector2(310, -197.5)
+shape = SubResource("RectangleShape2D_ly6jm")
 
-[node name="CollisionShape2D" parent="." index="11" unique_id=462639808]
+[node name="Hurtbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="4" unique_id=716986136 instance=ExtResource("4_ix61i")]
+collision_layer = 8192
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphic/Hurtbox" index="0" unique_id=496285186]
+position = Vector2(0.5, -68)
+shape = SubResource("RectangleShape2D_wi6kv")
+
+[node name="Hitbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="5" unique_id=986071656 instance=ExtResource("5_ng885")]
+collision_mask = 512
+monitoring = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphic/Hitbox" index="0" unique_id=2059678206]
+position = Vector2(0.5, -53.5)
+shape = SubResource("RectangleShape2D_nk60c")
+
+[node name="CollisionShape2D" parent="." index="4" unique_id=462639808]
 visible = false
 position = Vector2(0, -68)
 shape = SubResource("RectangleShape2D_qdrwu")
 
-[connection signal="timeout" from="TimerStep" to="." method="_on_timer_step_timeout"]
+[connection signal="hit" from="Graphic/Hurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="Graphic/Hurtbox"]

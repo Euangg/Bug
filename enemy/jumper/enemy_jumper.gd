@@ -84,21 +84,20 @@ func _physics_process(delta: float) -> void:
 
 func _on_hurtbox_hit() -> void:
 	hp-=1
-	if hp<=0:die_leave_boom()
+	if hp<=0:die_leave_effect(BOOM_BIG)
 	else:stun()
 func stun():
+	process_mode=Node.PROCESS_MODE_DISABLED
 	modulate=Color(0xff00ffff)
-	%TimerStun.start()
-	%TimerInvincible.start()
 	%Hurtbox.set_deferred("monitorable",false)
 	%Hitbox.set_deferred("monitoring",false)
-	process_mode=Node.PROCESS_MODE_DISABLED
+	%TimerStun.start()
+	
 
 func _on_timer_stun_timeout() -> void:
-	modulate=Color(0xffffffff)
 	process_mode=Node.PROCESS_MODE_INHERIT
-	print("stun over")
-
-func _on_timer_invincible_timeout() -> void:
+	modulate=Color(0xffffffff)
 	%Hurtbox.set_deferred("monitorable",true)
 	%Hitbox.set_deferred("monitoring",true)
+
+	

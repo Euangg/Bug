@@ -72,6 +72,5 @@ libraries/ = SubResource("AnimationLibrary_l2amm")
 
 [node name="SingleFinish" parent="." unique_id=11930018 instance=ExtResource("3_6dqgs")]
 
-[connection signal="finish" from="." to="." method="_on_finish"]
-[connection signal="body_entered" from="SingleWake" to="." method="_on_single_wake_body_entered"]
-[connection signal="body_entered" from="SingleFinish" to="." method="_on_single_finish_body_entered"]
+[connection signal="tree_exiting" from="SingleWake" to="." method="_on_single_wake_tree_exiting"]
+[connection signal="tree_exiting" from="SingleFinish" to="." method="_on_single_finish_tree_exiting"]

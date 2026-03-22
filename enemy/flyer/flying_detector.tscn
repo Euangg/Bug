@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://csii2bkosawew"]
+
+[ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://enemy/enemy.tscn" id="1_11jm0"]
+[ext_resource type="Script" uid="uid://bipi2up0fmb8m" path="res://enemy/flyer/flying_detector.gd" id="2_gqfja"]
+[ext_resource type="Texture2D" uid="uid://bu502y7y2wnhk" path="res://enemy/flyer/flying_detector.png" id="3_lrqqh"]
+[ext_resource type="AudioStream" uid="uid://xptkhg53qjjv" path="res://sound/loop/sfx_flyer.mp3" id="4_6abb7"]
+[ext_resource type="PackedScene" uid="uid://d3edhhl6gr4d" path="res://entity/hurtbox/hurtbox.tscn" id="4_lrqqh"]
+[ext_resource type="PackedScene" uid="uid://cyi15vmi0bcqb" path="res://entity/hitbox/hitbox.tscn" id="5_6abb7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exqwt"]
+size = Vector2(96, 139)
+
+[sub_resource type="Animation" id="Animation_m6vms"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jpko3"]
+resource_name = "move"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwh01"]
+_data = {
+&"RESET": SubResource("Animation_m6vms"),
+&"move": SubResource("Animation_jpko3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrqqh"]
+radius = 600.0
+
+[node name="FlyingDetector" unique_id=1141766155 instance=ExtResource("1_11jm0")]
+script = ExtResource("2_gqfja")
+speed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="0" unique_id=1807791264]
+position = Vector2(0, 17)
+texture = ExtResource("3_lrqqh")
+flip_h = true
+hframes = 3
+
+[node name="Hurtbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="2" unique_id=716986136 instance=ExtResource("4_lrqqh")]
+position = Vector2(0, 87)
+collision_layer = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hurtbox" index="0" unique_id=1840406466]
+position = Vector2(0, -73.5)
+shape = SubResource("RectangleShape2D_exqwt")
+
+[node name="Hitbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="3" unique_id=986071656 instance=ExtResource("5_6abb7")]
+collision_mask = 512
+monitoring = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Graphic/Hitbox" index="0" unique_id=1558198302]
+polygon = PackedVector2Array(0, -51, -37, -45, -45, -34, -47, 42, -7, 80, 31, 10, 46, 3, 48, -56)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=405701781]
+libraries/ = SubResource("AnimationLibrary_jwh01")
+autoplay = &"move"
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="." index="3" unique_id=35071626]
+stream = ExtResource("4_6abb7")
+volume_db = 15.0
+autoplay = true
+max_distance = 500.0
+bus = &"Sfx"
+parameters/looping = true
+
+[node name="Area2D" type="Area2D" parent="." index="4" unique_id=2037632427]
+collision_layer = 0
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=375466929]
+shape = SubResource("CircleShape2D_lrqqh")
+
+[connection signal="hit" from="Graphic/Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="Graphic/Hurtbox"]

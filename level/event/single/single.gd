@@ -1,4 +1,5 @@
-extends Area2D
+extends Event
 
-
-func _on_body_entered(body: Node2D) -> void:queue_free()
+func _on_body_entered(body: Node2D) -> void:
+	trigger.emit()
+	queue_free()

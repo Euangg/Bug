@@ -4,12 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://3gcvkfr45kyh" path="res://enemy/shield/full.png" id="2_m16ve"]
 [ext_resource type="Script" uid="uid://jcmkyiot43sp" path="res://enemy/shield/enemy_shield.gd" id="2_svjct"]
 [ext_resource type="PackedScene" uid="uid://bgliou7lie7ee" path="res://entity/health_bar.tscn" id="4_8u84x"]
+[ext_resource type="PackedScene" uid="uid://d3edhhl6gr4d" path="res://entity/hurtbox/hurtbox.tscn" id="5_swi21"]
+[ext_resource type="PackedScene" uid="uid://cyi15vmi0bcqb" path="res://entity/hitbox/hitbox.tscn" id="6_m5kbf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rog87"]
-size = Vector2(993, 279)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5kbf"]
+size = Vector2(300, 191)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u84x"]
-size = Vector2(62, 215.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbb7l"]
+size = Vector2(801, 191)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktny3"]
+size = Vector2(124, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swi21"]
+size = Vector2(85, 210)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m16ve"]
 size = Vector2(75, 231)
@@ -19,7 +27,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,13 +37,44 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_swi21"]
+resource_name = "atk"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19, 20]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_ammo"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_lwtl4"]
 resource_name = "die"
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,6 +82,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [56, 57, 58, 59, 60, 61, 62, 63, 64, 65]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"die_and_boom"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_uf21k"]
@@ -52,7 +105,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +123,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -80,15 +133,32 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 }
 
+[sub_resource type="Animation" id="Animation_rog87"]
+resource_name = "pre_smash"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19]
+}
+
 [sub_resource type="Animation" id="Animation_8u84x"]
-resource_name = "move"
+resource_name = "smash"
 length = 0.4
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/path = NodePath("Graphic/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -98,38 +168,27 @@ tracks/0/keys = {
 "values": [28, 29, 30, 31]
 }
 
-[sub_resource type="Animation" id="Animation_rog87"]
-resource_name = "pre_attack"
-length = 0.7
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [14, 15, 16, 17, 18, 19, 20]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_svjct"]
 _data = {
 &"RESET": SubResource("Animation_svjct"),
+&"atk": SubResource("Animation_swi21"),
 &"die": SubResource("Animation_lwtl4"),
 &"hurt": SubResource("Animation_uf21k"),
 &"idle": SubResource("Animation_m16ve"),
-&"move": SubResource("Animation_8u84x"),
-&"pre_attack": SubResource("Animation_rog87")
+&"pre_smash": SubResource("Animation_rog87"),
+&"smash": SubResource("Animation_8u84x")
 }
 
-[node name="EnemyShield" instance=ExtResource("1_6bcyk")]
+[node name="EnemyShield" unique_id=162340585 instance=ExtResource("1_6bcyk")]
 script = ExtResource("2_svjct")
-hp = 4
+hp = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0"]
+[node name="HealthBar" parent="." index="0" unique_id=1041802409 instance=ExtResource("4_8u84x")]
+offset_top = -244.0
+offset_bottom = -244.0
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="0" unique_id=672855364]
 unique_name_in_owner = true
 position = Vector2(29, -133)
 texture = ExtResource("2_m16ve")
@@ -138,53 +197,77 @@ hframes = 14
 vframes = 5
 region_rect = Rect2(0, 308, 5080, 1232)
 
-[node name="MarkerBoom" parent="Direction" index="1"]
-position = Vector2(0, -119)
-
-[node name="AreaDetective" type="Area2D" parent="Direction" index="2"]
+[node name="DetectBox" type="Area2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="2" unique_id=2062203304]
 unique_name_in_owner = true
-visible = false
+position = Vector2(0, -192)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 514
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/AreaDetective" index="0"]
-position = Vector2(496.5, -143)
-shape = SubResource("RectangleShape2D_rog87")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/DetectBox" index="0" unique_id=1263126758]
+position = Vector2(158, 86)
+shape = SubResource("RectangleShape2D_m5kbf")
 
-[node name="HitBox" type="Area2D" parent="Direction" index="3"]
+[node name="DetectBox2" type="Area2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="3" unique_id=1711210939]
+unique_name_in_owner = true
+position = Vector2(0, -192)
+collision_layer = 0
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/DetectBox2" index="0" unique_id=50197557]
+position = Vector2(408.5, 86)
+shape = SubResource("RectangleShape2D_dbb7l")
+
+[node name="Hurtbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="4" unique_id=716986136 instance=ExtResource("5_swi21")]
 unique_name_in_owner = true
 visible = false
-collision_layer = 32
-collision_mask = 2
-monitoring = false
+collision_layer = 8192
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitBox" index="0"]
-position = Vector2(68, -112.25)
-shape = SubResource("RectangleShape2D_8u84x")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hurtbox" index="0" unique_id=738585656]
+position = Vector2(36, -113)
+shape = SubResource("RectangleShape2D_ktny3")
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="Hitbox" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="5" unique_id=986071656 instance=ExtResource("6_m5kbf")]
+unique_name_in_owner = true
+collision_mask = 512
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hitbox" index="0" unique_id=318476886]
+position = Vector2(32.5, -108)
+shape = SubResource("RectangleShape2D_swi21")
+
+[node name="MarkerFire" type="Marker2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="6" unique_id=1535859816]
+unique_name_in_owner = true
+position = Vector2(90, -136)
+
+[node name="Booms" type="Node2D" parent="Graphic" parent_id_path=PackedInt32Array(1690456547) index="7" unique_id=838509525]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="Graphic/Booms" index="0" unique_id=778140133]
+position = Vector2(-168, -25)
+
+[node name="Marker2D2" type="Marker2D" parent="Graphic/Booms" index="1" unique_id=968725939]
+position = Vector2(21, -40)
+
+[node name="Marker2D3" type="Marker2D" parent="Graphic/Booms" index="2" unique_id=593013503]
+position = Vector2(198, -36)
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=462639808]
 visible = false
 position = Vector2(0, -116)
 shape = SubResource("RectangleShape2D_m16ve")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=229307314]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_svjct")
-}
-autoplay = "idle"
+libraries/ = SubResource("AnimationLibrary_svjct")
+autoplay = &"idle"
 
-[node name="TimerIdleMove" type="Timer" parent="." index="3"]
+[node name="TimerStun" type="Timer" parent="." index="4" unique_id=2056181884]
 unique_name_in_owner = true
+process_mode = 3
+wait_time = 0.2
 one_shot = true
 
-[node name="TimerMove" type="Timer" parent="." index="4"]
-unique_name_in_owner = true
-one_shot = true
+[connection signal="hit" from="Graphic/Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="timeout" from="TimerStun" to="." method="_on_timer_stun_timeout"]
 
-[node name="HealthBar" parent="." index="5" instance=ExtResource("4_8u84x")]
-offset_top = -244.0
-offset_bottom = -244.0
-scale = Vector2(2, 2)
-
-[connection signal="body_entered" from="Direction/HitBox" to="." method="player_body_hit"]
+[editable path="Graphic/Hurtbox"]

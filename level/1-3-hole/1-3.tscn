@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://j4ss5o1avea6"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_4x14b"]
+[ext_resource type="Texture2D" uid="uid://bmp4b37y40ht1" path="res://level/1-3-hole/layer1.png" id="2_on1rv"]
+[ext_resource type="Texture2D" uid="uid://beutwkwqx5e64" path="res://level/1-3-hole/layer2.png" id="3_pdmtm"]
+[ext_resource type="PackedScene" uid="uid://c352bvyc68fd2" path="res://level/prefab/platform.tscn" id="4_w4po7"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="5_juqbd"]
+[ext_resource type="PackedScene" uid="uid://b5g1y8woykbbr" path="res://level/1-3-hole/event/up/up.tscn" id="6_on1rv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j13jr"]
+size = Vector2(1932, 815)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh0rt"]
+size = Vector2(725, 4765.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1yig"]
+size = Vector2(528, 786.5)
+
+[node name="1-3" unique_id=59920597 instance=ExtResource("1_4x14b")]
+
+[node name="ColorRect" type="ColorRect" parent="." index="0" unique_id=943066818]
+offset_top = -2757.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=1306164705]
+position = Vector2(960, 121)
+texture = ExtResource("2_on1rv")
+
+[node name="Layer3" type="Sprite2D" parent="Sprite2D" index="0" unique_id=764690773]
+position = Vector2(0, -1920)
+texture = ExtResource("2_on1rv")
+
+[node name="Layer4" type="Sprite2D" parent="Sprite2D" index="1" unique_id=1663187134]
+position = Vector2(1080, -1920)
+texture = ExtResource("2_on1rv")
+
+[node name="Layer2" type="Sprite2D" parent="Sprite2D" index="2" unique_id=1347202974]
+position = Vector2(0, -102)
+texture = ExtResource("3_pdmtm")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite2D" index="3" unique_id=1033558445]
+offset_left = 540.0
+offset_top = -2309.0
+offset_right = 1624.0
+offset_bottom = 959.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=1914659244]
+position = Vector2(947, 1488)
+shape = SubResource("RectangleShape2D_j13jr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=654280735]
+position = Vector2(57, -808.25)
+shape = SubResource("RectangleShape2D_wh0rt")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=302352310]
+position = Vector2(1862, 214)
+shape = SubResource("RectangleShape2D_wh0rt")
+
+[node name="Platform" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="3" unique_id=126000965 instance=ExtResource("4_w4po7")]
+position = Vector2(1290, 845)
+
+[node name="Platform2" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="4" unique_id=459771111 instance=ExtResource("4_w4po7")]
+position = Vector2(1003, 550)
+
+[node name="Platform3" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="5" unique_id=669131057 instance=ExtResource("4_w4po7")]
+position = Vector2(755, 216)
+
+[node name="Platform4" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="6" unique_id=1381298368 instance=ExtResource("4_w4po7")]
+position = Vector2(1153, -103)
+
+[node name="Platform7" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="7" unique_id=134140701 instance=ExtResource("4_w4po7")]
+position = Vector2(849, -437)
+
+[node name="Platform9" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="8" unique_id=852277172 instance=ExtResource("4_w4po7")]
+position = Vector2(1035, -785)
+
+[node name="Platform19" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="9" unique_id=1212255089 instance=ExtResource("4_w4po7")]
+position = Vector2(1299, -785)
+
+[node name="Platform10" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="10" unique_id=1735021866 instance=ExtResource("4_w4po7")]
+position = Vector2(771, -785)
+
+[node name="Platform11" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="11" unique_id=1255126491 instance=ExtResource("4_w4po7")]
+position = Vector2(1040, -1127)
+
+[node name="Platform12" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="12" unique_id=1382180817 instance=ExtResource("4_w4po7")]
+position = Vector2(552, -1429)
+
+[node name="Platform14" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="13" unique_id=629432281 instance=ExtResource("4_w4po7")]
+position = Vector2(666, -1775)
+
+[node name="Platform15" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="14" unique_id=442967937 instance=ExtResource("4_w4po7")]
+position = Vector2(1501, -2208)
+
+[node name="Platform20" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="15" unique_id=69711033 instance=ExtResource("4_w4po7")]
+position = Vector2(1764, -2208)
+
+[node name="Platform21" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="16" unique_id=1475346805 instance=ExtResource("4_w4po7")]
+position = Vector2(2025, -2208)
+
+[node name="Platform16" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="17" unique_id=1767102033 instance=ExtResource("4_w4po7")]
+position = Vector2(1240, -2208)
+
+[node name="Platform17" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="18" unique_id=1271961242 instance=ExtResource("4_w4po7")]
+position = Vector2(983, -2208)
+
+[node name="Platform18" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="19" unique_id=1990651458 instance=ExtResource("4_w4po7")]
+position = Vector2(1272, -1871)
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=798975170]
+position = Vector2(469, 1080)
+
+[node name="LT" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="0" unique_id=35742969]
+position = Vector2(0, -2747)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(1920, 1080)
+
+[node name="Teleportation" parent="." index="5" unique_id=1622088228 instance=ExtResource("5_juqbd")]
+position = Vector2(1286, 704)
+target_level = "1-4"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0" unique_id=2013701959]
+position = Vector2(496, -3268.75)
+shape = SubResource("RectangleShape2D_v1yig")
+
+[node name="Event" type="Node" parent="." index="6" unique_id=1571805831]
+
+[node name="Up" parent="Event" index="0" unique_id=784662630 instance=ExtResource("6_on1rv")]

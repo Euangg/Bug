@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://ctoymaqneykpq"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_ko2gb"]
+[ext_resource type="Texture2D" uid="uid://ceshpghrhtdq0" path="res://level/2-3-industry/back.png" id="2_om7um"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="3_wav24"]
+[ext_resource type="PackedScene" uid="uid://jaxvolaaohw2" path="res://level/prefab/pillar_cyber_broken.tscn" id="4_11ha8"]
+[ext_resource type="PackedScene" uid="uid://cjrrw3mvps6ac" path="res://level/prefab/pillar_cyber_wide.tscn" id="4_uxm7j"]
+[ext_resource type="Texture2D" uid="uid://0680qsxukqop" path="res://level/1-1-ruins/core.png" id="5_14g8d"]
+[ext_resource type="Texture2D" uid="uid://b47n0ntlt5wtl" path="res://level/1-4-pier/core.png" id="5_tcw7f"]
+[ext_resource type="PackedScene" uid="uid://bdy3vp4adj4i6" path="res://level/area_dead/dead_area.tscn" id="7_arue6"]
+[ext_resource type="PackedScene" uid="uid://r3a3ywc3ifqg" path="res://level/prefab/railing/railing_1.tscn" id="8_l52sk"]
+[ext_resource type="PackedScene" uid="uid://cxn3qox4lrsrl" path="res://enemy/man/man.tscn" id="8_y770l"]
+[ext_resource type="PackedScene" uid="uid://cgkyd7j8tjsog" path="res://enemy/man/man_green.tscn" id="11_jllm5"]
+[ext_resource type="PackedScene" uid="uid://csii2bkosawew" path="res://enemy/flyer/flying_detector.tscn" id="12_pfacd"]
+[ext_resource type="PackedScene" uid="uid://cfe3ft0e2qon5" path="res://enemy/man/man_red.tscn" id="13_wisku"]
+[ext_resource type="PackedScene" uid="uid://bjb2ehqmcaubu" path="res://enemy/ball/enemy_ball.tscn" id="14_2e8mo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om7um"]
+size = Vector2(2338, 172)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wav24"]
+size = Vector2(1041, 2053)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrrow"]
+size = Vector2(2092, 197)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxog"]
+size = Vector2(142, 273.5)
+
+[node name="LevelCity" unique_id=1733865672 instance=ExtResource("1_ko2gb")]
+
+[node name="Back" type="Parallax2D" parent="." index="0" unique_id=32188064]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="Back" type="Sprite2D" parent="Back" index="0" unique_id=1862290044]
+texture = ExtResource("2_om7um")
+centered = false
+
+[node name="Platform" parent="." index="1" unique_id=1212255089 instance=ExtResource("4_uxm7j")]
+position = Vector2(1968, 982)
+
+[node name="Platform2" parent="." index="2" unique_id=950059022 instance=ExtResource("4_11ha8")]
+position = Vector2(1200, 1059)
+
+[node name="Core" type="Sprite2D" parent="." index="3" unique_id=283142271]
+position = Vector2(583, 877)
+texture = ExtResource("5_14g8d")
+
+[node name="Core2" type="Sprite2D" parent="." index="4" unique_id=1978691847]
+position = Vector2(1568, 876)
+texture = ExtResource("5_tcw7f")
+region_enabled = true
+region_rect = Rect2(0, 0, 1100, 1400)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=1500486456]
+position = Vector2(940, 1302)
+shape = SubResource("RectangleShape2D_om7um")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=512571803]
+position = Vector2(-520, 773)
+shape = SubResource("RectangleShape2D_wav24")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=557654962]
+position = Vector2(3136, 597)
+shape = SubResource("RectangleShape2D_wav24")
+
+[node name="DeadArea" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="3" unique_id=555185818 instance=ExtResource("7_arue6")]
+position = Vector2(2274, 1422)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/DeadArea" index="0" unique_id=481906892]
+position = Vector2(-52, 104)
+shape = SubResource("RectangleShape2D_yrrow")
+
+[node name="Railing1" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="4" unique_id=2085984866 instance=ExtResource("8_l52sk")]
+position = Vector2(2115, 982)
+
+[node name="TextureRect" parent="Environment/Railing1" index="0" unique_id=1047867834]
+offset_right = 568.0
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=1280339382]
+position = Vector2(97, 1207)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(2500, 1400)
+
+[node name="Teleportation" parent="." index="8" unique_id=1886393750 instance=ExtResource("3_wav24")]
+position = Vector2(1667, 649)
+target_level = "2-4"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0" unique_id=939275476]
+position = Vector2(910, 200)
+shape = SubResource("RectangleShape2D_utxog")
+
+[node name="Enemy" type="Node" parent="." index="9" unique_id=1873488536]
+
+[node name="Man" parent="Enemy" index="0" unique_id=1684873667 instance=ExtResource("8_y770l")]
+position = Vector2(1205, 1056)
+
+[node name="ManGreen" parent="Enemy" index="1" unique_id=1768007032 instance=ExtResource("11_jllm5")]
+position = Vector2(2029, 978)
+auto = true
+direction = -1
+
+[node name="FlyingDetector" parent="Enemy" index="2" unique_id=1141766155 instance=ExtResource("12_pfacd")]
+position = Vector2(1616, 773)
+
+[node name="FlyingDetector2" parent="Enemy" index="3" unique_id=2104274865 instance=ExtResource("12_pfacd")]
+position = Vector2(802, 504)
+
+[node name="ManRed" parent="Enemy" index="4" unique_id=1855632004 instance=ExtResource("13_wisku")]
+position = Vector2(2058, 1215)
+direction = -1
+
+[node name="EnemyBall" parent="Enemy" index="5" unique_id=1716775090 instance=ExtResource("14_2e8mo")]
+position = Vector2(2424, 969)
+
+[editable path="Environment/Railing1"]

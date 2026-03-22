@@ -69,5 +69,4 @@ autoplay = &"idle"
 
 [node name="Single" parent="." unique_id=1324012026 instance=ExtResource("2_dsjyj")]
 
-[connection signal="finish" from="." to="." method="_on_finish"]
-[connection signal="body_entered" from="Single" to="." method="_on_single_body_entered"]
+[connection signal="trigger" from="Single" to="." method="_on_single_trigger"]

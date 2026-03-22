@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://cey0hy37clu11"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_xb2my"]
+[ext_resource type="Texture2D" uid="uid://csgnwtvqv07nw" path="res://level/3-1-bar/back.png" id="2_h8uqv"]
+[ext_resource type="Script" uid="uid://c6g35wgrsjwn2" path="res://level/3-1-bar/3-1.gd" id="2_u2jln"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="3_lobfl"]
+[ext_resource type="Texture2D" uid="uid://cwi0l18to8nhr" path="res://level/3-1-bar/core.png" id="4_bxe8t"]
+[ext_resource type="Texture2D" uid="uid://bhppglba4ssk2" path="res://level/3-1-bar/front.png" id="5_pjf6o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lobfl"]
+size = Vector2(2945, 161)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjf6o"]
+size = Vector2(119, 2249.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8uqv"]
+size = Vector2(302.75, 41.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxe8t"]
+size = Vector2(1442.375, 41.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mebi"]
+size = Vector2(687, 41.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d106f"]
+size = Vector2(2482.5, 14.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efjfc"]
+size = Vector2(418, 1051)
+
+[node name="Level05Bar" unique_id=2118556833 instance=ExtResource("1_xb2my")]
+script = ExtResource("2_u2jln")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0" unique_id=1053167458]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0" unique_id=388943846]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Back" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0" unique_id=1035292443]
+texture = ExtResource("2_h8uqv")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1" unique_id=742245593]
+
+[node name="Core" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" index="0" unique_id=271118044]
+texture = ExtResource("4_bxe8t")
+centered = false
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="." index="1" unique_id=1084445564]
+layer = 1
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2" index="0" unique_id=2039926656]
+motion_scale = Vector2(1.5, 1.5)
+
+[node name="Front" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3" index="0" unique_id=1627195976]
+position = Vector2(0, 155)
+texture = ExtResource("5_pjf6o")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=569593765]
+position = Vector2(1042.5, 1463)
+shape = SubResource("RectangleShape2D_lobfl")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=2127301965]
+position = Vector2(-60, 279.75)
+shape = SubResource("RectangleShape2D_pjf6o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=225210900]
+position = Vector2(138.625, 1076)
+shape = SubResource("RectangleShape2D_h8uqv")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="3" unique_id=80643889]
+position = Vector2(1043.8125, 877)
+shape = SubResource("RectangleShape2D_bxe8t")
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="4" unique_id=208892851]
+position = Vector2(1060.5, 629)
+shape = SubResource("RectangleShape2D_0mebi")
+one_way_collision = true
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="5" unique_id=1984381846]
+position = Vector2(1517.75, 331.625)
+shape = SubResource("RectangleShape2D_d106f")
+one_way_collision = true
+
+[node name="Teleportation" parent="." index="3" unique_id=873965889 instance=ExtResource("3_lobfl")]
+position = Vector2(3219, 785)
+target_level = "3-2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0" unique_id=1814158163]
+position = Vector2(-1090, 89.5)
+shape = SubResource("RectangleShape2D_efjfc")
+
+[node name="Teleportation2" parent="." index="4" unique_id=2079522502 instance=ExtResource("3_lobfl")]
+position = Vector2(3219, 785)
+target_level = "3-2"
+enter_point_order = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation2" index="0" unique_id=1700188862]
+position = Vector2(-1090, -980)
+shape = SubResource("RectangleShape2D_efjfc")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=828175167]
+position = Vector2(105, 1399)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(1920, 1400)

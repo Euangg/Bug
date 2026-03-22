@@ -35,6 +35,7 @@ func refresh_vignette():shader_vignette.set_shader_parameter("outer_radius",0.2+
 
 var node_ghost:Node
 @onready var marker_tip: Marker2D = $Graphic/MarkerTip
+@onready var marker_enemy_target: Marker2D = $Graphic/MarkerEnemyTarget
 func _ready() -> void:
 	Global.player=self
 	shader_vignette=%ColorRect.material

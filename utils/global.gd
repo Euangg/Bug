@@ -10,9 +10,14 @@ func _ready() -> void:
 	
 	master_string_bank=FmodServer.load_bank("res://sound/banks/Master.strings.bank", FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
 	master_bank=FmodServer.load_bank("res://sound/banks/Master.bank", FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
-
+	
+	var bus:FmodBus=FmodServer.get_bus("bus:/")
+	#bus.mute=true
+	#bus.volume=0.1
+	
 var fmod_bgm:FmodEvent=null
 func fmod_play_bgm(str:String):
+	print("fmod play ",str)
 	if fmod_bgm:
 		fmod_bgm.stop(0)
 		fmod_bgm.release()
@@ -42,9 +47,6 @@ const SFX_SWITCH = preload("uid://c3lkmsp3h40mj")
 const SFX_LASER_1 = preload("uid://d1j3poqwtk5c")
 const SFX_LASER_3 = preload("uid://dcdf1fgrtrsi7")
 
-const SFX_THROWER_SHOOT = preload("uid://dtvh1fnsxb8e1")
-const SFX_THROWER_STEP_1 = preload("uid://c4ximflekjetk")
-const SFX_THROWER_STEP_2 = preload("uid://br03gomgm4x7f")
 const SFX_BALL_TRANSFORM = preload("uid://djkdm4bligmbq")
 const SFX_PLASMA_TURN = preload("uid://bloa0jehrde0o")
 const SFX_FLYER_SHOOT = preload("uid://d335srixdg06")
@@ -79,20 +81,23 @@ const UI_CLEAR = ("uid://cy4qt40ba7mq7")
 const UI_DEVELOPER = ("uid://ce68q30ob1o3q")
 const UI_INTRO = ("uid://cd8beddty8fv7")
 const UI_CG2 = ("uid://d0bpvxb5r8jas")
+const UI_CG3 = ("uid://d05am5agug6ft")
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 func switch_scene(path_scene:String):
 	var tree:=get_tree()
+	tree.paused=true
 	var tween:Tween=create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(color_rect,"color:a",1,0.5)
 	await tween.finished
 	get_tree().call_deferred("change_scene_to_file",path_scene)
-	#get_tree().change_scene_to_packed(packed_scene)
 	
 	await tree.tree_changed
 	tween=create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(color_rect,"color:a",0,0.5)
+	await tween.finished
+	tree.paused=false
 
 var camera_shake:float
 func stun(time:float=0.2):
@@ -103,9 +108,6 @@ func stun(time:float=0.2):
 func _on_timer_stun_timeout():Engine.time_scale=1
 
 const EFFECT_TIP = preload("uid://dmb2x8b3j0kgm")
-
-const PROJECTILE_THROWER = preload("uid://cwysknnbfaugv")
-const PROJECTILE_FLYER = preload("uid://2lfwbxys80s8")
 
 var player:Player=null
 var camera:Camera2D=null

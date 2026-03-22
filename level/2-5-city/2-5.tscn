@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://xe1j7c2ii011"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_vap3g"]
+[ext_resource type="Texture2D" uid="uid://b3fb57pxtmu47" path="res://level/2-5-city/back_1.png" id="2_07twj"]
+[ext_resource type="Script" uid="uid://cptq768tl3ls4" path="res://level/2-5-city/2-5.gd" id="2_oekwa"]
+[ext_resource type="Texture2D" uid="uid://c4k57432juidp" path="res://level/2-5-city/back_2.png" id="3_ldmpf"]
+[ext_resource type="Texture2D" uid="uid://c0b8lynkgbllv" path="res://level/2-5-city/back_3.png" id="4_qshg0"]
+[ext_resource type="Texture2D" uid="uid://b38prvvpa0vs7" path="res://level/2-5-city/back_4.png" id="5_aqlsf"]
+[ext_resource type="Texture2D" uid="uid://dynj1yv1yogkv" path="res://level/2-5-city/back_5.png" id="6_ppnxm"]
+[ext_resource type="Texture2D" uid="uid://bp2i82ygu8dd0" path="res://level/2-5-city/core.png" id="7_o03n4"]
+[ext_resource type="Texture2D" uid="uid://d2vg27k4w2hxx" path="res://level/2-5-city/front_1.png" id="8_y56f1"]
+[ext_resource type="Texture2D" uid="uid://w2rw1f4xj67y" path="res://level/2-5-city/front_2.png" id="9_5y0db"]
+[ext_resource type="PackedScene" uid="uid://c4a77vtbtgmso" path="res://enemy/shield/enemy_shield.tscn" id="10_0sgyl"]
+[ext_resource type="PackedScene" uid="uid://c34v2v2wr5cgb" path="res://level/area_trans/trans.tscn" id="10_ctb8o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07twj"]
+size = Vector2(2413.5, 860)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldmpf"]
+size = Vector2(272.75, 1431)
+
+[node name="LevelCyberpunk" unique_id=454089314 instance=ExtResource("1_vap3g")]
+script = ExtResource("2_oekwa")
+
+[node name="Back5" type="Parallax2D" parent="." index="0" unique_id=1673390588]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Back5" index="0" unique_id=879611120]
+texture = ExtResource("2_07twj")
+centered = false
+
+[node name="Back4" type="Parallax2D" parent="." index="1" unique_id=1523464735]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Back4" index="0" unique_id=1465416659]
+texture = ExtResource("3_ldmpf")
+centered = false
+
+[node name="Back3" type="Parallax2D" parent="." index="2" unique_id=402451085]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Back3" index="0" unique_id=221879436]
+texture = ExtResource("4_qshg0")
+centered = false
+
+[node name="Back2" type="Parallax2D" parent="." index="3" unique_id=1789486969]
+scroll_scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Back2" index="0" unique_id=90001195]
+texture = ExtResource("5_aqlsf")
+centered = false
+
+[node name="Back1" type="Parallax2D" parent="." index="4" unique_id=186890961]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Back1" index="0" unique_id=2060111892]
+texture = ExtResource("6_ppnxm")
+centered = false
+
+[node name="Core" type="Sprite2D" parent="." index="5" unique_id=1309165807]
+texture = ExtResource("7_o03n4")
+centered = false
+
+[node name="Parallax2D" type="Parallax2D" parent="." index="6" unique_id=1031615287]
+z_index = 1
+scroll_scale = Vector2(1.5, 1.5)
+
+[node name="Front2" type="Sprite2D" parent="Parallax2D" index="0" unique_id=116800182]
+position = Vector2(0, -440)
+texture = ExtResource("9_5y0db")
+centered = false
+
+[node name="Trans" parent="Parallax2D/Front2" index="0" unique_id=2121581952 instance=ExtResource("10_ctb8o")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Parallax2D/Front2/Trans" index="0" unique_id=1868618428]
+polygon = PackedVector2Array(1923, 1623, 1856, 1627, 1845, 1864, 1751, 1998, 1921, 1996)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" index="1" unique_id=485174025]
+position = Vector2(0, -440)
+texture = ExtResource("8_y56f1")
+centered = false
+
+[node name="Trans" parent="Parallax2D/Sprite2D" index="0" unique_id=1050089221 instance=ExtResource("10_ctb8o")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Parallax2D/Sprite2D/Trans" index="0" unique_id=76113582]
+polygon = PackedVector2Array(265, 5, 256, 832, 216, 888, 199, 1277, 147, 1353, 109, 1353, 118, 1998, 1, 1999, 0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=1287384739]
+position = Vector2(983, 1536)
+shape = SubResource("RectangleShape2D_07twj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=1049259628]
+position = Vector2(2056, 511)
+shape = SubResource("RectangleShape2D_ldmpf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=844305116]
+position = Vector2(-136, 511)
+shape = SubResource("RectangleShape2D_ldmpf")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=833103481]
+position = Vector2(83, 1106)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(1920, 1400)
+
+[node name="EnemyShield" parent="." index="10" unique_id=162340585 instance=ExtResource("10_0sgyl")]
+position = Vector2(1122, 1096)
+
+[node name="TimerEnd" type="Timer" parent="." index="11" unique_id=1001886395]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[connection signal="dead" from="EnemyShield" to="." method="_on_enemy_shield_dead"]
+[connection signal="timeout" from="TimerEnd" to="." method="_on_timer_end_timeout"]

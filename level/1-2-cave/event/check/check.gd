@@ -1,8 +1,5 @@
 extends Node2D
 
-
-signal finish
-
 @export var node:Node=null
 
 func _ready() -> void:
@@ -14,9 +11,6 @@ func wake():
 	if node:
 		if node.get_child_count():%Label.text="不要怕"
 
-func end():
-	finish.emit()
-	queue_free()
+func end():queue_free()
 
-func _on_single_wake_body_entered(body: Node2D) -> void:
-	wake()
+func _on_single_wake_trigger() -> void:wake()

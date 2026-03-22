@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ds2udw36hcry6"]
+[gd_scene format=3 uid="uid://ds2udw36hcry6"]
 
 [ext_resource type="Script" uid="uid://vk8wicsdwokt" path="res://ui/fail/fail.gd" id="1_ad8yg"]
 
-[node name="Fail" type="Control"]
+[node name="Fail" type="Control" unique_id=866087338]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ad8yg")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=24619889]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="ColorRect" unique_id=1496348257]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -33,7 +33,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 100
 text = "Game Over！"
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="Button" type="Button" parent="ColorRect" unique_id=1117726607]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,7 +49,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "退出至主菜单"
 
-[node name="Button2" type="Button" parent="ColorRect"]
+[node name="Button2" type="Button" parent="ColorRect" unique_id=391164413]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

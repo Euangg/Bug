@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://d05am5agug6ft"]
+
+[ext_resource type="Script" uid="uid://b1yo10n0pi47q" path="res://ui/cg/level_3/3.gd" id="1_bauxk"]
+[ext_resource type="Texture2D" uid="uid://c7w2xxr3tsi" path="res://ui/cg/level_3/合成 1_00000.png" id="2_bauxk"]
+
+[sub_resource type="Animation" id="Animation_5kowt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro1/Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro1/Label2:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_70l5b"]
+resource_name = "line_1"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro1/Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_qxmol"]
+resource_name = "line_2"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro1/Label2:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0dp2m"]
+_data = {
+&"RESET": SubResource("Animation_5kowt"),
+&"line_1": SubResource("Animation_70l5b"),
+&"line_2": SubResource("Animation_qxmol")
+}
+
+[sub_resource type="Animation" id="Animation_hnl6g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0ub06"]
+resource_name = "event"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_game"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70l5b"]
+_data = {
+&"RESET": SubResource("Animation_hnl6g"),
+&"event": SubResource("Animation_0ub06")
+}
+
+[node name="3" type="Control" unique_id=1603107415]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bauxk")
+
+[node name="Intro1" type="Sprite2D" parent="." unique_id=2011449477]
+texture = ExtResource("2_bauxk")
+centered = false
+
+[node name="Label" type="Label" parent="Intro1" unique_id=996652738]
+offset_left = 203.0
+offset_top = 906.0
+offset_right = 1703.0
+offset_bottom = 962.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "无法逃脱的无力感，让任何希望都不再耀眼"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Label2" type="Label" parent="Intro1" unique_id=1822567072]
+offset_left = 203.0
+offset_top = 987.0
+offset_right = 1703.0
+offset_bottom = 1043.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "关卡2通关！"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=245901205]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=934916424]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_0dp2m")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=1193466776]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_70l5b")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

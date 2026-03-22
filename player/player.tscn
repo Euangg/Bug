@@ -265,6 +265,7 @@ region_rect = Rect2(900, 2100, 0, 0)
 
 [node name="Hitbox" parent="Graphic" unique_id=986071656 instance=ExtResource("3_qjkh3")]
 unique_name_in_owner = true
+visible = false
 collision_mask = 8192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Hitbox" unique_id=589096993]
@@ -282,6 +283,9 @@ shape = SubResource("RectangleShape2D_yw30f")
 
 [node name="MarkerTip" type="Marker2D" parent="Graphic" unique_id=13786509]
 position = Vector2(0, -212)
+
+[node name="MarkerEnemyTarget" type="Marker2D" parent="Graphic" unique_id=1151175706]
+position = Vector2(0, -88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=462639808]
 visible = false

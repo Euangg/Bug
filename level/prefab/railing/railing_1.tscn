@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://r3a3ywc3ifqg"]
+
+[ext_resource type="Texture2D" uid="uid://7bri5vk7l1kv" path="res://level/prefab/railing/railing_1.png" id="1_e5cx7"]
+[ext_resource type="Script" uid="uid://dkq6bgyjckwb2" path="res://level/prefab/railing/railing.gd" id="1_xx4wo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5cx7"]
+size = Vector2(244, 87.5)
+
+[node name="Railing1" type="Node2D" unique_id=2085984866]
+script = ExtResource("1_xx4wo")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1047867834]
+unique_name_in_owner = true
+offset_right = 244.0
+offset_bottom = 88.0
+texture = ExtResource("1_e5cx7")
+stretch_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1110852642]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1855671632]
+unique_name_in_owner = true
+position = Vector2(122, 44.25)
+shape = SubResource("RectangleShape2D_e5cx7")

@@ -1,13 +1,13 @@
 class_name Enemy
 extends Entity
-const BOOM_OLD = preload("uid://ckl3f6gmbo15j")
+const BOOM_BIG = preload("uid://ckl3f6gmbo15j")
 const BOOM = preload("uid://cdgg06kfanyun")
 
 signal dead
 @export var hp:int=1
 @onready var marker_boom: Marker2D = $Graphic/MarkerBoom
-func die_leave_boom():
-	var effect:Node2D=BOOM.instantiate()
+func die_leave_effect(e:PackedScene):
+	var effect:Node2D=e.instantiate()
 	effect.position=marker_boom.global_position
 	add_sibling(effect)
 	dead.emit()

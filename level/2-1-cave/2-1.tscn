@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://l6m7am4bx8hx"]
+
+[ext_resource type="PackedScene" uid="uid://ngyifqf18ygu" path="res://level/level.tscn" id="1_oapwk"]
+[ext_resource type="Texture2D" uid="uid://bhntpqxu6htly" path="res://level/2-1-cave/back.png" id="2_26kcf"]
+[ext_resource type="Script" uid="uid://ch4srrtj2722h" path="res://level/2-1-cave/2-1.gd" id="2_hue4p"]
+[ext_resource type="PackedScene" uid="uid://dtwduf2h2wcls" path="res://level/event/teleportation/teleportation.tscn" id="3_hue4p"]
+[ext_resource type="PackedScene" uid="uid://b4fu07nvhch3w" path="res://enemy/man/man_static.tscn" id="5_ao16a"]
+[ext_resource type="PackedScene" uid="uid://camt4yeyfl5bm" path="res://level/2-1-cave/event/tip.tscn" id="5_ybvhb"]
+[ext_resource type="PackedScene" uid="uid://cfe3ft0e2qon5" path="res://enemy/man/man_red.tscn" id="6_xet8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lvcl"]
+size = Vector2(2661, 179)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tijpx"]
+size = Vector2(389, 1330.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7o2r"]
+size = Vector2(134, 995)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnf2i"]
+size = Vector2(272, 1050)
+
+[node name="LevelCave1" unique_id=41222614 instance=ExtResource("1_oapwk")]
+script = ExtResource("2_hue4p")
+
+[node name="Back" type="Sprite2D" parent="." index="0" unique_id=1109745444]
+texture = ExtResource("2_26kcf")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="0" unique_id=701048599]
+position = Vector2(1180.5, 1105)
+shape = SubResource("RectangleShape2D_5lvcl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="1" unique_id=1576406990]
+position = Vector2(-193, 480)
+shape = SubResource("RectangleShape2D_tijpx")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment" parent_id_path=PackedInt32Array(1932339603) index="2" unique_id=1992429240]
+position = Vector2(2355, 480)
+shape = SubResource("RectangleShape2D_tijpx")
+
+[node name="Marker2D" type="Marker2D" parent="EnterPoint" parent_id_path=PackedInt32Array(846471292) index="0" unique_id=347803444]
+position = Vector2(111, 982)
+
+[node name="RB" parent="CameraRange" parent_id_path=PackedInt32Array(1220560832) index="1" unique_id=779205183]
+position = Vector2(1920, 1080)
+
+[node name="Teleportation" parent="." index="4" unique_id=471807747 instance=ExtResource("3_hue4p")]
+position = Vector2(1334, 636)
+target_level = "2-2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0" unique_id=195325510]
+position = Vector2(680, -117)
+shape = SubResource("RectangleShape2D_v7o2r")
+
+[node name="Event" type="Node" parent="." index="5" unique_id=915342742]
+
+[node name="Tip" parent="Event" index="0" unique_id=1056651580 instance=ExtResource("5_ybvhb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event/Tip/Single" parent_id_path=PackedInt32Array(1056651580, 1324012026) index="0" unique_id=1073527338]
+position = Vector2(684, 496)
+shape = SubResource("RectangleShape2D_nnf2i")
+
+[node name="ManStatic" parent="." index="6" unique_id=1880661247 instance=ExtResource("5_ao16a")]
+position = Vector2(746, 1012)
+direction = -1
+
+[node name="ManStatic2" parent="." index="7" unique_id=1058556934 instance=ExtResource("5_ao16a")]
+position = Vector2(1107, 1012)
+direction = -1
+
+[node name="ManRed" parent="." index="8" unique_id=1684873667 instance=ExtResource("6_xet8h")]
+position = Vector2(1290, 1008)
+auto = false
+direction = -1
+
+[node name="ManRed2" parent="." index="9" unique_id=1813569722 instance=ExtResource("6_xet8h")]
+position = Vector2(1604, 1008)
+auto = false
+direction = -1
+
+[editable path="Event/Tip"]
